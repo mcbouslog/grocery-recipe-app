@@ -10,6 +10,47 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require theme/animate.min
+ *= require theme/bootstrap
+ *= require theme/custom
+ *= require theme/font-awesome
+ *= require theme/magnific-popup
+ *= require theme/owl.carousel
+ *= require theme/parallax-slider
+ *= require theme/settings
+ *= require theme/smart-addons
+ *= require theme/smart-forms-ie8
+ *= require theme/smart-forms
+ *= require theme/app-site
+ *= require theme/background-image
+ *= require theme/comingsoon
+ *= require theme/ecommerce
+ *= require theme/index-slim
+ *= require theme/letterhead
+ *= require theme/medical
+ *= require theme/non-profit
+ *= require theme/parallax
+ *= require theme/portfolio
+ *= require theme/real-estate
+ *= require theme/restaurant
+ *= require theme/resume
+ *= require theme/skin-black
+ *= require theme/skin-blue
+ *= require theme/skin-brown
+ *= require theme/skin-green
+ *= require theme/skin-lblue
+ *= require theme/skin-less
+ *= require theme/skin-orange
+ *= require theme/skin-purple
+ *= require theme/skin-red
+ *= require theme/skin-rose
+ *= require theme/skin-yellow
+ *= require theme/status
+ *= require theme/style
+ *= require theme/vcard
+ *= require theme/wedding
+ *= require theme/style-switcher
+ *= require theme/style-switcher.old
  *= require_tree .
  *= require_self
  */

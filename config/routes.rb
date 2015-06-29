@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   root to: 'groceries#index'
+  devise_for :users
 
   get '/groceries' => 'groceries#index'
   
