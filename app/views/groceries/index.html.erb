@@ -1,1 +1,195 @@
-<h1>Index Test</h1>
+Page heading one starts -->
+
+<div class="page-heading-one">
+  <h2>Cool Parallax Page</h2>
+  <p class="bg-color">Our Works Here</p>
+</div>
+
+<!-- Page heading one ends -->      
+
+<!-- Main content starts -->
+
+<div class="main-block">
+
+  <br />
+
+  <div class="block-heading-four">
+    <i class="fa fa-desktop color br-color"></i>
+    <h3>A Cool <span class="color">&amp;</span> Nice Page For Launching Projects. Only For Buyers Of <span class="color">Brave</span>.</h3>
+  </div>
+
+  <br />
+
+  <!-- Parallax block one -->
+  <div class="parallax-one">
+    <div class="container">
+      <!-- Parallax element block -->
+      <div class="p-element">
+        <h2>Groceries!</h2>
+        <!-- Accordion starts -->
+        <div class="panel-group" id="accordion-alt2">
+         <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
+          <div class="panel panel-green"> 
+          <!-- Panel heading -->
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2">
+               Produce
+              </a>
+            </h4>
+           </div>
+           <div id="collapseOne-alt2" class="panel-collapse collapse in">
+            <!-- Panel body -->
+            <div class="panel-body">
+              
+              <% @produces.each do |produce| %>
+                <div class="col-md-3">
+                  <div class="checkbox">  
+                    
+<!--                     <%= check_box_tag(:pet_dog) %>
+                    <%= label_tag(:pet_dog, "I own a dog") %> -->
+
+                    <label class="checkbox-inline">
+                      <input type="checkbox" value="#{produce}">
+                      <%= produce.description %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-red">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2">
+               Meats, Seafood & Tofu
+              </a>
+            </h4>
+           </div>
+           <div id="collapseTwo-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-lblue">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2">
+               Bakery & Dairy
+              </a>
+            </h4>
+           </div>
+           <div id="collapseThree-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+            </div>
+           </div>
+          </div>
+        </div>
+        <!-- Accordion ends -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Parallax block two -->
+  <div class="parallax-two">
+    <div class="container">
+      <!-- Parallax text element block -->
+      <div class="p-element">
+        <!-- Heading -->
+        <h2>Parallax Web</h2>
+        <!-- Paragraph -->
+        <p>Wored do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <a class="btn btn-transparent" href="#">More About Us</a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <!-- Parallax block three -->
+  <div class="parallax-three bg-white">
+    <div class="container">
+      <!-- Parallax text element block -->
+      <div class="p-element">
+        <!-- Heading -->
+        <h2>Parallax <span class="color">&amp;</span> Minimal</h2>
+        <!-- Paragraph -->
+        <p>Wored do eiusmod tempor consequat incididunt ut consequat labore et labore dolore magna aliqua. Ut enim ad labore minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <a class="btn btn-color" href="#">More About Us</a> &nbsp;
+        <a class="btn btn-white" href="#">More About Us</a>
+      </div>
+    </div>
+  </div>        
+
+  <!-- Parallax block four -->
+  <div class="parallax-four">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-sm-5">
+          <!-- Image -->
+          <img class="img-responsive" src="assets/theme/parallax/mac2.png" alt="" />
+        </div>
+        <div class="col-md-7 col-sm-7">
+          <!-- Parallax text element block -->
+          <div class="p-element">
+            <!-- Heading -->
+            <h2>Creative Thought</h2>
+            <!-- Paragraph -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  adipisicing elit, sed do eiusmod tempor incididunt  adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliquat enim ad minim veniam.</p>
+            <a class="btn btn-color" href="#">Download Now</a> <a class="btn btn-white" href="#">Download Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Parallax block five -->
+  <div class="parallax-five">
+    <div class="container">
+      <!-- Parallax text element block -->
+      <div class="p-element">
+        <!-- Image -->
+        <img class="img-responsive" src="assets/theme/parallax/mac1.png" alt="" />
+        <!-- Heading -->
+        <h2><strong>Designing</strong> is my hobby.</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parallax block six -->
+  <div class="parallax-six">
+    <div class="container">
+      <!-- Parallax text element block -->
+      <div class="p-element">
+        <h3>Good <span class="color">,</span> Bad <span class="color">,</span> Ugly</h3>
+        <!-- Heading -->
+        <h2>Cool Web design agency</h2>
+        <a class="btn btn-transparent btn-lg" href="#">More About Us</a> 
+      </div>
+    </div>
+  </div>        
+
+  <!-- Parallax block seven -->
+  <div class="parallax-seven">
+    <div class="container">
+      <!-- Parallax text element block -->
+      <div class="p-element">
+        <!-- Heading -->
+        <h2>Responsive Design</h2>
+        <!-- Paragraph -->
+        <p>Wored do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi consequat.</p>
+        <a class="btn btn-color" href="#">Buy It Now</a> &nbsp; <a class="btn btn-black" href="#">Like Now</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Main content ends
