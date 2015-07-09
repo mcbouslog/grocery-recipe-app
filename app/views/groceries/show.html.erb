@@ -6,7 +6,7 @@
   <%= form_tag "/groceries/#{current_user.id}", method: :patch do %>
     <% @produces.each do |produce| %>
       <div>
-        <%= check_box_tag(produce.id) %>
+        <%= check_box_tag "user_groceries[]", produce.id, produce.user_groceries.where(user_id: current_user.id).first %>
         <%= label_tag(produce.id, produce.description) %>
       </div>
     <% end %>
