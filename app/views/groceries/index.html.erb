@@ -13,6 +13,11 @@ Page heading one starts -->
 
   <br />
 
+  <li> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> 
+  </li>
+  <li> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
+  <li> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
+
   <div class="block-heading-four">
     <i class="fa fa-desktop color br-color"></i>
     <h3>A Cool <span class="color">&amp;</span> Nice Page For Launching Projects. Only For Buyers Of <span class="color">Brave</span>.</h3>
@@ -45,9 +50,6 @@ Page heading one starts -->
               <% @produces.each do |produce| %>
                 <div class="col-md-3">
                   <div class="checkbox">  
-                    
-<!--                     <%= check_box_tag(:pet_dog) %>
-                    <%= label_tag(:pet_dog, "I own a dog") %> -->
 
                     <label class="checkbox-inline">
                       <input type="checkbox" value="#{produce}">
