@@ -2,14 +2,17 @@ class GroceriesController < ApplicationController
 
   def index
     @produces = Grocery.where(grocery_category: "produce")
-    @meats = Grocery.where(grocery_category: "meats")
+    @meats = Grocery.where("grocery_category LIKE ? OR grocery_category LIKE ?", "meat", "seafood")
+    @bakery_dairies = Grocery.where("grocery_category LIKE ? OR grocery_category LIKE ?", "bakery", "dairy")
+    @other_frigs = Grocery.where(grocery_category: "other_frig")
+    @other_dries = Grocery.where(grocery_category: "other_dry")
+    @sauces_spices = Grocery.where("grocery_category LIKE ? OR grocery_category LIKE ?", "spices", "sauces")
   end
 
   def create
   end
 
   def show
-    @produces = Grocery.where(grocery_category: "produce")
   end
 
   def edit    
@@ -24,7 +27,7 @@ class GroceriesController < ApplicationController
     user_groceries.each do |user_grocery|
       UserGrocery.create(user_id: current_user.id, grocery_id: user_grocery, stock: true)
     end
-    redirect_to "/groceries/#{current_user.id}"
+    redirect_to "/groceries"
   end
   
 end

@@ -31,7 +31,9 @@
       <!-- Parallax element block -->
       <div class="p-element">
         <h2>Groceries!</h2>
+
         <!-- Accordion starts -->
+        <%= form_tag "/groceries/#{current_user.id}", method: :patch do %>
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
           <div class="panel panel-green"> 
@@ -43,21 +45,16 @@
               </a>
             </h4>
            </div>
-           <div id="collapseOne-alt2" class="panel-collapse collapse in">
+           <div id="collapseOne-alt2" class="panel-collapse collapse">
             <!-- Panel body -->
             <div class="panel-body">
               
-              <% @produces.each do |produce| %>
-                <div class="col-md-3">
-                  <div class="checkbox">  
-
-                    <label class="checkbox-inline">
-                      <input type="checkbox" value="#{produce}">
-                      <%= produce.description %>
-                    </label>
-                  </div>
+                <% @produces.each do |produce| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", produce.id, produce.user_groceries.where(user_id: current_user.id).first, id: produce.id %>
+                  <%= label_tag(produce.id, produce.description) %>
                 </div>
-              <% end %>
+                <% end %>
 
             </div>
            </div>
@@ -72,7 +69,14 @@
            </div>
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+              
+                <% @meats.each do |meat| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", meat.id, meat.user_groceries.where(user_id: current_user.id).first, id: meat.id %>
+                  <%= label_tag(meat.id, meat.description) %>
+                </div>
+                <% end %>
+
             </div>
            </div>
           </div>
@@ -86,111 +90,104 @@
            </div>
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+              
+                <% @bakery_dairies.each do |bakery_dairy| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", bakery_dairy.id, bakery_dairy.user_groceries.where(user_id: current_user.id).first, id: bakery_dairy.id %>
+                  <%= label_tag(bakery_dairy.id, bakery_dairy.description) %>
+                </div>
+                <% end %>
+            
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-grey">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2">
+               Other Fridge & Freezer Items
+              </a>
+            </h4>
+           </div>
+           <div id="collapseFour-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              
+                <% @other_frigs.each do |other_frig| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", other_frig.id, other_frig.user_groceries.where(user_id: current_user.id).first, id: other_frig.id %>
+                  <%= label_tag(other_frig.id, other_frig.description) %>
+                </div>
+                <% end %>
+            
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-blue">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2">
+               Other Pantry Items
+              </a>
+            </h4>
+           </div>
+           <div id="collapseFive-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              
+                <% @other_dries.each do |other_dry| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", other_dry.id, other_dry.user_groceries.where(user_id: current_user.id).first, id: other_dry.id %>
+                  <%= label_tag(other_dry.id, other_dry.description) %>
+                </div>
+                <% end %>
+            
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-purple">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2">
+               Spices & Sauces
+              </a>
+            </h4>
+           </div>
+           <div id="collapseSix-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              
+                <% @sauces_spices.each do |sauce_spice| %>
+                <div class="checkbox col-md-3">
+                  <%= check_box_tag "user_groceries[]", sauce_spice.id, sauce_spice.user_groceries.where(user_id: current_user.id).first, id: sauce_spice.id %>
+                  <%= label_tag(sauce_spice.id, sauce_spice.description) %>
+                </div>
+                <% end %>
+            
+            </div>
+           </div>
+          </div>
+          <div class="panel panel-rose">
+           <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2">
+               Miscellaneous
+              </a>
+            </h4>
+           </div>
+           <div id="collapseSeven-alt2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>Search for unusual ingredients will go here</p>            
             </div>
            </div>
           </div>
         </div>
+        <button class="btn btn-lg btn-white">
+        <%= submit_tag "Save Groceries" %>
+        </button>
+        <% end %>
         <!-- Accordion ends -->
+
       </div>
     </div>
   </div>
-
-
-  <!-- Parallax block two -->
-  <div class="parallax-two">
-    <div class="container">
-      <!-- Parallax text element block -->
-      <div class="p-element">
-        <!-- Heading -->
-        <h2>Parallax Web</h2>
-        <!-- Paragraph -->
-        <p>Wored do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <a class="btn btn-transparent" href="#">More About Us</a>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-  </div>
-
-  <!-- Parallax block three -->
-  <div class="parallax-three bg-white">
-    <div class="container">
-      <!-- Parallax text element block -->
-      <div class="p-element">
-        <!-- Heading -->
-        <h2>Parallax <span class="color">&amp;</span> Minimal</h2>
-        <!-- Paragraph -->
-        <p>Wored do eiusmod tempor consequat incididunt ut consequat labore et labore dolore magna aliqua. Ut enim ad labore minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <a class="btn btn-color" href="#">More About Us</a> &nbsp;
-        <a class="btn btn-white" href="#">More About Us</a>
-      </div>
-    </div>
-  </div>        
-
-  <!-- Parallax block four -->
-  <div class="parallax-four">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 col-sm-5">
-          <!-- Image -->
-          <img class="img-responsive" src="assets/theme/parallax/mac2.png" alt="" />
-        </div>
-        <div class="col-md-7 col-sm-7">
-          <!-- Parallax text element block -->
-          <div class="p-element">
-            <!-- Heading -->
-            <h2>Creative Thought</h2>
-            <!-- Paragraph -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  adipisicing elit, sed do eiusmod tempor incididunt  adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliquat enim ad minim veniam.</p>
-            <a class="btn btn-color" href="#">Download Now</a> <a class="btn btn-white" href="#">Download Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- Parallax block five -->
-  <div class="parallax-five">
-    <div class="container">
-      <!-- Parallax text element block -->
-      <div class="p-element">
-        <!-- Image -->
-        <img class="img-responsive" src="assets/theme/parallax/mac1.png" alt="" />
-        <!-- Heading -->
-        <h2><strong>Designing</strong> is my hobby.</h2>
-      </div>
-    </div>
-  </div>
-
-  <!-- Parallax block six -->
-  <div class="parallax-six">
-    <div class="container">
-      <!-- Parallax text element block -->
-      <div class="p-element">
-        <h3>Good <span class="color">,</span> Bad <span class="color">,</span> Ugly</h3>
-        <!-- Heading -->
-        <h2>Cool Web design agency</h2>
-        <a class="btn btn-transparent btn-lg" href="#">More About Us</a> 
-      </div>
-    </div>
-  </div>        
-
-  <!-- Parallax block seven -->
-  <div class="parallax-seven">
-    <div class="container">
-      <!-- Parallax text element block -->
-      <div class="p-element">
-        <!-- Heading -->
-        <h2>Responsive Design</h2>
-        <!-- Paragraph -->
-        <p>Wored do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi consequat.</p>
-        <a class="btn btn-color" href="#">Buy It Now</a> &nbsp; <a class="btn btn-black" href="#">Like Now</a>
-      </div>
-    </div>
-  </div>
-
 
 </div>
 
