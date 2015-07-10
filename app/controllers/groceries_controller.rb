@@ -12,10 +12,13 @@ class GroceriesController < ApplicationController
   def create
   end
 
-  def show
+  def new
   end
 
   def edit    
+  end
+
+  def show
   end
 
   def update
@@ -28,6 +31,9 @@ class GroceriesController < ApplicationController
       UserGrocery.create(user_id: current_user.id, grocery_id: user_grocery, stock: true)
     end
     redirect_to "/groceries"
+  end
+
+  def destroy
   end
   
 end

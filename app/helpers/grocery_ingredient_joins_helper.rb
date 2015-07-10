@@ -1,0 +1,2 @@
+module GroceryIngredientJoinsHelper
+end
