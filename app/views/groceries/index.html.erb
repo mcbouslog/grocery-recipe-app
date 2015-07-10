@@ -13,11 +13,6 @@
 
   <br />
 
-  <li> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> 
-  </li>
-  <li> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
-  <li> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
-
   <div class="block-heading-four">
     <i class="fa fa-desktop color br-color"></i>
     <h3>A Cool <span class="color">&amp;</span> Nice Page For Launching Projects. Only For Buyers Of <span class="color">Brave</span>.</h3>
@@ -33,7 +28,8 @@
         <h2>Groceries!</h2>
 
         <!-- Accordion starts -->
-        <%= form_tag "/groceries/#{current_user.id}", method: :patch do %>
+        <% if user_signed_in? %>
+          <%= form_tag "/groceries/#{current_user.id}", method: :patch do %>
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
           <div class="panel panel-green"> 
@@ -183,6 +179,7 @@
         <%= submit_tag "Save Groceries" %>
         </button>
         <% end %>
+        <% end %>
         <!-- Accordion ends -->
 
       </div>
@@ -191,4 +188,4 @@
 
 </div>
 
-<!-- Main content ends
+<!-- Main content ends-->
