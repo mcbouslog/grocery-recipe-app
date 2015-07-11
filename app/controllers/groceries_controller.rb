@@ -9,15 +9,6 @@ class GroceriesController < ApplicationController
     @sauces_spices = Grocery.where("grocery_category LIKE ? OR grocery_category LIKE ?", "spices", "sauces")
   end
 
-  def create
-  end
-
-  def new
-  end
-
-  def edit    
-  end
-
   def show
   end
 
@@ -31,9 +22,6 @@ class GroceriesController < ApplicationController
       UserGrocery.create(user_id: current_user.id, grocery_id: user_grocery, stock: true)
     end
     redirect_to "/groceries"
-  end
-
-  def destroy
   end
   
 end

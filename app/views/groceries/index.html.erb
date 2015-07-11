@@ -28,8 +28,7 @@
         <h2>Groceries!</h2>
 
         <!-- Accordion starts -->
-        <% if user_signed_in? %>
-          <%= form_tag "/groceries/#{current_user.id}", method: :patch do %>
+        <%= form_tag "/groceries", method: :patch do %>
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
           <div class="panel panel-green"> 
@@ -47,7 +46,11 @@
               
                 <% @produces.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -68,7 +71,11 @@
               
                 <% @meats.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -89,7 +96,11 @@
               
                 <% @bakery_dairies.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -110,7 +121,11 @@
               
                 <% @other_frigs.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -131,7 +146,11 @@
               
                 <% @other_dries.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -152,7 +171,11 @@
               
                 <% @sauces_spices.each do |grocery| %>
                 <div class="checkbox col-md-3">
+                  <% if user_signed_in? %>
                   <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <% else %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
+                  <% end %>
                   <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
@@ -178,7 +201,6 @@
         <button class="btn btn-lg btn-white">
         <%= submit_tag "Save Groceries" %>
         </button>
-        <% end %>
         <% end %>
         <!-- Accordion ends -->
 
