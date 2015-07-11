@@ -45,10 +45,10 @@
             <!-- Panel body -->
             <div class="panel-body">
               
-                <% @produces.each do |produce| %>
+                <% @produces.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", produce.id, produce.user_groceries.where(user_id: current_user.id).first, id: produce.id %>
-                  <%= label_tag(produce.id, produce.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
 
@@ -66,10 +66,10 @@
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @meats.each do |meat| %>
+                <% @meats.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", meat.id, meat.user_groceries.where(user_id: current_user.id).first, id: meat.id %>
-                  <%= label_tag(meat.id, meat.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
 
@@ -87,10 +87,10 @@
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @bakery_dairies.each do |bakery_dairy| %>
+                <% @bakery_dairies.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", bakery_dairy.id, bakery_dairy.user_groceries.where(user_id: current_user.id).first, id: bakery_dairy.id %>
-                  <%= label_tag(bakery_dairy.id, bakery_dairy.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
             
@@ -108,10 +108,10 @@
            <div id="collapseFour-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_frigs.each do |other_frig| %>
+                <% @other_frigs.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", other_frig.id, other_frig.user_groceries.where(user_id: current_user.id).first, id: other_frig.id %>
-                  <%= label_tag(other_frig.id, other_frig.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
             
@@ -129,10 +129,10 @@
            <div id="collapseFive-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_dries.each do |other_dry| %>
+                <% @other_dries.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", other_dry.id, other_dry.user_groceries.where(user_id: current_user.id).first, id: other_dry.id %>
-                  <%= label_tag(other_dry.id, other_dry.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
             
@@ -150,10 +150,10 @@
            <div id="collapseSix-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @sauces_spices.each do |sauce_spice| %>
+                <% @sauces_spices.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <%= check_box_tag "user_groceries[]", sauce_spice.id, sauce_spice.user_groceries.where(user_id: current_user.id).first, id: sauce_spice.id %>
-                  <%= label_tag(sauce_spice.id, sauce_spice.description) %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
                 <% end %>
             

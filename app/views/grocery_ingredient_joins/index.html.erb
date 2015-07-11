@@ -1,11 +1,25 @@
 <div class="main-block">
   <div class="container">
-    <div class="row">  
-      <div class="col-md-6">
-        <a>INSERT INGREDIENTS</a>
-      </div>
-      <div class="col-md-6">
-        <a>INSERT GROCERIES</a>
+    <div class="row">
+      <div class="col-md-10">
+        <table class="table table-striped">
+          <tr>
+            <th><a>GROCERY ITEM</a></th>
+            <th><a>INGREDIENTS</a></th>
+          </tr>
+          <% @groceries.each do |grocery| %>
+          <% if grocery.ingredients.any? %>
+          <tr>
+            <td><a><%= grocery.description %></a></td>
+            <td>
+              <% grocery.ingredients.each do |ingredient| %>
+              <p><%= ingredient.description %></p>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
