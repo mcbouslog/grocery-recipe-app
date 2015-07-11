@@ -4,26 +4,21 @@
       <div class="col-md-10">
         <table class="table table-striped">
           <tr>
-            <th><a>INSERT INGREDIENTS</a></th>
-            <th><a>INSERT GROCERIES</a></th>
-            </div>
+            <th><a>GROCERY ITEM</a></th>
+            <th><a>INGREDIENTS</a></th>
           </tr>
+          <% @groceries.each do |grocery| %>
+          <% if grocery.ingredients.any? %>
           <tr>
+            <td><a><%= grocery.description %></a></td>
             <td>
-            <p>INGREDIENT</p>
-            <p>INGREDIENT</p>
-            <p>INGREDIENT</p>
+              <% grocery.ingredients.each do |ingredient| %>
+              <p><%= ingredient.description %></p>
+              <% end %>
             </td>
-            <td><a>GROCERY</a></td>
           </tr>
-          <tr>
-            <td><a>INGREDIENT</a></td>
-            <td><a>GROCERY</a></td>
-          </tr>
-          <tr>
-            <td><a>INGREDIENT</a></td>
-            <td><a>GROCERY</a></td>
-          </tr>
+          <% end %>
+          <% end %>
         </table>
       </div>
     </div>

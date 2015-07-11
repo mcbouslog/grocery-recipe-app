@@ -1,6 +1,7 @@
 class GroceryIngredientJoinsController < ApplicationController
 
-  def index    
+  def index
+    @groceries = Grocery.all    
   end
 
   def create
