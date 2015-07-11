@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   root to: 'groceries#index'
   devise_for :users
 
-  resources :groceries
-  resources :grocery_ingredient_joins
+  #GROCERIES
+  get '/groceries' => 'groceries#index'
+  patch '/groceries' => 'groceries#update'
+  get '/groceries/:id' => 'groceries#show'
+
+  #GROCERY_INGREDIENT_JOIN
+  get '/grocery_ingredient_joins' => 'grocery_ingredient_joins#index'
+  get '/grocery_ingredient_joins/edit' => 'grocery_ingredient_joins#edit'
+
+  #RECIPES
+  get '/recipes' => 'recipes#index'
+  get '/recipes/:id' => 'recipes#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

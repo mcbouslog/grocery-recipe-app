@@ -1,26 +1,77 @@
 <div class="main-block">
   <div class="container">
+    
     <div class="row">
-      <div class="col-md-10">
-        <table class="table table-striped">
-          <tr>
-            <th><a>GROCERY ITEM</a></th>
-            <th><a>INGREDIENTS</a></th>
-          </tr>
-          <% @groceries.each do |grocery| %>
-          <% if grocery.ingredients.any? %>
-          <tr>
-            <td><a><%= grocery.description %></a></td>
-            <td>
-              <% grocery.ingredients.each do |ingredient| %>
-              <p><%= ingredient.description %></p>
+      <br>
+      <h3><a href="/grocery_ingredient_joins/edit">Search, Edit and Add Form</a></h3>
+      <br>
+    </div>
+    
+    <!--STATISTICS-->
+    <div class="row"> 
+    <div class="col-md-10">
+      <table class="table table-bordered table-condensed">
+        <caption>STATISTICS</caption>
+        <tr>
+          <th>Total Groceries</th>
+          <td><%= @total_groceries %></td>
+        </tr>
+        <tr>
+          <th>% of Groceries with Ingredients</th>
+          <td><%= number_to_percentage(@grocery_percent, :precision => 2) %></td>
+        </tr>
+        <tr>
+          <th>Total Ingredients</th>
+          <td><%= number_with_delimiter(@total_ingredients) %></td>
+        </tr>
+        <tr>
+          <th>% of Ingredients with Groceries</th>
+          <td><%= number_to_percentage(@ingredient_percent, :precision => 2) %></td>
+        </tr>
+      </table>
+    </div>
+    </div>
+
+    <div class="panel-group" id="accordion-alt2">
+     <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
+     <div class="panel"> 
+      <!-- Panel heading -->
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2">
+          Grocery with related Ingredients
+         </a>
+       </h4>
+     </div>
+     <div id="collapseOne-alt2" class="panel-collapse collapse">
+      <!-- Panel body -->
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-md-10">
+            <table class="table table-striped">
+              <tr>
+                <th><a>GROCERY ITEM</a></th>
+                <th><a>INGREDIENTS</a></th>
+              </tr>
+              <% @grocery_ingredients.each do |grocery| %>
+              <tr>
+                <td><a><%= grocery.description %></a></td>
+                <td>
+                  <% grocery.ingredients.each do |ingredient| %>
+                  <p><%= ingredient.description %></p>
+                  <% end %>
+                </td>
+              </tr>
               <% end %>
-            </td>
-          </tr>
-          <% end %>
-          <% end %>
-        </table>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
+    </div>
+    </div>
+
   </div>
 </div>

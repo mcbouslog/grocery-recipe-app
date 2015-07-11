@@ -5,6 +5,7 @@
 	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
+
 	<meta charset="utf-8">
 	<!-- Description, Keywords and Author -->
 	<meta name="description" content="Your description">
@@ -52,7 +53,7 @@
 					<div class="col-md-2">
 						<!-- Logo section -->
 						<div class="logo">
-							<h1><a href="#"><i class="fa fa-cutlery"></i> ChefHat</a></h1>
+							<h1><a href="/"><i class="fa fa-cutlery"></i> ChefHat</a></h1>
 						</div>
 					</div>
 					<div class="col-md-9">
@@ -61,10 +62,15 @@
 						<div class="navy">			
 							<ul>
 								<!-- Main menu -->
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Recipe Search</a></li>
-								<li><a href="about-us-one.html">Saved Recipes</a></li>
-								<li><a href="contact-us-one.html">Shopping List</a></li>
+								<li><a href="/">Home</a></li>
+								<li><a href="/recipes">Recipe Search</a></li>
+								<% if user_signed_in? %>
+								<li><a href="/recipes/<%=current_user.id%>">Saved Recipes</a></li>
+								<li><a href="/groceries/<%=current_user.id%>">Shopping List</a></li>
+								<% end %>
+								<% if user_signed_in? && current_user.admin %>
+								<li><a href="/grocery_ingredient_joins">Grocery-Ingredient Edit</a></li>
+								<% end %>
 							</ul>
 							<ul class="pull-right">
 								<li> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
