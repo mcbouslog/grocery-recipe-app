@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708233951) do
+ActiveRecord::Schema.define(version: 20150712214514) do
 
   create_table "groceries", force: :cascade do |t|
     t.string   "description",      limit: 255
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20150708233951) do
   create_table "user_groceries", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
     t.integer  "grocery_id",    limit: 4
+    t.boolean  "stock",         limit: 1
+    t.boolean  "shopping_list", limit: 1
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "user_ingredients", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.integer  "ingredient_id", limit: 4
     t.boolean  "stock",         limit: 1
     t.boolean  "shopping_list", limit: 1
     t.datetime "created_at",              null: false
