@@ -1,8 +1,8 @@
 <!-- Page heading one starts -->
 
 <div class="page-heading-one">
-  <h2>Cool Parallax Page</h2>
-  <p class="bg-color">Our Works Here</p>
+  <h2>Cook dinner tonight.</h2>
+<!--   <p class="bg-color">Our Works Here</p> -->
 </div>
 
 <!-- Page heading one ends -->      
@@ -14,8 +14,8 @@
   <br />
 
   <div class="block-heading-four">
-    <i class="fa fa-desktop color br-color"></i>
-    <h3>A Cool <span class="color">&amp;</span> Nice Page For Launching Projects. Only For Buyers Of <span class="color">Brave</span>.</h3>
+    <h3>Enter <span class="color">&amp;</span> update your groceries on-hand, find what you can cook with <span class="color">ChefHat</span>.</h3>
+    <i class="fa fa-cutlery color br-color"></i>
   </div>
 
   <br />
@@ -25,7 +25,7 @@
     <div class="container">
       <!-- Parallax element block -->
       <div class="p-element">
-        <h2>Groceries!</h2>
+<!--         <h2>Groceries!</h2> -->
 
         <!-- Accordion starts -->
         <%= form_tag "/groceries", method: :patch do %>
@@ -198,9 +198,11 @@
            </div>
           </div>
         </div>
-        <button class="btn btn-lg btn-white">
+        <div>
+        <button>
         <%= submit_tag "Save Groceries" %>
         </button>
+        </div>
         <% end %>
         <!-- Accordion ends -->
 
@@ -210,4 +212,4 @@
 
 </div>
 
-<!-- Main content ends-->
+<!-- Main content ends

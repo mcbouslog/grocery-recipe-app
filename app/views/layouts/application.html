@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChefHat</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <meta charset="utf-8">
+  <!-- Description, Keywords and Author -->
+  <meta name="description" content="Your description">
+  <meta name="keywords" content="Your,Keywords">
+  <meta name="author" content="ResponsiveWebInc">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="#">
+</head>
+<body>
+  
+  <!-- Outer Starts -->
+  <div class="outer">
+    
+    <!-- Header two Starts -->
+    <div class="header-2">
+      
+      <!-- Container -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <!-- Logo section -->
+            <div class="logo">
+              <h1><a href="/"><i class="fa fa-cutlery"></i> ChefHat</a></h1>
+            </div>
+          </div>
+          <div class="col-md-9">
+            
+            <!-- Navigation starts.  -->
+            <div class="navy">      
+              <ul>
+                <!-- Main menu -->
+                <li><a href="/">Home</a></li>
+                <li><a href="/recipes">Recipe Search</a></li>
+                <% if user_signed_in? %>
+                <li><a href="/recipes/<%=current_user.id%>">Saved Recipes</a></li>
+                <li><a href="/groceries/<%=current_user.id%>">Shopping List</a></li>
+                <% end %>
+                <% if user_signed_in? && current_user.admin %>
+                <li><a href="/grocery_ingredient_joins">Grocery-Ingredient Edit</a></li>
+                <% end %>
+              </ul>
+              <ul class="pull-right">
+                <li> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
+                <li> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
+                <li> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
+              </ul>
+            </div>              
+            <!-- Navigation ends -->
+          </div>    
+        </div>
+      </div>
+    </div>
+    
+    <!-- Header two ends -->
+    
+    <%= yield %>
+
+    <!-- Footer Starts -->
+
+    <footer>
+      <!-- Container -->
+      <div class="container">
+        <!-- Footer Content -->
+        <!-- Paragraph -->
+        <p class="pull-left">Copyright &copy; 2014 - <a href="#">Your Site</a></p>
+        <ul class="list-inline pull-right">
+          <!-- List -->
+          <li><a href="index.html">Home</a><li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="feature.html">Features</a></li>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+        <!-- Clearfix -->
+        <div class="clearfix"></div>
+      </div>
+    </footer>
+
+    <!-- Footer Ends -->
+
+  </div>
+  <!-- Outer Ends -->   
+
+  <!-- Scroll to top -->
+  <span class="totop"><a href="#"><i class="fa fa-angle-up bg-color"></i></a></span>
+
+  <!-- Javascript files -->
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Placeholders JS -->
+  <script src="js/placeholders.js"></script>
+  <!-- Magnific Popup -->
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <!-- Owl carousel -->
+  <script src="js/owl.carousel.min.js"></script>
+  <!-- Respond JS for IE8 -->
+  <script src="js/respond.min.js"></script>
+  <!-- HTML5 Support for IE -->
+  <script src="js/html5shiv.js"></script>
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+
+  <!-- Javascript for this page -->
+
+  <!-- Custom JS. Type your JS code in custom.js file -->
+  <script src="js/custom.js"></script>
+
+  <!-- Style switcher. This is just for demo purpose only. 
+  If you don't want remove the below line.
+  Some of the features of style switcher won't work on offline. THey only work when you upload it to server -->
+  <!-- <script src="style-switcher/style-switcher.js"></script> -->
+
+</body> 
+</html>
