@@ -47,7 +47,7 @@
                 <% @produces.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -72,7 +72,7 @@
                 <% @meats.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -97,7 +97,7 @@
                 <% @bakery_dairies.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -122,7 +122,7 @@
                 <% @other_frigs.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -147,7 +147,7 @@
                 <% @other_dries.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -172,7 +172,7 @@
                 <% @sauces_spices.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -198,14 +198,13 @@
            </div>
           </div>
         </div>
-        <div>
-        <button>
+        <button class="btn btn-grey btn-no-border ">
         <%= submit_tag "Save Groceries" %>
         </button>
-        </div>
         <% end %>
         <!-- Accordion ends -->
-
+        <br>
+        <button class="btn btn-large btn-white"><a href="/recipes">Recipe Search</a></button>
       </div>
     </div>
   </div>

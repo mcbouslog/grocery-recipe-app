@@ -13,7 +13,7 @@ class GroceriesController < ApplicationController
   end
 
   def update
-    user_groceries = UserGrocery.where(user_id: current_user.id)
+    user_groceries = UserGrocery.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true)
     user_groceries.each do |user_grocery|
       user_grocery.destroy
     end
