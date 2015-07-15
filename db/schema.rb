@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713025121) do
+ActiveRecord::Schema.define(version: 20150715233601) do
 
   create_table "groceries", force: :cascade do |t|
     t.string   "description",      limit: 255
     t.string   "grocery_category", limit: 255
-    t.integer  "score_factor",     limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.decimal  "score_factor",                 precision: 2, scale: 2
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "grocery_ingredient_joins", force: :cascade do |t|
