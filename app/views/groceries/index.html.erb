@@ -38,6 +38,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2">
                Produce
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseOne-alt2" class="panel-collapse collapse">
@@ -47,7 +50,7 @@
                 <% @produces.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -64,6 +67,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2">
                Meats, Seafood & Tofu
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
@@ -72,7 +78,7 @@
                 <% @meats.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -89,6 +95,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2">
                Bakery & Dairy
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseThree-alt2" class="panel-collapse collapse">
@@ -97,7 +106,7 @@
                 <% @bakery_dairies.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -114,6 +123,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2">
                Other Fridge & Freezer Items
               </a>
+              <button class="pull-right btn btn-grey">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseFour-alt2" class="panel-collapse collapse">
@@ -122,7 +134,7 @@
                 <% @other_frigs.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -139,6 +151,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2">
                Other Pantry Items
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseFive-alt2" class="panel-collapse collapse">
@@ -147,7 +162,7 @@
                 <% @other_dries.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -164,6 +179,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2">
                Spices & Sauces
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseSix-alt2" class="panel-collapse collapse">
@@ -172,7 +190,7 @@
                 <% @sauces_spices.each do |grocery| %>
                 <div class="checkbox col-md-3">
                   <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where("user_id LIKE ? AND stock LIKE ?", current_user.id, true).any?, id: grocery.id %>
+                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
                   <% else %>
                   <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
                   <% end %>
@@ -189,6 +207,9 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2">
                Miscellaneous
               </a>
+              <button class="pull-right btn btn-grey btn-no-border">
+              <%= submit_tag "Save" %>
+              </button>
             </h4>
            </div>
            <div id="collapseSeven-alt2" class="panel-collapse collapse">
@@ -198,17 +219,15 @@
            </div>
           </div>
         </div>
-        <button class="btn btn-grey btn-no-border ">
-        <%= submit_tag "Save Groceries" %>
-        </button>
         <% end %>
         <!-- Accordion ends -->
-        <br>
-        <button class="btn btn-large btn-white"><a href="/recipes">Recipe Search</a></button>
       </div>
+    </div>
+    <div class="recipe-search-btn">
+    <a class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
     </div>
   </div>
 
 </div>
 
-<!-- Main content ends
+<!-- Main content ends -->
