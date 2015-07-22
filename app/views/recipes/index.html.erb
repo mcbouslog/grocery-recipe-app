@@ -1,1 +1,66 @@
-<h1>Recipe Search</h1>
+<!-- Page heading one starts -->
+
+<div class="page-heading-one">
+  <h2>Recipe Search</h2>
+  <!--   <p class="bg-color">Our Works Here</p> -->
+</div>
+
+<!-- Page heading one ends -->
+
+<!-- Main content starts -->
+
+<div class="main-block">
+  <div class="container">
+
+<!-- Search Selection starts -->
+  <div>
+    <h2>Select your main ingredients:</h2>
+    <%= form_tag "/recipes/search", method: :patch do %>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4>Ingredient #1:
+      <%= select_tag(:ingredient_one, options_for_select(@user_groceries_array)) %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4>Ingredient #2:
+      <%= select_tag(:ingredient_two, options_for_select(@user_groceries_array)) %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4>Ingredient #3:
+      <%= select_tag(:ingredient_three, options_for_select(@user_groceries_array)) %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4><%= label_tag(:search_term, "Extra Search Term:") %>
+      <%= text_field_tag(:search_term) %></h4>
+      </div>
+    </div>
+    <div class="row">
+    <%= submit_tag "Search for Recipes" %>
+    <% end %>
+    </div>
+<!-- Search Selection ends -->
+
+<!-- Filters starts -->
+<!-- Filters ends -->
+
+<!-- Search Results starts -->
+<!-- Search Results ends -->
+
+  </div>
+</div>
+
+<!-- Main content ends -->

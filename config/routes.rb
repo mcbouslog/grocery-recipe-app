@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   #RECIPES
   get '/recipes' => 'recipes#index'
+  patch '/recipes/search' => 'recipes#update'
   get '/recipes/:id' => 'recipes#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

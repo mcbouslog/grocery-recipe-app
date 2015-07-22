@@ -1,0 +1,11 @@
+<h1>Total Recipe Matches: <%= @recipe_search.total_match_count.to_s %></h1>
+<ul>
+  <% @recipe_search.matches[1..5].each do |recipe| %>
+  <li><%= recipe["recipeName"] %></li>
+    <ul>
+      <% recipe["ingredients"].each do |ingredient| %>
+      <li><%= ingredient %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>
