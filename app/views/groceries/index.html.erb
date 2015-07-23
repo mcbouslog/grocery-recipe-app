@@ -23,7 +23,6 @@
   <br />
 
   <!-- Parallax block one -->
-  <div ng-repeat="grocery in groceries">
   <form>
   <div class="parallax-one">
     <div class="container">
@@ -47,10 +46,8 @@
             <!-- Panel body -->
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
-                <label> {{ grocery.description }}
-                <input type="checkbox" ng-model="grocery.current_user">
-                </label>
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'produce'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
 
             </div>
@@ -67,7 +64,8 @@
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
 
             </div>
@@ -84,7 +82,8 @@
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
             
             </div>
@@ -101,7 +100,8 @@
            <div id="collapseFour-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'other_frig'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
             
             </div>
@@ -118,7 +118,8 @@
            <div id="collapseFive-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'other_dry'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
             
             </div>
@@ -135,7 +136,8 @@
            <div id="collapseSix-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <div class="checkbox col-md-3">
+                <div ng-repeat="grocery in groceries" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'" class="checkbox col-md-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
             
             </div>
@@ -159,12 +161,11 @@
         </div>
         <!-- Accordion ends -->
       </div>
-    </div>
     <div class="recipe-search-btn">
     <a class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
     </div>
+    </div>
   </form>
-  </div>
 
 </div>
 
