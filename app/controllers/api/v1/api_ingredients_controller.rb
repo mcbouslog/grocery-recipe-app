@@ -4,7 +4,8 @@ class Api::V1::ApiIngredientsController < ApplicationController
     @ingredients = Ingredient.all
   end
 
-  def user    
+  def user
+    @user_ingredients = UserIngredient.where(user_id: current_user.id)
   end
 
 end
