@@ -23,6 +23,8 @@
   <br />
 
   <!-- Parallax block one -->
+  <div ng-repeat="grocery in groceries">
+  <form>
   <div class="parallax-one">
     <div class="container">
       <!-- Parallax element block -->
@@ -45,16 +47,11 @@
             <!-- Panel body -->
             <div class="panel-body">
               
-                <% @produces.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <label> {{ grocery.description }}
+                <input type="checkbox" ng-model="grocery.current_user">
+                </label>
                 </div>
-                <% end %>
 
             </div>
            </div>
@@ -70,16 +67,8 @@
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @meats.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
-                <% end %>
 
             </div>
            </div>
@@ -95,16 +84,8 @@
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @bakery_dairies.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -120,16 +101,8 @@
            <div id="collapseFour-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_frigs.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -145,16 +118,8 @@
            <div id="collapseFive-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_dries.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -170,16 +135,8 @@
            <div id="collapseSix-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @sauces_spices.each do |grocery| %>
                 <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -199,12 +156,14 @@
            </div>
           </div>
         </div>
+        </div>
         <!-- Accordion ends -->
       </div>
     </div>
     <div class="recipe-search-btn">
     <a class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
     </div>
+  </form>
   </div>
 
 </div>
