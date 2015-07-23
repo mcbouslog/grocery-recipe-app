@@ -1,3 +1,5 @@
+<div ng-app="app">
+  <div ng-controller="groceriesCtrl" ng-init="setup()">
 <!-- Page heading one starts -->
 
 <div class="page-heading-one">
@@ -28,7 +30,6 @@
 <!--         <h2>Groceries!</h2> -->
 
         <!-- Accordion starts -->
-        <%= form_tag "/groceries", method: :patch do %>
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
           <div class="panel panel-green"> 
@@ -38,9 +39,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2">
                Produce
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseOne-alt2" class="panel-collapse collapse">
@@ -67,9 +65,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2">
                Meats, Seafood & Tofu
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
@@ -95,9 +90,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2">
                Bakery & Dairy
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseThree-alt2" class="panel-collapse collapse">
@@ -123,9 +115,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2">
                Other Fridge & Freezer Items
               </a>
-              <button class="pull-right btn btn-grey">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseFour-alt2" class="panel-collapse collapse">
@@ -151,9 +140,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2">
                Other Pantry Items
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseFive-alt2" class="panel-collapse collapse">
@@ -179,9 +165,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2">
                Spices & Sauces
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseSix-alt2" class="panel-collapse collapse">
@@ -207,9 +190,6 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2">
                Miscellaneous
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
             </h4>
            </div>
            <div id="collapseSeven-alt2" class="panel-collapse collapse">
@@ -219,7 +199,6 @@
            </div>
           </div>
         </div>
-        <% end %>
         <!-- Accordion ends -->
       </div>
     </div>
@@ -231,3 +210,5 @@
 </div>
 
 <!-- Main content ends -->
+  </div>
+</div>

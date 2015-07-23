@@ -10,4 +10,6 @@ json.array! @groceries do |grocery|
     json.ingredient_description ingredient.description  
   end
 
+  json.current_user grocery.users.exists?(current_user) ? true : false
+
 end
