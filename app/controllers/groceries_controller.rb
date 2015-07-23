@@ -15,7 +15,6 @@ class GroceriesController < ApplicationController
     user_groceries.each do |user_grocery|
       UserGrocery.create(user_id: current_user.id, grocery_id: user_grocery)
     end
-    redirect_to "/groceries"
   end
   
 end

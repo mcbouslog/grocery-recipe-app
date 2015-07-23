@@ -10,9 +10,10 @@
 <!-- Main content starts -->
 
 <div class="main-block">
-  <div class="container">
 
 <!-- Search Selection starts -->
+
+<div class="container">
   <div>
     <h2>Select your main ingredients:</h2>
     <%= form_tag "/recipes/search", method: :patch do %>
@@ -52,15 +53,61 @@
     <%= submit_tag "Search for Recipes" %>
     <% end %>
     </div>
-<!-- Search Selection ends -->
-
-<!-- Filters starts -->
-<!-- Filters ends -->
-
-<!-- Search Results starts -->
-<!-- Search Results ends -->
-
   </div>
 </div>
 
+<!-- Search Selection ends -->
+
+<!-- Filters starts -->
+<div class="container">
+</div>
+<!-- Filters ends -->
+
+<!-- Search Results starts -->
+<div class="container">         
+  <div class="row">
+    <div class="col-md-10">
+    
+      <!-- Search results starts -->
+      <div class="search-results">
+      
+        <h4>"Search results for your search for <span class="color">Brave</span>"</h4>
+        <p>About 2,500 results found</p>
+        <hr />
+        
+        <!-- Search result item -->
+        <div class="s-result-item">
+          <!-- Item title -->
+          <h5><a href="#" class="blue">Purchase Brave Theme - Bootstrap Themes</a></h5>
+          <!-- Item link -->
+          <a href="#" class="green">http://www.google.com</a>
+          <!-- Item para -->
+          <p>Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum. Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum.</p>
+          <!-- Item link list -->
+          <div class="s-links">
+            <a href="#" class="blue">Download</a> - 
+            <a href="#" class="blue">Purchase</a> - 
+            <a href="#" class="blue">Contact</a> - 
+            <a href="#" class="blue">About Us</a> 
+          </div>
+        </div>
+        
+        <!-- Search result item -->
+        <div class="s-result-item">
+          <!-- Item title -->
+          <h5><a href="#" class="blue">Purchase Brave Theme - Bootstrap Themes</a></h5>
+          <!-- Item link -->
+          <a href="#" class="green">http://www.google.com</a>
+          <!-- Item para -->
+          <p>Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum. Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search Results ends -->
+
+</div>
 <!-- Main content ends -->
