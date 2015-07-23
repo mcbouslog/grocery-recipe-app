@@ -9,6 +9,12 @@
       });
     }
 
+    $scope.save = function() {
+      $scope.groceries
+      var user_groceries
+      console.log(user_groceries)
+    }
+
     window.scope = $scope;
   
   });
