@@ -17,6 +17,20 @@ Rails.application.routes.draw do
   patch '/recipes/search' => 'recipes#update'
   get '/recipes/:id' => 'recipes#show'
 
+  #APIs
+
+  namespace :api do
+    namespace :v1 do
+
+      get '/api_groceries' => 'api_groceries#index'
+      get '/api_user_groceries' => 'api_groceries#user'
+
+      get '/api_ingredients' => 'api_ingredients#index'
+      get '/api_user_ingredients' => 'api_ingredients#user'
+
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
