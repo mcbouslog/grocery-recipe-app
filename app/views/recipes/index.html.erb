@@ -22,49 +22,49 @@
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
-      <h4>Ingredient #1:
-      <select>
-        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientOne">{{ option.description }}</option>
-      </select>
-      </h4>
+      
+      <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne">
+      <datalist id="optionsOne">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      </datalist></h4>
+    
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
-      <h4>Ingredient #2:
-      <select>
-        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientTwo">{{ option.description }}</option>
-      </select>
-      </h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-5">
-      <h4>Ingredient #3:
-      <select>
-        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientThree">{{ option.description }}</option>
-      </select>
-      </h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-5">
-      <h4>Extra Search Term:
+      
+      <h4 ng-show="ingredientOne">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
+      <datalist id="optionsTwo">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      </datalist></h4>
 
-      <!-- INSERT SEARCH TERM -->
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      
+      <h4 ng-show="ingredientTwo">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
+      <datalist id="optionsThree">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      </datalist></h4>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4>Search Term:<input ng-model="searchTerm">
       </h4>
       </div>
     </div>
     <div class="row">
     
-    <a class="btn btn-lg btn-grey">Search for Recipes</a>
+    <a ng-click="recipeSearch(ingredientOne, ingredientTwo, ingredientThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
 
     </div>
   </div>
