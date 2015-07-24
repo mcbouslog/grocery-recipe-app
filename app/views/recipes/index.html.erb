@@ -25,7 +25,7 @@
       
       <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne">
       <datalist id="optionsOne">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
       </datalist></h4>
     
       </div>
@@ -37,7 +37,7 @@
       
       <h4 ng-show="ingredientOne">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
       <datalist id="optionsTwo">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
       </datalist></h4>
 
       </div>
@@ -47,9 +47,9 @@
       </div>
       <div class="col-md-5">
       
-      <h4 ng-show="ingredientTwo">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
+      <h4 ng-show="ingredientTwo || ingredientThree">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
       <datalist id="optionsThree">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true}"> {{ grocery.description }} </option>
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
       </datalist></h4>
       
       </div>
