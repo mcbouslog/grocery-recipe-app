@@ -1,3 +1,5 @@
+<div ng-app="app">
+  <div ng-controller="recipesCtrl" ng-init="setup()">
 <!-- Page heading one starts -->
 
 <div class="page-heading-one">
@@ -16,13 +18,15 @@
 <div class="container">
   <div>
     <h2>Select your main ingredients:</h2>
-    <%= form_tag "/recipes/search", method: :patch do %>
     <div class="row">
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
       <h4>Ingredient #1:
-      <%= select_tag(:ingredient_one, options_for_select(@user_groceries_array)) %></h4>
+      <select>
+        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientOne">{{ option.description }}</option>
+      </select>
+      </h4>
       </div>
     </div>
     <div class="row">
@@ -30,7 +34,10 @@
       </div>
       <div class="col-md-5">
       <h4>Ingredient #2:
-      <%= select_tag(:ingredient_two, options_for_select(@user_groceries_array)) %></h4>
+      <select>
+        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientTwo">{{ option.description }}</option>
+      </select>
+      </h4>
       </div>
     </div>
     <div class="row">
@@ -38,20 +45,27 @@
       </div>
       <div class="col-md-5">
       <h4>Ingredient #3:
-      <%= select_tag(:ingredient_three, options_for_select(@user_groceries_array)) %></h4>
+      <select>
+        <option ng-repeat="searchOption in searchOptions | filter: {current_user: true}" ng-model="ingredientThree">{{ option.description }}</option>
+      </select>
+      </h4>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
-      <h4><%= label_tag(:search_term, "Extra Search Term:") %>
-      <%= text_field_tag(:search_term) %></h4>
+      <h4>Extra Search Term:
+
+      <!-- INSERT SEARCH TERM -->
+
+      </h4>
       </div>
     </div>
     <div class="row">
-    <%= submit_tag "Search for Recipes" %>
-    <% end %>
+    
+    <a class="btn btn-lg btn-grey">Search for Recipes</a>
+
     </div>
   </div>
 </div>
@@ -111,3 +125,5 @@
 
 </div>
 <!-- Main content ends -->
+  </div>
+</div>

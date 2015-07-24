@@ -23,7 +23,7 @@
 
       console.log(userGroceries.user_groceries);
 
-      // $http.post("/groceries.json", userGroceries);
+      $http.post("/groceries.json", userGroceries);
     };
 
     window.scope = $scope;
