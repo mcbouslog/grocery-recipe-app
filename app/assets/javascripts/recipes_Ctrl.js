@@ -30,9 +30,13 @@
         searchString: searchStringVar.replace(/ /g,"+")
       };
 
-      $http.get('/recipes/search', searchStringHash);
-
       console.log(searchStringHash);
+
+      $http.post('/recipes/search.json', searchStringHash).then(function(response) {
+          $scope.searchResult = response.data;
+      });
+
+      console.log($scope.searchResult);
 
     };
 
