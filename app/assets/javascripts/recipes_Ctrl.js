@@ -34,11 +34,11 @@
 
       $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {
           $scope.searchResults = response.data;
+
+          $scope.matches = $scope.searchResults["matches"];
+
+          console.log($scope.matches);
       });
-
-      $scope.matches = $scope.searchResults["matches"]
-
-      console.log($scope.matches)
 
     };
 
