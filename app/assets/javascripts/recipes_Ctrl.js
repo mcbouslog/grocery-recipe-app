@@ -15,13 +15,13 @@
 
       if (ingredientOne !== undefined && ingredientOne.length !== 0) {
         searchStringVar = searchStringVar.concat(ingredientOne);
-      }
+      };
       if (ingredientTwo !== undefined && ingredientTwo.length !== 0) {
         searchStringVar = searchStringVar.concat("+",ingredientTwo);
-      }
+      };
       if (ingredientThree !== undefined && ingredientThree.length !== 0) {
         searchStringVar = searchStringVar.concat("+",ingredientThree);
-      }
+      };
       if (searchTerm !== undefined && searchTerm.length !== 0) {
         searchStringVar = searchStringVar.concat("+",searchTerm);
       };
@@ -33,10 +33,10 @@
       console.log(searchStringHash);
 
       $http.post('/recipes/search.json', searchStringHash).then(function(response) {
-          $scope.searchResult = response.data;
+          $scope.searchResults = response.data;
       });
 
-      console.log($scope.searchResult);
+      console.log($scope.searchResults);
 
     };
 

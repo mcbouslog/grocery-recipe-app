@@ -1,11 +1,11 @@
 class RecipeSearch
 
-  attr_accessor :attribution, :total_match_count, :facet_counts, :matches, :criteria
+  attr_accessor :attribution, :totalMatchCount, :facetCounts, :matches, :criteria
 
   def initialize(hash)
     @attribution = hash["attribution"]
-    @total_match_count = hash["totalMatchCount"]
-    @facet_counts = hash["facetCounts"]
+    @totalMatchCount = hash["totalMatchCount"]
+    @facetCounts = hash["facetCounts"]
     @matches = hash["matches"]
     @criteria = hash["criteria"]
   end

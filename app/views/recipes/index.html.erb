@@ -35,7 +35,7 @@
       </div>
       <div class="col-md-5">
       
-      <h4 ng-show="ingredientOne">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
+      <h4 ng-show="ingredientOne || ingredientTwo">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
       <datalist id="optionsTwo">
       <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
       </datalist></h4>
