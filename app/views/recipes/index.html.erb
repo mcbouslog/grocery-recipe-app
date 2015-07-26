@@ -79,41 +79,28 @@
 
 <!-- Search Results starts -->
 <div class="container">         
-  <div class="row">
-    <div class="col-md-10">
-    
+
       <!-- Search results starts -->
       <div class="search-results">
-      
-        <h4>"Search results for your search for <span class="color">Brave</span>"</h4>
-        <p>About 2,500 results found</p>
-        <hr />
-        
+
         <!-- Search result item -->
-        <div class="s-result-item">
-          <!-- Item title -->
-          <h5><a href="#" class="blue">Purchase Brave Theme - Bootstrap Themes</a></h5>
-          <!-- Item link -->
-          <a href="#" class="green">http://www.google.com</a>
-          <!-- Item para -->
-          <p>Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum. Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum.</p>
-          <!-- Item link list -->
-          <div class="s-links">
-            <a href="#" class="blue">Download</a> - 
-            <a href="#" class="blue">Purchase</a> - 
-            <a href="#" class="blue">Contact</a> - 
-            <a href="#" class="blue">About Us</a> 
+        <div ng-repeat="match in matches" class="s-result-item">
+          <div class="row">          
+            <div class="col-md-2">
+              <img src="match["imageUrlsBySize"][90]" class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-4">
+              <p>{{match["recipeName"]}}</p>
+              <p>{{match["sourceDisplayName"]}}</p>
+            </div>
+            <div class="col-md-4">
+              <p>Total Ingredients: {{match["ingredients"].length</p>
+              <p>Unmatched Ingredients: 4</p>
+            </div>
+            <div class="col-md-2">
+              <h1>Score: 78</h1>
+            </div>
           </div>
-        </div>
-        
-        <!-- Search result item -->
-        <div class="s-result-item">
-          <!-- Item title -->
-          <h5><a href="#" class="blue">Purchase Brave Theme - Bootstrap Themes</a></h5>
-          <!-- Item link -->
-          <a href="#" class="green">http://www.google.com</a>
-          <!-- Item para -->
-          <p>Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum. Itaque earum rerum hic tenetur a atque atatum dele niti atque tenetur a atque atatum tenetur volup tatum.</p>
         </div>
 
       </div>

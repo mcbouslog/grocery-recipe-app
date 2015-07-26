@@ -1,15 +1,3 @@
-json.matches @search_results.matches do |match|
-  json.attributes match.attributes
-  json.flavors match.flavors
-  json.rating match.rating
-  json.id match.id
-  json.smallImageUrls match.smallImageUrls
-  json.sourceDisplayName match.sourceDisplayName
-  json.totalTimeInSeconds match.totalTimeInSeconds
-  json.ingredients match.ingredients
-  json.recipeName match.recipeName
-end
-
 == README
 
 This README would normally document whatever steps are necessary to get the

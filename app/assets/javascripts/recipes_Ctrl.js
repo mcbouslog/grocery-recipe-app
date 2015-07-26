@@ -32,11 +32,13 @@
 
       console.log(searchStringHash);
 
-      $http.post('/recipes/search.json', searchStringHash).then(function(response) {
+      $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {
           $scope.searchResults = response.data;
       });
 
-      console.log($scope.searchResults);
+      $scope.matches = $scope.searchResults["matches"]
+
+      console.log($scope.matches)
 
     };
 

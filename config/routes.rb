@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   #RECIPES
   get '/recipes' => 'recipes#index'
-  post '/recipes/search' => 'recipes#search'
   get '/recipes/:id' => 'recipes#show'
 
   #APIs
@@ -22,8 +21,8 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       get '/api_groceries' => 'api_groceries#index'
-
       get '/api_ingredients' => 'api_ingredients#index'
+      post 'api_searches' => 'api_searches#index'
 
     end
   end
