@@ -2,10 +2,10 @@ class GroceryIngredientJoinsController < ApplicationController
 
   def index
     @groceries = Grocery.all
-    @ingredients = Ingredient.all
+    @ingredientsAll = Ingredient.all
     
     @total_groceries = @groceries.length
-    @total_ingredients = @ingredients.length
+    @total_ingredients = @ingredientsAll.length
 
     @grocery_ingredients = []
     @groceries.each do |grocery|
@@ -15,16 +15,31 @@ class GroceryIngredientJoinsController < ApplicationController
     end
     @grocery_percent = (@grocery_ingredients.length.to_f / @total_groceries.to_f) * 100
 
-    # @ingredient_groceries = []
-    # @ingredients.each do |ingredient|
-    #   if ingredient.groceries.any?
-    #     @ingredient_groceries << ingredient
-    #   end
-    # end
-    # @ingredient_percent = (@ingredient_groceries.length.to_f / @total_ingredients.to_f) * 100
+    @ingredient_groceries = []
+    @ingredientsAll.each do |ingredient|
+      if ingredient.groceries.any?
+        @ingredient_groceries << ingredient
+      end
+    end
+    @ingredient_percent = (@ingredient_groceries.length.to_f / @total_ingredients.to_f) * 100
   end
 
   def edit
+  end
+
+  def join
+    ingredient_ids = params[:ingredient_ids]
+    grocery_ids = params[:grocery_ids]
+
+    if grocery_ids.length == 1
+      ingredient_ids.each do |ingredient_id|
+        GroceryIngredientJoin.create(ingredient_id: ingredient_id, grocery_id: grocery_ids[0])
+      end
+    end
+
+    respond_to do |format|
+      format.all { render :nothing => true, :status => 200 }
+    end
   end
 
 end

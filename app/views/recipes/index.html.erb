@@ -1,3 +1,5 @@
+<div ng-app="app">
+  <div ng-controller="recipesCtrl" ng-init="setup()">
 <!-- Page heading one starts -->
 
 <div class="page-heading-one">
@@ -10,57 +12,106 @@
 <!-- Main content starts -->
 
 <div class="main-block">
-  <div class="container">
 
 <!-- Search Selection starts -->
+
+<div class="container">
   <div>
     <h2>Select your main ingredients:</h2>
-    <%= form_tag "/recipes/search", method: :patch do %>
     <div class="row">
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
-      <h4>Ingredient #1:
-      <%= select_tag(:ingredient_one, options_for_select(@user_groceries_array)) %></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-5">
-      <h4>Ingredient #2:
-      <%= select_tag(:ingredient_two, options_for_select(@user_groceries_array)) %></h4>
+      
+      <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne"></h4>
+      <datalist id="optionsOne">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      </datalist>
+    
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
       </div>
       <div class="col-md-5">
-      <h4>Ingredient #3:
-      <%= select_tag(:ingredient_three, options_for_select(@user_groceries_array)) %></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-5">
-      <h4><%= label_tag(:search_term, "Extra Search Term:") %>
-      <%= text_field_tag(:search_term) %></h4>
-      </div>
-    </div>
-    <div class="row">
-    <%= submit_tag "Search for Recipes" %>
-    <% end %>
-    </div>
-<!-- Search Selection ends -->
+      
+      <h4 ng-show="ingredientOne || ingredientTwo">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
+      <datalist id="optionsTwo">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      </datalist></h4>
 
-<!-- Filters starts -->
-<!-- Filters ends -->
-
-<!-- Search Results starts -->
-<!-- Search Results ends -->
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      
+      <h4 ng-show="ingredientTwo || ingredientThree">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
+      <datalist id="optionsThree">
+      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      </datalist></h4>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5">
+      <h4>Search Term:<input ng-model="searchTerm">
+      </h4>
+      </div>
+    </div>
+    <div class="row">
+    <br>
+    <a ng-click="recipeSearch(ingredientOne, ingredientTwo, ingredientThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
+    <br>
+    </div>
   </div>
 </div>
 
+<!-- Search Selection ends -->
+
+<!-- Filters starts -->
+<div class="container">
+<br>
+</div>
+<!-- Filters ends -->
+
+<!-- Search Results starts -->
+<div class="container">         
+
+      <!-- Search results starts -->
+      <div class="search-results">
+
+        <!-- Search result item -->
+        <div ng-repeat="match in matches" class="s-result-item">
+          <div class="row">          
+            <div class="col-md-2">
+              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-4">
+              <h6>{{ match["recipeName"] }}</h6>
+              <h6>Source: {{ match["sourceDisplayName"] }}</h6>
+            </div>
+            <div class="col-md-4">
+              <h6>Total Ingredients: {{ match["ingredients"].length }}</h6>
+              <h6>Unmatched Ingredients: {{ matchCount(match) }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h2>Score: 78</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search Results ends -->
+
+</div>
 <!-- Main content ends -->
+  </div>
+</div>

@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require app
 //= require theme/bootstrap
 //= require theme/custom
 //= require theme/ecommerce

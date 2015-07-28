@@ -1,3 +1,5 @@
+<div ng-app="app">
+  <div ng-controller="groceriesCtrl" ng-init="setup()">
 <!-- Page heading one starts -->
 
 <div class="page-heading-one">
@@ -21,6 +23,7 @@
   <br />
 
   <!-- Parallax block one -->
+  <form>
   <div class="parallax-one">
     <div class="container">
       <!-- Parallax element block -->
@@ -28,7 +31,6 @@
 <!--         <h2>Groceries!</h2> -->
 
         <!-- Accordion starts -->
-        <%= form_tag "/groceries", method: :patch do %>
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
           <div class="panel panel-green"> 
@@ -38,25 +40,16 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2">
                Produce
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseOne-alt2" class="panel-collapse collapse">
             <!-- Panel body -->
             <div class="panel-body">
               
-                <% @produces.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'produce'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
 
             </div>
            </div>
@@ -67,24 +60,15 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2">
                Meats, Seafood & Tofu
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @meats.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
 
             </div>
            </div>
@@ -95,52 +79,34 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2">
                Bakery & Dairy
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @bakery_dairies.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
             
             </div>
            </div>
           </div>
-          <div class="panel panel-grey">
+          <div class="panel panel-white">
            <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2">
                Other Fridge & Freezer Items
               </a>
-              <button class="pull-right btn btn-grey">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseFour-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_frigs.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_frig'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -151,24 +117,15 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2">
                Other Pantry Items
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseFive-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @other_dries.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_dry'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -179,24 +136,15 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2">
                Spices & Sauces
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseSix-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-                <% @sauces_spices.each do |grocery| %>
-                <div class="checkbox col-md-3">
-                  <% if user_signed_in? %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, grocery.user_groceries.where(user_id: current_user.id).any?, id: grocery.id %>
-                  <% else %>
-                  <%= check_box_tag "user_groceries[]", grocery.id, false, id: grocery.id %>
-                  <% end %>
-                  <%= label_tag(grocery.id, grocery.description) %>
+                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'" class="checkbox col-xs-3">
+                <input type="checkbox" ng-model="grocery.current_user"><label> {{ grocery.description }} </label>
                 </div>
-                <% end %>
             
             </div>
            </div>
@@ -207,9 +155,7 @@
               <a data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2">
                Miscellaneous
               </a>
-              <button class="pull-right btn btn-grey btn-no-border">
-              <%= submit_tag "Save" %>
-              </button>
+              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
             </h4>
            </div>
            <div id="collapseSeven-alt2" class="panel-collapse collapse">
@@ -219,15 +165,17 @@
            </div>
           </div>
         </div>
-        <% end %>
+        </div>
         <!-- Accordion ends -->
       </div>
-    </div>
     <div class="recipe-search-btn">
-    <a class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
+    <a ng-click="save()" class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
     </div>
-  </div>
+    </div>
+  </form>
 
 </div>
 
 <!-- Main content ends -->
+  </div>
+</div>
