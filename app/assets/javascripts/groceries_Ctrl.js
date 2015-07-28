@@ -21,8 +21,6 @@
         };
       };
 
-      console.log(userGroceries.user_groceries);
-
       $http.post('/groceries', userGroceries);
     };
 

@@ -1,7 +1,11 @@
 class Api::V1::ApiIngredientsController < ApplicationController
 
   def index
-    @ingredients = Ingredient.all
+    @ingredientsAll = Ingredient.all
+  end
+
+  def search
+    @ingredientsUnmatched = Ingredient.where.not(id: GroceryIngredientJoin.pluck(:ingredient_id))
   end
 
 end

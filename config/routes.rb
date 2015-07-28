@@ -4,26 +4,28 @@ Rails.application.routes.draw do
   devise_for :users
 
   #GROCERIES
-  get '/groceries' => 'groceries#index'
-  post '/groceries' => 'groceries#update'
-  get '/groceries/:id' => 'groceries#show'
+  get 'groceries' => 'groceries#index'
+  post 'groceries' => 'groceries#update'
+  get 'groceries/:id' => 'groceries#show'
 
   #GROCERY_INGREDIENT_JOIN
-  get '/grocery_ingredient_joins' => 'grocery_ingredient_joins#index'
-  get '/grocery_ingredient_joins/edit' => 'grocery_ingredient_joins#edit'
+  get 'grocery_ingredient_joins' => 'grocery_ingredient_joins#index'
+  post 'grocery_ingredient_joins' => 'grocery_ingredient_joins#join'
+  get 'grocery_ingredient_joins/edit' => 'grocery_ingredient_joins#edit'
 
   #RECIPES
-  get '/recipes' => 'recipes#index'
-  get '/recipes/:id' => 'recipes#show'
+  get 'recipes' => 'recipes#index'
+  get 'recipes/:id' => 'recipes#show'
 
   #APIs
   namespace :api do
     namespace :v1 do
 
-      get '/api_groceries' => 'api_groceries#index'
-      get '/api_ingredients' => 'api_ingredients#index'
+      get 'api_groceries' => 'api_groceries#index'
+      get 'api_ingredients' => 'api_ingredients#index'
+      get 'api_ingredients/search' => 'api_ingredients#search'
       post 'api_searches' => 'api_searches#index'
-
+      
     end
   end
 

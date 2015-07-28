@@ -1,1 +1,61 @@
-<h1>Search, Edit and Add</h1>
+<div ng-app="app">
+  <div ng-controller="groceryIngredientJoinCtrl" ng-init="setup()">
+
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-xs-5">
+          <h3>Grocery Search</h3>
+          <br>
+          <h5>Groceries to be Joined:</h5>
+          <div id="groceryEditList">
+            <ul ng-repeat="groceryEdit in groceryEdits track by $index" class="list-unstyled">
+              <li>{{ groceryEdit.description }}  <button ng-click="removeGrocery($index)">Delete</button></li>
+            </ul>
+          </div>
+          <br>
+          <div id="filter">
+          Grocery Filter: <input ng-model="groceryFilter">
+          </div>
+          <br>
+          <h5>Groceries List</h5>
+          <div id="groceryList">
+            <ul ng-repeat="grocery in groceries | filter: {description: groceryFilter}" class="list-unstyled">
+              <li>{{ grocery.description }}  <button ng-click="addGrocery(grocery)">Add</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="joinButton" class="col-xs-1">
+        <button ng-click="join()" class="btn-large">
+        JOIN!
+        </button>
+        </div>
+
+        <div class="col-xs-5">
+          <h3>Ingredient Search</h3>
+          <br>
+          <h5>Ingredients to be Joined:</h5>
+          <div id="ingredientEditList">
+            <ul ng-repeat="ingredientEdit in ingredientEdits track by $index" class="list-unstyled">
+              <li>{{ ingredientEdit.description }}  <button ng-click="removeIngredient($index)">Delete</button></li>
+            </ul>
+          </div>
+          <br>
+          <div id="filter">
+          Ingredient Filter: <input ng-model="ingredientFilter">
+          </div>
+          <br>
+          <h5>Ingredients List</h5>
+          <div id="ingredientList">
+            <ul ng-repeat="ingredient in ingredients | filter: {description: ingredientFilter}" class="list-unstyled">
+              <li>{{ ingredient.description }}  <button ng-click="addIngredient(ingredient)">Add</button></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

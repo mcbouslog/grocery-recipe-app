@@ -13,7 +13,7 @@ class Api::V1::ApiSearchesController < ApplicationController
       @search_results = Marshal.load(f)  
     end  
 
-    p "==========  @search_string = " + @search_string + " =========="
+    p "==========  @search_string = " + @search_string + "  =========="
 
     respond_to do |format|
       format.json { render :json => @search_results }

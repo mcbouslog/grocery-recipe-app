@@ -23,10 +23,10 @@
       </div>
       <div class="col-md-5">
       
-      <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne">
+      <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne"></h4>
       <datalist id="optionsOne">
       <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
-      </datalist></h4>
+      </datalist>
     
       </div>
     </div>
@@ -63,9 +63,9 @@
       </div>
     </div>
     <div class="row">
-    
+    <br>
     <a ng-click="recipeSearch(ingredientOne, ingredientTwo, ingredientThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
-    
+    <br>
     </div>
   </div>
 </div>
@@ -74,6 +74,7 @@
 
 <!-- Filters starts -->
 <div class="container">
+<br>
 </div>
 <!-- Filters ends -->
 
@@ -90,12 +91,12 @@
               <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
             </div>
             <div class="col-md-4">
-              <h5>{{match["recipeName"]}}</h5>
-              <h5>{{match["sourceDisplayName"]}}</h5>
+              <h6>{{ match["recipeName"] }}</h6>
+              <h6>Source: {{ match["sourceDisplayName"] }}</h6>
             </div>
             <div class="col-md-4">
-              <h5>Total Ingredients: 9</h5>
-              <h5>Unmatched Ingredients: 4</h5>
+              <h6>Total Ingredients: {{ match["ingredients"].length }}</h6>
+              <h6>Unmatched Ingredients: {{ matchCount(match) }}</h6>
             </div>
             <div class="col-md-2">
               <h2>Score: 78</h2>
