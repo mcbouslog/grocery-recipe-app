@@ -5,6 +5,7 @@ class GroceriesController < ApplicationController
   end
 
   def show
+    @groceries = Grocery.all
   end
 
   def update

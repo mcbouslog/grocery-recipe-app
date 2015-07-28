@@ -1,1 +1,18 @@
-<h1>Shopping List</h1>
+<div class="container">
+  <div class="row col-xs-6">
+    <table class="table table-striped">
+      <tr>
+        <th>Grocery Item</th>
+        <th>Category</th>
+        <th>Score Factor</th>
+      </tr>
+        <% @groceries.each do |grocery| %>
+      <tr>
+        <td><%= grocery.description %></td>
+        <td><%= grocery.grocery_category %></td>
+        <td><%= grocery.score_factor %></td>
+      </tr>
+        <% end %>
+    </table>
+  </div>
+</div>
