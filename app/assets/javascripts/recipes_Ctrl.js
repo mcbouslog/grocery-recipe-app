@@ -53,6 +53,8 @@
         $scope.attribution = $scope.searchResults["attribution"]["html"];
         $scope.matches = $scope.searchResults["matches"];
         
+// FILTERS START ******
+
         $scope.filterCuisineCourse = function(matches) {        
           $scope.cuisines = [];
           $scope.courses = [];          
@@ -78,6 +80,14 @@
         
         $scope.filterCuisineCourse($scope.matches);
 
+        $scope.scoreFilters = {
+                    
+        };
+
+// FILTERS END ******
+
+// MATCH ATTRIBUTES START******
+        
         $scope.matchCount = function(match) {
           $scope.matchIngCount = 0;
           for (var k = 0; k < match["ingredients"].length; k++) {
@@ -129,6 +139,8 @@
         $scope.matchAttributes($scope.matches);
       });
     };
+
+// MATCH ATTRIBUTES END******
 
     window.scope = $scope;
   
