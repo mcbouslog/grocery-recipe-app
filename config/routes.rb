@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   #GROCERIES
   get 'groceries' => 'groceries#index'
-  post 'groceries' => 'groceries#update'
   get 'groceries/:id' => 'groceries#show'
 
   #GROCERY_INGREDIENT_JOIN
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       get 'api_groceries' => 'api_groceries#index'
+      post 'api_groceries' => 'api_groceries#update'
       get 'api_ingredients' => 'api_ingredients#index'
       get 'api_ingredients/search' => 'api_ingredients#search'
       post 'api_searches' => 'api_searches#index'

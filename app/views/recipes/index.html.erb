@@ -18,9 +18,8 @@
 <div class="container">
   <div>
     <h2>Select your main ingredients:</h2>
+    <br>
     <div class="row">
-      <div class="col-md-1">
-      </div>
       <div class="col-md-5">
       
       <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne"></h4>
@@ -31,8 +30,6 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-1">
-      </div>
       <div class="col-md-5">
       
       <h4 ng-show="ingredientOne || ingredientTwo">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
@@ -43,8 +40,6 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-1">
-      </div>
       <div class="col-md-5">
       
       <h4 ng-show="ingredientTwo || ingredientThree">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
@@ -55,8 +50,6 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-1">
-      </div>
       <div class="col-md-5">
       <h4>Search Term:<input ng-model="searchTerm">
       </h4>
@@ -73,7 +66,67 @@
 <!-- Search Selection ends -->
 
 <!-- Filters starts -->
-<div class="container">
+<div ng-show="showResults" class="container">
+  <div class="row">
+  <h4>Filters</h4>
+  <br>
+  <div id="Score" class="col-md-2">
+  <ul class="list-unstyled">Score
+    <li>100-91</li>
+    <li>90-81</li>
+    <li>80-61</li>
+    <li>60-41</li>
+    <li>40-21</li>
+  </ul>
+  </div>
+  <div id="Time" class="col-md-2">
+  <ul class="list-unstyled">Time
+    <li>0-30</li>
+    <li>31-45</li>
+    <li>46-60</li>
+    <li>61-90</li>
+    <li>91-up</li>
+  </ul>
+  </div>
+  <div id="Unmatched Ingredients" class="col-md-2">
+  <ul class="list-unstyled">Unmatched Ingredients
+    <li>0</li>
+    <li>0-1</li>
+    <li>0-2</li>
+    <li>0-3</li>
+    <li>0-4</li>
+  </ul>
+  </div>
+  <div id="Yummly Rating" class="col-md-2">
+  <ul class="list-unstyled">Yummly Rating
+    <li>5</li>
+    <li>4+</li>
+    <li>3+</li>
+    <li>2+</li>
+    <li>1+</li>
+  </ul>
+  </div>
+  <div id="Course" class="col-md-2">
+  <ul class="list-unstyled">Course
+    <li>
+      <input list="courseList" ng-model="courseFilter"><button>Clear</button>
+      <datalist id="courseList">
+      <option ng-repeat="course in courses">{{ course }}</option>
+      </datalist>
+    </li>
+  </ul>
+  </div>
+  <div id="Cuisine" class="col-md-2">
+  <ul class="list-unstyled">Cuisine
+    <li>
+      <input list="cuisineList" ng-model="cuisineFilter"><button>Clear</button>
+      <datalist id="cuisineList">
+      <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
+      </datalist>
+    </li>
+  </ul>
+  </div>
+  </div>
 <br>
 </div>
 <!-- Filters ends -->
@@ -82,8 +135,9 @@
 <div class="container">         
 
       <!-- Search results starts -->
-      <div class="search-results">
-
+      <div ng-show="showResults" class="search-results">
+      <h4 ng-bind-html="attribution"></h4>
+      <br>
         <!-- Search result item -->
         <div ng-repeat="match in matches" class="s-result-item">
           <div class="row">          
@@ -94,12 +148,15 @@
               <h6>{{ match["recipeName"] }}</h6>
               <h6>Source: {{ match["sourceDisplayName"] }}</h6>
             </div>
-            <div class="col-md-4">
-              <h6>Total Ingredients: {{ match["ingredients"].length }}</h6>
-              <h6>Unmatched Ingredients: {{ matchCount(match) }}</h6>
+            <div class="col-md-2">
+              <h6>Total Ing.: {{ match["ingredients"].length }}</h6>
+              <h6>Unmatched Ing.: {{ matchCount(match) }}</h6>
             </div>
             <div class="col-md-2">
-              <h2>Score: 78</h2>
+              <h6>Time: {{ matchTime(match) }} mins</h6>
+            </div>
+            <div class="col-md-2">
+              <h4>Score: 78</h4>
             </div>
           </div>
         </div>

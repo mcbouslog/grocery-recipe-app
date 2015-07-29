@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-sanitize
 //= require app
 //= require theme/bootstrap
 //= require theme/custom

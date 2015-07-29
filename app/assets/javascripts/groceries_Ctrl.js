@@ -21,7 +21,8 @@
         };
       };
 
-      $http.post('/groceries', userGroceries);
+      $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
+      });
     };
 
     window.scope = $scope;
