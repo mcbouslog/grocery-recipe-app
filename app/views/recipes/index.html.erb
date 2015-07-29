@@ -70,15 +70,15 @@
   <div class="row">
   <h4>Filters</h4>
   <br>
-  <div id="Score" class="col-md-2">
+  <!-- <div id="Score" class="col-md-2">
   <ul class="list-unstyled">Score
-    <li>100-91</li>
-    <li>90-81</li>
-    <li>80-61</li>
-    <li>60-41</li>
-    <li>40-21</li>
+    <li>90+ <input type="checkbox" ng-model="90"></li>
+    <li>80+ <input type="checkbox" ng-model="80"></li>
+    <li>60+ <input type="checkbox" ng-model="60"></li>
+    <li>40+ <input type="checkbox" ng-model="40"></li>
+    <li>20+ <input type="checkbox" ng-model="20"></li>
   </ul>
-  </div>
+  </div> -->
   <div id="Time" class="col-md-2">
   <ul class="list-unstyled">Time
     <li>0-30</li>
@@ -139,7 +139,7 @@
       <h4 ng-bind-html="attribution"></h4>
       <br>
         <!-- Search result item -->
-        <div ng-repeat="match in matches" class="s-result-item">
+        <div ng-repeat="match in matches | orderBy:'-matchScore':descending" class="s-result-item">
           <div class="row">          
             <div class="col-md-2">
               <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
@@ -149,14 +149,15 @@
               <h6>Source: {{ match["sourceDisplayName"] }}</h6>
             </div>
             <div class="col-md-2">
-              <h6>Total Ing.: {{ match["ingredients"].length }}</h6>
-              <h6>Unmatched Ing.: {{ matchCount(match) }}</h6>
-            </div>
-            <div class="col-md-2">
               <h6>Time: {{ matchTime(match) }} mins</h6>
             </div>
             <div class="col-md-2">
-              <h4>Score: 78</h4>
+              <h4>Ingredients</h4>
+              <h6>Total: {{ match["ingredients"].length }}</h6>
+              <h6>Unmatched: {{ match.unMatchIngCount }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h4>Score: {{ match.matchScore }}</h4>
             </div>
           </div>
         </div>

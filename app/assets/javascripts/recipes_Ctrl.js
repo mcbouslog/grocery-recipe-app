@@ -8,17 +8,17 @@
         
         $scope.groceries = response.data;
 
-        $scope.userIngredients = {};
+        $scope.ingredients = {};
         for (var i = 0; i < $scope.groceries.length; i++) {
-          if ($scope.groceries[i].current_user === true) {
-            for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
-              $scope.userIngredients[$scope.groceries[i].ingredients[j].ingredient_description] = $scope.groceries[i].description;
+          for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
+            $scope.ingredients[$scope.groceries[i].ingredients[j].ingredient_description] = {
+              description: $scope.groceries[i].description,
+              currentUser: $scope.groceries[i].current_user,
+              scoreFactor: $scope.groceries[i].score_factor                
             };
           };
         };
-
         $scope.showResults = false;
-
       });
     };
 
@@ -53,11 +53,9 @@
         $scope.attribution = $scope.searchResults["attribution"]["html"];
         $scope.matches = $scope.searchResults["matches"];
         
-        $scope.filterCuisineCourse = function(matches) {
-        
+        $scope.filterCuisineCourse = function(matches) {        
           $scope.cuisines = [];
-          $scope.courses = [];
-          
+          $scope.courses = [];          
           for (var l = 0; l < matches.length; l++) {
             if (matches[l]["attributes"] !== undefined) {
               if (matches[l]["attributes"]["cuisine"] !== undefined) {
@@ -76,19 +74,17 @@
               };
             };
           };
-
         };
         
         $scope.filterCuisineCourse($scope.matches);
 
-        console.log($scope.cuisines);
-        console.log($scope.courses);
-
         $scope.matchCount = function(match) {
           $scope.matchIngCount = 0;
           for (var k = 0; k < match["ingredients"].length; k++) {
-            if ($scope.userIngredients[match["ingredients"][k]]) {
-              $scope.matchIngCount++;
+            if ($scope.ingredients[match["ingredients"][k]]) {
+              if ($scope.ingredients[match["ingredients"][k]]["currentUser"]) {
+                $scope.matchIngCount++;
+              };
             };
           };
           $scope.unMatchIngCount = match["ingredients"].length - $scope.matchIngCount;
@@ -100,8 +96,38 @@
           return $scope.matchMinutes;
         };
 
+        $scope.matchScoreCalc = function(match) {
+          $scope.scoreArray = [];
+          for (var o = 0; o < match["ingredients"].length; o++) {
+            if ($scope.ingredients[match["ingredients"][o]]) {
+              if ($scope.ingredients[match["ingredients"][o]]["currentUser"] === true) {
+                $scope.scoreArray.push(1);  
+              } else {
+                $scope.scoreArray.push(parseFloat($scope.ingredients[match["ingredients"][o]]["scoreFactor"]));
+              }
+            } else {
+              $scope.scoreArray.push(0.75);
+            };
+          };          
+          $scope.multiply = function(array) {
+            var sum = 1;
+            for (var p = 0; p < array.length; p++) {
+                sum = sum * array[p];
+            } 
+            return sum;
+          };          
+          $scope.matchScore = ($scope.multiply($scope.scoreArray) * 100).toFixed(0);
+          return $scope.matchScore;
+        };
+        
+        $scope.matchAttributes = function(matches) {
+          for (var q = 0; q < matches.length; q++) {
+            matches[q].unMatchIngCount = $scope.matchCount(matches[q]);
+            matches[q].matchScore = parseInt($scope.matchScoreCalc(matches[q]));
+            };
+        };
+        $scope.matchAttributes($scope.matches);
       });
-
     };
 
     window.scope = $scope;
