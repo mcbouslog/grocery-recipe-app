@@ -16,42 +16,49 @@
 <!-- Search Selection starts -->
 
 <div class="container">
+  <div class="smart-forms">
   <div>
     <h2>Select your main ingredients:</h2>
     <br>
     <div class="row">
       <div class="col-md-5">
       
-      <h4>Ingredient #1:<input list="optionsOne" ng-model="ingredientOne"></h4>
+      <div class="section">
+      <label class="field-label">Ingredient #1: <input list="optionsOne" ng-model="ingredientOne"><button ng-click="ingredientOne = undefined">Clear</button></label>
       <datalist id="optionsOne">
       <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
       </datalist>
+      </div>
     
       </div>
     </div>
     <div class="row">
       <div class="col-md-5">
       
-      <h4 ng-show="ingredientOne || ingredientTwo">Ingredient #2:<input list="optionsTwo" ng-model="ingredientTwo">
+      <div ng-show="ingredientOne || ingredientTwo" class="section">
+      <label class="field-label"> Ingredient #2: <input list="optionsTwo" ng-model="ingredientTwo"><button ng-click="ingredientTwo = undefined">Clear</button></label>
       <datalist id="optionsTwo">
       <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
-      </datalist></h4>
+      </datalist>
+      </div>
 
       </div>
     </div>
     <div class="row">
       <div class="col-md-5">
       
-      <h4 ng-show="ingredientTwo || ingredientThree">Ingredient #3:<input list="optionsThree" ng-model="ingredientThree">
+      <div ng-show="ingredientTwo || ingredientThree" class="section">
+      <label class="field-label">Ingredient #3: <input list="optionsThree" ng-model="ingredientThree"><button ng-click="ingredientThree = undefined">Clear</button></label>
       <datalist id="optionsThree">
       <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
-      </datalist></h4>
+      </datalist>
+      </div>
       
       </div>
     </div>
     <div class="row">
       <div class="col-md-5">
-      <h4>Search Term:<input ng-model="searchTerm">
+      <h4>Search Term: <input ng-model="searchTerm">
       </h4>
       </div>
     </div>
@@ -61,73 +68,76 @@
     <br>
     </div>
   </div>
+  </div>
 </div>
 
 <!-- Search Selection ends -->
 
 <!-- Filters starts -->
 <div ng-show="showResults" class="container">
-  <div class="row">
-  <h4>Filters</h4>
-  <br>
-  <div id="Score" class="col-md-2">
-  <ul class="list-unstyled">Score
-    <li>100-91</li>
-    <li>90-81</li>
-    <li>80-61</li>
-    <li>60-41</li>
-    <li>40-21</li>
-  </ul>
-  </div>
-  <div id="Time" class="col-md-2">
-  <ul class="list-unstyled">Time
-    <li>0-30</li>
-    <li>31-45</li>
-    <li>46-60</li>
-    <li>61-90</li>
-    <li>91-up</li>
-  </ul>
-  </div>
-  <div id="Unmatched Ingredients" class="col-md-2">
-  <ul class="list-unstyled">Unmatched Ingredients
-    <li>0</li>
-    <li>0-1</li>
-    <li>0-2</li>
-    <li>0-3</li>
-    <li>0-4</li>
-  </ul>
-  </div>
-  <div id="Yummly Rating" class="col-md-2">
-  <ul class="list-unstyled">Yummly Rating
-    <li>5</li>
-    <li>4+</li>
-    <li>3+</li>
-    <li>2+</li>
-    <li>1+</li>
-  </ul>
-  </div>
-  <div id="Course" class="col-md-2">
-  <ul class="list-unstyled">Course
-    <li>
-      <input list="courseList" ng-model="courseFilter"><button>Clear</button>
-      <datalist id="courseList">
-      <option ng-repeat="course in courses">{{ course }}</option>
-      </datalist>
-    </li>
-  </ul>
-  </div>
-  <div id="Cuisine" class="col-md-2">
-  <ul class="list-unstyled">Cuisine
-    <li>
-      <input list="cuisineList" ng-model="cuisineFilter"><button>Clear</button>
-      <datalist id="cuisineList">
-      <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
-      </datalist>
-    </li>
-  </ul>
-  </div>
-  </div>
+  <div class="smart-forms">
+    <div class="row">
+    <h4>Filters</h4>
+    <br>
+    <div id="Score" class="col-md-2">
+    <ul class="list-unstyled">Score
+      <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
+      <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+      <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
+      <li><label>40+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="40"></label></li>
+      <li><label>20+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="20"></label></li>
+    </ul>
+    </div>
+    <div id="Time" class="col-md-2">
+    <ul class="list-unstyled">Time Less Than:
+      <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+      <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+      <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+      <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+      <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+    </ul>
+    </div>
+    <div id="Unmatched Ingredients" class="col-md-2">
+    <ul class="list-unstyled">Unmatched Ingredients
+      <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0"></label></li>
+      <li><label>0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
+      <li><label>0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
+      <li><label>0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
+      <li><label>0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
+    </ul>
+    </div>
+    <div id="Yummly Rating" class="col-md-2">
+    <ul class="list-unstyled">Yummly Rating
+      <li>5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
+      <li>4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
+      <li>3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
+      <li>2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
+      <li>1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
+    </ul>
+    </div>
+    <div id="Course" class="col-md-2">
+    <ul class="list-unstyled">Course
+      <li>
+        <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
+        <datalist id="courseList">
+        <option ng-repeat="course in courses">{{ course }}</option>
+        </datalist>
+      </li>
+    </ul>
+    </div>
+    <div id="Cuisine" class="col-md-2">
+    <ul class="list-unstyled">Cuisine
+      <li>
+        <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
+        <datalist id="cuisineList">
+        <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
+        </datalist>
+      </li>
+    </ul>
+    </div>
+    </div>
 <br>
+</div>
 </div>
 <!-- Filters ends -->
 
@@ -139,7 +149,7 @@
       <h4 ng-bind-html="attribution"></h4>
       <br>
         <!-- Search result item -->
-        <div ng-repeat="match in matches" class="s-result-item">
+        <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore | filter:filterUnIng | filter:filterRating" class="s-result-item">
           <div class="row">          
             <div class="col-md-2">
               <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
@@ -149,14 +159,15 @@
               <h6>Source: {{ match["sourceDisplayName"] }}</h6>
             </div>
             <div class="col-md-2">
-              <h6>Total Ing.: {{ match["ingredients"].length }}</h6>
-              <h6>Unmatched Ing.: {{ matchCount(match) }}</h6>
-            </div>
-            <div class="col-md-2">
               <h6>Time: {{ matchTime(match) }} mins</h6>
             </div>
             <div class="col-md-2">
-              <h4>Score: 78</h4>
+              <h4>Ingredients</h4>
+              <h6>Total: {{ match["ingredients"].length }}</h6>
+              <h6>Unmatched: {{ match.unMatchIngCount }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h4>Score: {{ match.matchScore }}</h4>
             </div>
           </div>
         </div>

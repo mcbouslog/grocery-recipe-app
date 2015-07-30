@@ -2,7 +2,7 @@ class GroceryIngredientJoinsController < ApplicationController
 
   def index
     @groceries = Grocery.all
-    @ingredientsAll = Ingredient.all
+    # @ingredientsAll = Ingredient.all
     
     @total_groceries = @groceries.length
     @total_ingredients = @ingredientsAll.length
