@@ -100,6 +100,26 @@
           
           return true;
         };
+        $scope.filterUnIngOption = {
+          filterUnIngValue: false,
+        };
+        $scope.filterUnIng = function(entry) {
+          if($scope.filterUnIngOption.filterUnIngValue) {
+            return (entry.unMatchIngCount <= parseInt($scope.filterUnIngOption.filterUnIngValue)) ? true: false;
+          };
+          
+          return true;
+        };
+        $scope.filterRatingOption = {
+          filterRatingValue: false,
+        };
+        $scope.filterRating = function(entry) {
+          if($scope.filterRatingOption.filterRatingValue) {
+            return (entry.rating >= parseInt($scope.filterRatingOption.filterRatingValue)) ? true: false;
+          };
+          
+          return true;
+        };
 
 // FILTERS END ******
 
