@@ -58,8 +58,10 @@
     </div>
     <div class="row">
       <div class="col-md-5">
-      <h4>Search Term: <input ng-model="searchTerm">
-      </h4>
+      
+      <div class="section" class="field-label">Search Term: <input ng-model="searchTerm"><button ng-click="searchTerm = undefined">Clear</button></label>
+      </div>
+      
       </div>
     </div>
     <div class="row">
@@ -99,7 +101,7 @@
     </div>
     <div id="Unmatched Ingredients" class="col-md-2">
     <ul class="list-unstyled">Unmatched Ingredients
-      <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0"></label></li>
+      <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
       <li><label>0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
       <li><label>0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
       <li><label>0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
