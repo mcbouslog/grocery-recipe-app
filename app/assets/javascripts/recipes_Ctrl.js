@@ -80,8 +80,25 @@
         
         $scope.filterCuisineCourse($scope.matches);
 
-        $scope.scoreFilters = {
-                    
+        $scope.filterTimeOption = {
+          filterTimeValue: false,
+        };
+        $scope.filterTime = function(entry) {
+          if($scope.filterTimeOption.filterTimeValue) {
+            return (entry.totalTimeInSeconds <= parseInt($scope.filterTimeOption.filterTimeValue)) ? true: false;
+          };
+          
+          return true;
+        };
+        $scope.filterScoreOption = {
+          filterScoreValue: false,
+        };
+        $scope.filterScore = function(entry) {
+          if($scope.filterScoreOption.filterScoreValue) {
+            return (entry.matchScore >= parseInt($scope.filterScoreOption.filterScoreValue)) ? true: false;
+          };
+          
+          return true;
         };
 
 // FILTERS END ******

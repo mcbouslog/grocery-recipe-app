@@ -72,20 +72,20 @@
   <br>
   <div id="Score" class="col-md-2">
   <ul class="list-unstyled">Score
-    <li><label>90+ </label></li>
-    <li><label>80+ </label></li>
-    <li><label>60+ </label></li>
-    <li><label>40+ </label></li>
-    <li><label>20+ </label></li>
+    <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
+    <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+    <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
+    <li><label>40+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="40"></label></li>
+    <li><label>20+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="20"></label></li>
   </ul>
   </div>
   <div id="Time" class="col-md-2">
-  <ul class="list-unstyled">Time
-    <li>0-30</li>
-    <li>31-45</li>
-    <li>46-60</li>
-    <li>61-90</li>
-    <li>91-up</li>
+  <ul class="list-unstyled">Time Less Than:
+    <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+    <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+    <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+    <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+    <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
   </ul>
   </div>
   <div id="Unmatched Ingredients" class="col-md-2">
@@ -109,7 +109,7 @@
   <div id="Course" class="col-md-2">
   <ul class="list-unstyled">Course
     <li>
-      <input list="courseList" ng-model="courseFilter"><button>Clear</button>
+      <input list="courseList" ng-model="match.attributes.course"><button>Clear</button>
       <datalist id="courseList">
       <option ng-repeat="course in courses">{{ course }}</option>
       </datalist>
@@ -119,7 +119,7 @@
   <div id="Cuisine" class="col-md-2">
   <ul class="list-unstyled">Cuisine
     <li>
-      <input list="cuisineList" ng-model="cuisineFilter"><button>Clear</button>
+      <input list="cuisineList" ng-model="match.attributes.cuisine"><button>Clear</button>
       <datalist id="cuisineList">
       <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
       </datalist>
@@ -139,7 +139,7 @@
       <h4 ng-bind-html="attribution"></h4>
       <br>
         <!-- Search result item -->
-        <div ng-repeat="match in matches | orderBy:'-matchScore':descending" class="s-result-item">
+        <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore" class="s-result-item">
           <div class="row">          
             <div class="col-md-2">
               <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
