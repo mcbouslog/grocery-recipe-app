@@ -55,8 +55,8 @@
         grocery_ids: groceryIds
       };
       $http.post('/grocery_ingredient_joins', joinHash).then(function(response) {
-        $scope.groceryEdits = null;
-        $scope.ingredientEdits = null;
+        $scope.groceryEdits = [];
+        $scope.ingredientEdits = [];
       });
     };
 
