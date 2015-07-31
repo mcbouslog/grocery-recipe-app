@@ -12,12 +12,14 @@
         for (var i = 0; i < $scope.groceries.length; i++) {
           for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
             $scope.ingredients[$scope.groceries[i].ingredients[j].ingredient_description] = {
-              description: $scope.groceries[i].description,
+              grocery: $scope.groceries[i].description,
               currentUser: $scope.groceries[i].current_user,
               scoreFactor: $scope.groceries[i].score_factor                
             };
           };
         };
+        console.log($scope.groceries);
+        console.log($scope.ingredients);
         $scope.showResults = false;
       });
     };
@@ -53,7 +55,7 @@
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
         
-// FILTERS START ******
+        // FILTERS START ******
 
         $scope.filterCuisineCourse = function(matches) {        
           $scope.cuisines = [];
@@ -120,9 +122,9 @@
           return true;
         };
 
-// FILTERS END ******
+        // FILTERS END ******
 
-// MATCH ATTRIBUTES START******
+        // MATCH ATTRIBUTES START******
         
         $scope.matchCount = function(match) {
           $scope.matchIngCount = 0;
@@ -173,10 +175,35 @@
             };
         };
         $scope.matchAttributes($scope.matches);
+        // MATCH ATTRIBUTES END******
+        // THEN ENDS******
       });
+      // SEARCH BUTTON ENDS******      
     };
 
-// MATCH ATTRIBUTES END******
+    // MODAL STARTS******
+    $scope.modalInfo = function(match) {
+      $scope.modalIngredients = match.ingredients;
+    };
+    $scope.groceryMatch = function(ingredient) {
+      if ($scope.ingredients[ingredient]) {
+        return $scope.ingredients[ingredient].grocery;
+      };
+    };
+    $scope.modalFormat = function(item) {
+      if ($scope.ingredients[item]) {
+        if ($scope.ingredients[item].currentUser) {
+          return true;
+        };
+      } else if ($scope.groceries[item]) {
+        if ($scope.groceries[item].current_user) {
+          return true;
+        };
+      } else {
+        return false;
+      };
+    };
+    // MODAL ENDS******
 
     window.scope = $scope;
   

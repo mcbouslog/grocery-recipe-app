@@ -12,4 +12,6 @@ json.array! @groceries do |grocery|
 
   json.current_user grocery.users.exists?(current_user) ? true : false
 
+  json.shopping_list grocery.user_shopping_lists.exists?(current_user) ? true : false
+
 end

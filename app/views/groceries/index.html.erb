@@ -29,7 +29,7 @@
     <div class="container">
       <!-- Parallax element block -->
       <div class="p-element">
-<!--         <h2>Groceries!</h2> -->
+<!--    <h2>Groceries!</h2> -->
 
         <!-- Accordion starts -->
         <div class="panel-group" id="accordion-alt2">
@@ -48,15 +48,15 @@
             <!-- Panel body -->
             <div class="panel-body section">
               
-              <div class="option-group field">
+              
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'produce'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
+              
 
             </div>
            </div>
@@ -73,15 +73,13 @@
            <div id="collapseTwo-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-              <div class="option-group field">
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
 
             </div>
            </div>
@@ -98,15 +96,13 @@
            <div id="collapseThree-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-              <div class="option-group field">
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
             
             </div>
            </div>
@@ -123,15 +119,13 @@
            <div id="collapseFour-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-              <div class="option-group field">
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_frig'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
             
             </div>
            </div>
@@ -148,15 +142,13 @@
            <div id="collapseFive-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-              <div class="option-group field">
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_dry'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
             
             </div>
            </div>
@@ -173,15 +165,13 @@
            <div id="collapseSix-alt2" class="panel-collapse collapse">
             <div class="panel-body">
               
-              <div class="option-group field">
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'">
-                  <label class="option col-xs-2">
+                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
                     <span class="checkbox"></span>
                     {{ grocery.description }}
                   </label>
                 </div>
-              </div>
             
             </div>
            </div>
@@ -198,8 +188,10 @@
            <div id="collapseSeven-alt2" class="panel-collapse collapse">
             <div class="panel-body">
 
+              <div>
               <p>Search for unusual ingredients will go here</p>            
-            
+              </div>
+
             </div>
            </div>
           </div>
