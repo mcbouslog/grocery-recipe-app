@@ -12,7 +12,7 @@
         for (var i = 0; i < $scope.groceries.length; i++) {
           for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
             $scope.ingredients[$scope.groceries[i].ingredients[j].ingredient_description] = {
-              description: $scope.groceries[i].description,
+              grocery: $scope.groceries[i].description,
               currentUser: $scope.groceries[i].current_user,
               scoreFactor: $scope.groceries[i].score_factor                
             };
@@ -24,9 +24,9 @@
 
     $scope.recipeSearch = function(ingredientOne, ingredientTwo, ingredientThree, searchTerm) {
 
-      if ($scope.showResults != true) {
+      if ($scope.showResults !== true) {
             $scope.showResults = true;
-          };
+      };
 
       var searchStringVar = "";
 
@@ -52,8 +52,8 @@
         $scope.searchResults = response.data;
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
-        
-// FILTERS START ******
+
+        // FILTERS START ******
 
         $scope.filterCuisineCourse = function(matches) {        
           $scope.cuisines = [];
@@ -77,11 +77,11 @@
             };
           };
         };
-        
+      
         $scope.filterCuisineCourse($scope.matches);
 
         $scope.filterTimeOption = {
-          filterTimeValue: false,
+          filterTimeValue: false
         };
         $scope.filterTime = function(entry) {
           if($scope.filterTimeOption.filterTimeValue) {
@@ -91,7 +91,7 @@
         };
         
         $scope.filterScoreOption = {
-          filterScoreValue: false,
+          filterScoreValue: false
         };
         $scope.filterScore = function(entry) {
           if($scope.filterScoreOption.filterScoreValue) {
@@ -101,7 +101,7 @@
         };
         
         $scope.filterUnIngOption = {
-          filterUnIngValue: false,
+          filterUnIngValue: false
         };
         $scope.filterUnIng = function(entry) {
           if($scope.filterUnIngOption.filterUnIngValue) {
@@ -109,9 +109,9 @@
           };          
           return true;
         };
-        
+              
         $scope.filterRatingOption = {
-          filterRatingValue: false,
+          filterRatingValue: false
         };
         $scope.filterRating = function(entry) {
           if($scope.filterRatingOption.filterRatingValue) {
@@ -120,9 +120,9 @@
           return true;
         };
 
-// FILTERS END ******
+        // FILTERS END ******
 
-// MATCH ATTRIBUTES START******
+        // MATCH ATTRIBUTES START******
         
         $scope.matchCount = function(match) {
           $scope.matchIngCount = 0;
@@ -141,7 +141,7 @@
           $scope.matchMinutes = match.totalTimeInSeconds / 60;
           return $scope.matchMinutes;
         };
-
+      
         $scope.matchScoreCalc = function(match) {
           $scope.scoreArray = [];
           for (var o = 0; o < match.ingredients.length; o++) {
@@ -165,18 +165,43 @@
           $scope.matchScore = ($scope.multiply($scope.scoreArray) * 100).toFixed(0);
           return $scope.matchScore;
         };
-        
+
         $scope.matchAttributes = function(matches) {
           for (var q = 0; q < matches.length; q++) {
             matches[q].unMatchIngCount = $scope.matchCount(matches[q]);
             matches[q].matchScore = parseInt($scope.matchScoreCalc(matches[q]));
-            };
+          };
         };
         $scope.matchAttributes($scope.matches);
+        // MATCH ATTRIBUTES END******
+        // THEN ENDS******
       });
+      // SEARCH BUTTON ENDS******      
     };
 
-// MATCH ATTRIBUTES END******
+    // MODAL STARTS******
+    $scope.modalInfo = function(match) {
+      $scope.modalIngredients = match.ingredients;
+    };
+    $scope.groceryMatch = function(ingredient) {
+      if ($scope.ingredients[ingredient]) {
+        return $scope.ingredients[ingredient].grocery;
+      };
+    };
+    $scope.modalFormat = function(item) {
+      if ($scope.ingredients[item]) {
+        if ($scope.ingredients[item].currentUser) {
+          return true;
+        };
+      } else if ($scope.groceries[item]) {
+        if ($scope.groceries[item].current_user) {
+          return true;
+        };
+      } else {
+        return false;
+      };
+    };
+    // MODAL ENDS******
 
     window.scope = $scope;
   

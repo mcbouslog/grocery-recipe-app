@@ -22,6 +22,10 @@ class GroceryIngredientJoinsController < ApplicationController
       end
     end
     @ingredient_percent = (@ingredient_groceries.length.to_f / @total_ingredients.to_f) * 100
+
+    
+
+    
   end
 
   def edit

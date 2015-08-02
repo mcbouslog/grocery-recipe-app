@@ -49,11 +49,9 @@
                 <% if user_signed_in? && current_user.admin %>
                 <li><a href="/grocery_ingredient_joins/edit">Grocery-Ingredient Edit</a></li>
                 <% end %>
-              </ul>
-              <ul class="pull-right">
-                <li> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
-                <li> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
-                <li> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
+                <li class="pull-right"> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
+                <li class="pull-right"> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
+                <li class="pull-right"> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
               </ul>
             </div>              
             <!-- Navigation ends -->
