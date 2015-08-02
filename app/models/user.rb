@@ -2,10 +2,14 @@ class User < ActiveRecord::Base
   has_many :user_groceries
   has_many :groceries, through: :user_groceries
 
+  has_many :grocery_shop_lists
+  has_many :list_groceries, through: :grocery_shop_lists, source: :grocery
+
   has_many :user_ingredients
   has_many :ingredients, through: :user_ingredients 
 
-  has_many :user_shopping_lists
+  has_many :ingredient_shop_lists
+  has_many :list_ingredients, through: :ingredient_shop_lists, source: :ingredient
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

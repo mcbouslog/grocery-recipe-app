@@ -5,13 +5,10 @@ json.array! @groceries do |grocery|
   json.grocery_category grocery.grocery_category
   json.score_factor grocery.score_factor
 
-  json.ingredients grocery.ingredients do |ingredient|
-    json.ingredient_id ingredient.id
-    json.ingredient_description ingredient.description  
-  end
+  json.ingredients grocery.ingredients.map(&:description)
 
   json.current_user grocery.users.exists?(current_user) ? true : false
 
-  json.shopping_list grocery.user_shopping_lists.exists?(current_user) ? true : false
+  json.shop_list grocery.grocery_list_users.exists?(current_user) ? true : false
 
 end
