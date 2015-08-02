@@ -7,5 +7,5 @@ class Ingredient < ActiveRecord::Base
 
   has_many :ingredient_shop_lists
   has_many :ingredient_list_users, through: :ingredient_shop_lists, source: :user
-  
+
 end

@@ -193,11 +193,11 @@
                   <input list="searchIngredients" ng-model="searchIngredient">
                   <button ng-click="add(searchIngredient)">Add</button>
                   <datalist id="searchIngredients">
-                  <option ng-repeat="ingredient in searchIngredients">{{ ingredient }}</option>
+                  <option ng-repeat="ingredient in searchIngredients | orderBy: ingredient">{{ ingredient }}</option>
                   </datalist>
                 </label>
                 <div ng-repeat="ingredient in userIngredients | orderBy:'description'">
-                  <label ng-class="{blue: ingredient.current_user}" class="option col-xs-2">
+                  <label ng-class="{blue: ingredient.current_user}" ng-show="ingredient.current_user" class="option col-xs-2">
                     <input type="checkbox" ng-model="ingredient.current_user">
                     <span class="checkbox"></span>
                     {{ ingredient.description }}

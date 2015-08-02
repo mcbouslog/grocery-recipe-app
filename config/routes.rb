@@ -22,10 +22,13 @@ Rails.application.routes.draw do
 
       get 'api_groceries' => 'api_groceries#index'
       post 'api_groceries' => 'api_groceries#update'
+      
       get 'api_ingredients' => 'api_ingredients#index'
+      post 'api_ingredients' => 'api_ingredients#update'      
       get 'api_ingredients/user_ingredients' =>'api_ingredients#user_ingredients'
       get 'api_ingredients/search' => 'api_ingredients#search'
       get 'api_ingredients/join' => 'api_ingredients#join'
+      
       post 'api_searches' => 'api_searches#index'
       
     end

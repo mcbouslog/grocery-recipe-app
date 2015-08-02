@@ -9,7 +9,7 @@
       });
       $http.get('/api/v1/api_ingredients/user_ingredients.json').then(function(response) {
         $scope.userIngredients = response.data;
-      });
+      });      
       $http.get('/api/v1/api_ingredients/search.json').then(function(response) {
         $scope.searchIngredients = response.data;
       });
@@ -26,10 +26,25 @@
       };
       $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
       });
+
+      var userSaveIngredients = {
+        user_ingredients: []
+      };
+      for (var j = 0; j < $scope.userIngredients.length; j++) {
+        if ($scope.userIngredients[j].current_user === true) {
+          userSaveIngredients.user_ingredients.push($scope.userIngredients[j].description);
+        };
+      };
+      $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {
+      });
     };
 
     $scope.add = function(ingredient) {
-      
+      $scope.userIngredients.push({
+        description: ingredient,
+        current_user: true
+      });
+      $scope.searchIngredient = null;
     };
 
     window.scope = $scope;
