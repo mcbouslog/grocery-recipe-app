@@ -18,17 +18,15 @@
             };
           };
         };
-        console.log($scope.groceries);
-        console.log($scope.ingredients);
         $scope.showResults = false;
       });
     };
 
     $scope.recipeSearch = function(ingredientOne, ingredientTwo, ingredientThree, searchTerm) {
 
-      if ($scope.showResults != true) {
+      if ($scope.showResults !== true) {
             $scope.showResults = true;
-          };
+      };
 
       var searchStringVar = "";
 
@@ -54,7 +52,7 @@
         $scope.searchResults = response.data;
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
-        
+
         // FILTERS START ******
 
         $scope.filterCuisineCourse = function(matches) {        
@@ -79,11 +77,11 @@
             };
           };
         };
-        
+      
         $scope.filterCuisineCourse($scope.matches);
 
         $scope.filterTimeOption = {
-          filterTimeValue: false,
+          filterTimeValue: false
         };
         $scope.filterTime = function(entry) {
           if($scope.filterTimeOption.filterTimeValue) {
@@ -93,7 +91,7 @@
         };
         
         $scope.filterScoreOption = {
-          filterScoreValue: false,
+          filterScoreValue: false
         };
         $scope.filterScore = function(entry) {
           if($scope.filterScoreOption.filterScoreValue) {
@@ -103,7 +101,7 @@
         };
         
         $scope.filterUnIngOption = {
-          filterUnIngValue: false,
+          filterUnIngValue: false
         };
         $scope.filterUnIng = function(entry) {
           if($scope.filterUnIngOption.filterUnIngValue) {
@@ -111,9 +109,9 @@
           };          
           return true;
         };
-        
+              
         $scope.filterRatingOption = {
-          filterRatingValue: false,
+          filterRatingValue: false
         };
         $scope.filterRating = function(entry) {
           if($scope.filterRatingOption.filterRatingValue) {
@@ -143,7 +141,7 @@
           $scope.matchMinutes = match.totalTimeInSeconds / 60;
           return $scope.matchMinutes;
         };
-
+      
         $scope.matchScoreCalc = function(match) {
           $scope.scoreArray = [];
           for (var o = 0; o < match.ingredients.length; o++) {
@@ -167,12 +165,12 @@
           $scope.matchScore = ($scope.multiply($scope.scoreArray) * 100).toFixed(0);
           return $scope.matchScore;
         };
-        
+
         $scope.matchAttributes = function(matches) {
           for (var q = 0; q < matches.length; q++) {
             matches[q].unMatchIngCount = $scope.matchCount(matches[q]);
             matches[q].matchScore = parseInt($scope.matchScoreCalc(matches[q]));
-            };
+          };
         };
         $scope.matchAttributes($scope.matches);
         // MATCH ATTRIBUTES END******
