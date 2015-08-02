@@ -1,20 +1,19 @@
 class Api::V1::ApiIngredientsController < ApplicationController
 
   def index
-    @ingredientsAll = Ingredient.where("id < ?", 10)
+    @ingredientsAll = Ingredient.all
+  end
+
+  def user_ingredients
+    @user_ingredients = current_user.ingredients
   end
 
   def search
-    @ingredientsUnmatched = Ingredient.where.not(id: GroceryIngredientJoin.pluck(:ingredient_id))
+    @search_ingredients = Ingredient.all
   end
 
-  # def current_user
-  #   @ingredients_current_user = {}
-  #   @ingredientsAll.each do |ingredient|
-  #     if ingredient.users.exists?(current_user.id)
-  #       @ingredients_current_user.merge(ingredient)
-  #     end
-  #   end
-  # end
+  def join
+    @unmatched_ingredients = Ingredient.where.not(id: GroceryIngredientJoin.pluck(:ingredient_id))
+  end
 
 end
