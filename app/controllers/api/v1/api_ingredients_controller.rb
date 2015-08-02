@@ -9,8 +9,8 @@ class Api::V1::ApiIngredientsController < ApplicationController
     @user_ingredients = current_user.ingredients
   end
 
-  def search
-    @search_ingredients = Ingredient.all
+  def grocery_search
+    @grocery_search_ingredients = Ingredient.all
   end
 
   def update
@@ -26,6 +26,10 @@ class Api::V1::ApiIngredientsController < ApplicationController
     respond_to do |format|
       format.all { render :nothing => true, :status => 200 }
     end
+  end
+
+  def recipe_search
+    @recipe_ingredients = current_user.ingredients + current_user.list_ingredients
   end
 
   def join

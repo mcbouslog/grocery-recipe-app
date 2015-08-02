@@ -1,1 +1,0 @@
-json.array! @search_ingredients.map(&:description)

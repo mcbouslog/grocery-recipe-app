@@ -18,9 +18,9 @@
       <div class="col-md-5">
       
       <div class="section">
-      <label class="field-label">Ingredient #1: <input list="optionsOne" ng-model="ingredientOne"><button ng-click="ingredientOne = undefined">Clear</button></label>
-      <datalist id="optionsOne">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      <label class="field-label">Ingredient #1: <input list="searchOptionsOne" ng-model="searchOptionOne"><button ng-click="searchOptionOne = undefined">Clear</button></label>
+      <datalist id="searchOptionsOne">
+      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
       </datalist>
       </div>
     
@@ -29,10 +29,10 @@
     <div class="row">
       <div class="col-md-5">
       
-      <div ng-show="ingredientOne || ingredientTwo" class="section">
-      <label class="field-label"> Ingredient #2: <input list="optionsTwo" ng-model="ingredientTwo"><button ng-click="ingredientTwo = undefined">Clear</button></label>
-      <datalist id="optionsTwo">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      <div ng-show="searchOptionOne || searchOptionTwo" class="section">
+      <label class="field-label"> Ingredient #2: <input list="searchOptionsTwo" ng-model="searchOptionTwo"><button ng-click="searchOptionTwo = undefined">Clear</button></label>
+      <datalist id="searchOptionsTwo">
+      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
       </datalist>
       </div>
 
@@ -41,10 +41,10 @@
     <div class="row">
       <div class="col-md-5">
       
-      <div ng-show="ingredientTwo || ingredientThree" class="section">
-      <label class="field-label">Ingredient #3: <input list="optionsThree" ng-model="ingredientThree"><button ng-click="ingredientThree = undefined">Clear</button></label>
-      <datalist id="optionsThree">
-      <option ng-repeat="grocery in groceries | filter: {current_user: true} | orderBy:'description'"> {{ grocery.description }} </option>
+      <div ng-show="searchOptionTwo || searchOptionThree" class="section">
+      <label class="field-label">Ingredient #3: <input list="searchOptionsThree" ng-model="searchOptionThree"><button ng-click="searchOptionThree = undefined">Clear</button></label>
+      <datalist id="searchOptionsThree">
+      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
       </datalist>
       </div>
       
@@ -59,7 +59,7 @@
     </div>
     <div class="row">
     <br>
-    <a ng-click="recipeSearch(ingredientOne, ingredientTwo, ingredientThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
+    <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
     <br>
     </div>
   </div>

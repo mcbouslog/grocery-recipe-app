@@ -3,26 +3,24 @@
 
   angular.module("app").controller("recipesCtrl", function($scope, $http) {
 
-    $scope.setup = function() {
-      $http.get('/api/v1/api_groceries.json').then(function(response) {
-        
-        $scope.groceries = response.data;
+    $scope.setup = function() {  
+      // $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(response) {
+      //   $scope.activeIngredients = response.data;
+        $http.get('/api/v1/api_groceries.json').then(function(response) {
+          $scope.groceries = response.data;
+          // $scope.allOptions = $scope.groceries;
+          // for (var i = 0; i < $scope.activeIngredients.length; i++) {
+          //   $scope.allOptions.push($scope.activeIngredients[i]);
+          // };
+          // console.log($scope.allOptions);
+          console.log($scope.groceries);
+        // });
 
-        $scope.ingredients = {};
-        for (var i = 0; i < $scope.groceries.length; i++) {
-          for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
-            $scope.ingredients[$scope.groceries[i].ingredients[j].ingredient_description] = {
-              grocery: $scope.groceries[i].description,
-              currentUser: $scope.groceries[i].current_user,
-              scoreFactor: $scope.groceries[i].score_factor                
-            };
-          };
-        };
-        $scope.showResults = false;
+        $scope.showResults === false;
       });
     };
 
-    $scope.recipeSearch = function(ingredientOne, ingredientTwo, ingredientThree, searchTerm) {
+    $scope.recipeSearch = function(optionOne, optionTwo, optionThree, searchTerm) {
 
       if ($scope.showResults !== true) {
             $scope.showResults = true;
@@ -30,13 +28,13 @@
 
       var searchStringVar = "";
 
-      if (ingredientOne !== undefined && ingredientOne.length !== 0) {
-        searchStringVar = searchStringVar.concat(ingredientOne);
+      if (optionOne !== undefined && optionOne.length !== 0) {
+        searchStringVar = searchStringVar.concat(optionOne);
       };
-      if (ingredientTwo !== undefined && ingredientTwo.length !== 0) {
-        searchStringVar = searchStringVar.concat("+",ingredientTwo);
+      if (optionTwo !== undefined && optionTwo.length !== 0) {
+        searchStringVar = searchStringVar.concat("+",optionTwo);
       };
-      if (ingredientThree !== undefined && ingredientThree.length !== 0) {
+      if (optionThree !== undefined && optionThree.length !== 0) {
         searchStringVar = searchStringVar.concat("+",ingredientThree);
       };
       if (searchTerm !== undefined && searchTerm.length !== 0) {
@@ -53,6 +51,7 @@
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
 
+        console.log(searchStringHash);
         // FILTERS START ******
 
         $scope.filterCuisineCourse = function(matches) {        

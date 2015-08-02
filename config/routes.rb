@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   get 'groceries' => 'groceries#index'
   get 'groceries/:id' => 'groceries#show'
 
-  #GROCERY_INGREDIENT_JOIN
-  get 'grocery_ingredient_joins' => 'grocery_ingredient_joins#index'
-  post 'grocery_ingredient_joins' => 'grocery_ingredient_joins#join'
-  get 'grocery_ingredient_joins/edit' => 'grocery_ingredient_joins#edit'
 
   #RECIPES
   get 'recipes' => 'recipes#index'
@@ -26,13 +22,19 @@ Rails.application.routes.draw do
       get 'api_ingredients' => 'api_ingredients#index'
       post 'api_ingredients' => 'api_ingredients#update'      
       get 'api_ingredients/user_ingredients' =>'api_ingredients#user_ingredients'
-      get 'api_ingredients/search' => 'api_ingredients#search'
+      get 'api_ingredients/grocery_search' => 'api_ingredients#grocery_search'
+      get 'api_ingredients/recipe_search' => 'api_ingredients#recipe_search'
       get 'api_ingredients/join' => 'api_ingredients#join'
       
       post 'api_searches' => 'api_searches#index'
       
     end
   end
+
+  #GROCERY_INGREDIENT_JOIN
+  get 'grocery_ingredient_joins' => 'grocery_ingredient_joins#index'
+  post 'grocery_ingredient_joins' => 'grocery_ingredient_joins#join'
+  get 'grocery_ingredient_joins/edit' => 'grocery_ingredient_joins#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

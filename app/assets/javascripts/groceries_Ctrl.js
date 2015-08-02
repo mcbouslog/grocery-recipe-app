@@ -10,7 +10,7 @@
       $http.get('/api/v1/api_ingredients/user_ingredients.json').then(function(response) {
         $scope.userIngredients = response.data;
       });      
-      $http.get('/api/v1/api_ingredients/search.json').then(function(response) {
+      $http.get('/api/v1/api_ingredients/grocery_search.json').then(function(response) {
         $scope.searchIngredients = response.data;
       });
     };
