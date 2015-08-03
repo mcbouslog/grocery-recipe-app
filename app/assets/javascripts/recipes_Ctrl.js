@@ -3,31 +3,27 @@
 
   angular.module("app").controller("recipesCtrl", function($scope, $http) {
 
-    $scope.setup = function() {  
-      // $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(response) {
-      //   $scope.activeIngredients = response.data;
-        $http.get('/api/v1/api_groceries.json').then(function(response) {
-          $scope.groceries = response.data;
-          // $scope.allOptions = $scope.groceries;
-          // for (var i = 0; i < $scope.activeIngredients.length; i++) {
-          //   $scope.allOptions.push($scope.activeIngredients[i]);
-          // };
-          // console.log($scope.allOptions);
-          console.log($scope.groceries);
-        // });
-
-        $scope.showResults === false;
+    $scope.setup = function() {
+      $http.get('/api/v1/api_groceries.json').then(function(response) {
+        $scope.groceries = response.data;
+        $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(response) {
+          $scope.activeIngredients = response.data;
+          $scope.allOptions = [];
+          for (var i = 0; i < $scope.activeIngredients.length; i++) {
+            $scope.allOptions.push($scope.activeIngredients[i]);
+          };
+          for (var j = 0; j < $scope.groceries.length; j++) {
+            $scope.allOptions.push($scope.groceries[j]);
+          };
+        });
+        $scope.showResults = false;
       });
     };
 
     $scope.recipeSearch = function(optionOne, optionTwo, optionThree, searchTerm) {
-
-      if ($scope.showResults !== true) {
-            $scope.showResults = true;
-      };
+      $scope.showResults = true;
 
       var searchStringVar = "";
-
       if (optionOne !== undefined && optionOne.length !== 0) {
         searchStringVar = searchStringVar.concat(optionOne);
       };
@@ -35,23 +31,21 @@
         searchStringVar = searchStringVar.concat("+",optionTwo);
       };
       if (optionThree !== undefined && optionThree.length !== 0) {
-        searchStringVar = searchStringVar.concat("+",ingredientThree);
+        searchStringVar = searchStringVar.concat("+",optionThree);
       };
       if (searchTerm !== undefined && searchTerm.length !== 0) {
         searchStringVar = searchStringVar.concat("+",searchTerm);
-      };
-      
+      };      
       var searchStringHash = {
         searchString: searchStringVar.replace(/ /g,"+")
       };
-
-      $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {
-          
+      $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {          
         $scope.searchResults = response.data;
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
 
-        console.log(searchStringHash);
+        // SEARCH ENDS ******
+
         // FILTERS START ******
 
         $scope.filterCuisineCourse = function(matches) {        
@@ -172,10 +166,9 @@
           };
         };
         $scope.matchAttributes($scope.matches);
-        // MATCH ATTRIBUTES END******
-        // THEN ENDS******
+        // MATCH ATTRIBUTES END ******
       });
-      // SEARCH BUTTON ENDS******      
+      // THEN ENDS******
     };
 
     // MODAL STARTS******
