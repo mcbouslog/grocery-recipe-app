@@ -200,12 +200,10 @@
                           </tr>
                           <tr ng-repeat="modalIngredient in modalIngredients track by $index">
                             <td>{{ $index+1 }}</td>
-                            <td ng-class="{success: itemMatch(modalIngredient, activeIngredients)}">{{ modalIngredient }}</td>
-                            <td>
-                            </td>
+                            <td ng-class="{success: itemMatch(modalIngredient, activeIngredients)}"><label>{{ modalIngredient }}</label></td>
+                            <td><input type="checkbox" ng-model="itemMatch(modalIngredient, activeIngredients).shop_list"></td>
                             <td ng-class="{success: itemMatch(modalIngredient, groceries).current_user}">{{ itemMatch(modalIngredient, groceries).description }}</td>
-                            <td>
-                            </td>
+                            <td><input type="checkbox" ng-model="itemMatch(modalIngredient, groceries).shop_list"></td>
                           </tr>
                         </tbody>
                         </table>

@@ -170,10 +170,13 @@
     };
     // *** MATCH ATTRIBUTES END ***
 
-    // *** MODALS STARTS ***
+    // *** INGREDIENT MODAL STARTS ***
     $scope.modalInfo = function(match) {
       $scope.modalIngredients = match.ingredients;
     };
+    // *** INGREDIENT MODAL ENDS ***
+
+    // *** RECIPE MODAL STARTS ***
     $scope.modalRecipe = function(match) {
       $scope.recipeName = match.recipeName;
       var recipeIdHash = {};
@@ -184,7 +187,7 @@
         $scope.recipeIngs = $scope.recipe.ingredientLines;
       });
     };
-    // *** MODALS ENDS ***
+    // *** RECIPE MODALS ENDS ***
 
     window.scope = $scope;
   
