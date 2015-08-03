@@ -1,4 +1,4 @@
-json.array! @ingredientsUnmatched do |ingredient|
+json.array! @unmatched_ingredients do |ingredient|
 
   json.id ingredient.id
   json.description ingredient.description

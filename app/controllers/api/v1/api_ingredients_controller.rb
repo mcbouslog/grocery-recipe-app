@@ -1,20 +1,39 @@
 class Api::V1::ApiIngredientsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
 
   def index
-    @ingredientsAll = Ingredient.where("id < ?", 10)
+    @ingredientsAll = Ingredient.all
   end
 
-  def search
-    @ingredientsUnmatched = Ingredient.where.not(id: GroceryIngredientJoin.pluck(:ingredient_id))
+  def user_ingredients
+    @user_ingredients = current_user.ingredients
   end
 
-  # def current_user
-  #   @ingredients_current_user = {}
-  #   @ingredientsAll.each do |ingredient|
-  #     if ingredient.users.exists?(current_user.id)
-  #       @ingredients_current_user.merge(ingredient)
-  #     end
-  #   end
-  # end
+  def grocery_search
+    @grocery_search_ingredients = Ingredient.all
+  end
+
+  def update
+    user_ingredients = UserIngredient.where(user_id: current_user.id)
+    user_ingredients.each do |user_ingredient|
+      user_ingredient.destroy
+    end
+    user_ingredients = params[:user_ingredients]
+    user_ingredients.each do |user_ingredient|
+      ingredient = Ingredient.find_by(description: user_ingredient)
+      UserIngredient.create(user_id: current_user.id, ingredient_id: ingredient.id)
+    end
+    respond_to do |format|
+      format.all { render :nothing => true, :status => 200 }
+    end
+  end
+
+  def recipe_search
+    @recipe_ingredients = current_user.ingredients + current_user.list_ingredients
+  end
+
+  def join
+    @unmatched_ingredients = Ingredient.where.not(id: GroceryIngredientJoin.pluck(:ingredient_id))
+  end
 
 end

@@ -5,53 +5,46 @@
 
     $scope.setup = function() {
       $http.get('/api/v1/api_groceries.json').then(function(response) {
-        
         $scope.groceries = response.data;
-
-        $scope.ingredients = {};
-        for (var i = 0; i < $scope.groceries.length; i++) {
-          for (var j = 0; j < $scope.groceries[i].ingredients.length; j++) {
-            $scope.ingredients[$scope.groceries[i].ingredients[j].ingredient_description] = {
-              grocery: $scope.groceries[i].description,
-              currentUser: $scope.groceries[i].current_user,
-              scoreFactor: $scope.groceries[i].score_factor                
-            };
+        $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(response) {
+          $scope.activeIngredients = response.data;
+          $scope.allOptions = [];
+          for (var i = 0; i < $scope.activeIngredients.length; i++) {
+            $scope.allOptions.push($scope.activeIngredients[i]);
           };
-        };
+          for (var j = 0; j < $scope.groceries.length; j++) {
+            $scope.allOptions.push($scope.groceries[j]);
+          };
+        });
         $scope.showResults = false;
       });
     };
 
-    $scope.recipeSearch = function(ingredientOne, ingredientTwo, ingredientThree, searchTerm) {
-
-      if ($scope.showResults !== true) {
-            $scope.showResults = true;
-      };
+    $scope.recipeSearch = function(optionOne, optionTwo, optionThree, searchTerm) {
+      $scope.showResults = true;
 
       var searchStringVar = "";
-
-      if (ingredientOne !== undefined && ingredientOne.length !== 0) {
-        searchStringVar = searchStringVar.concat(ingredientOne);
+      if (optionOne !== undefined && optionOne.length !== 0) {
+        searchStringVar = searchStringVar.concat(optionOne);
       };
-      if (ingredientTwo !== undefined && ingredientTwo.length !== 0) {
-        searchStringVar = searchStringVar.concat("+",ingredientTwo);
+      if (optionTwo !== undefined && optionTwo.length !== 0) {
+        searchStringVar = searchStringVar.concat("+",optionTwo);
       };
-      if (ingredientThree !== undefined && ingredientThree.length !== 0) {
-        searchStringVar = searchStringVar.concat("+",ingredientThree);
+      if (optionThree !== undefined && optionThree.length !== 0) {
+        searchStringVar = searchStringVar.concat("+",optionThree);
       };
       if (searchTerm !== undefined && searchTerm.length !== 0) {
         searchStringVar = searchStringVar.concat("+",searchTerm);
-      };
-      
+      };      
       var searchStringHash = {
         searchString: searchStringVar.replace(/ /g,"+")
       };
-
-      $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {
-          
+      $http.post('/api/v1/api_searches.json', searchStringHash).then(function(response) {          
         $scope.searchResults = response.data;
         $scope.attribution = $scope.searchResults.attribution.html;
         $scope.matches = $scope.searchResults.matches;
+
+        // SEARCH ENDS ******
 
         // FILTERS START ******
 
@@ -173,10 +166,9 @@
           };
         };
         $scope.matchAttributes($scope.matches);
-        // MATCH ATTRIBUTES END******
-        // THEN ENDS******
+        // MATCH ATTRIBUTES END ******
       });
-      // SEARCH BUTTON ENDS******      
+      // THEN ENDS******
     };
 
     // MODAL STARTS******
