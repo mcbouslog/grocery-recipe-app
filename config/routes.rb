@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'api_ingredients/join' => 'api_ingredients#join'
       
       post 'api_searches' => 'api_searches#index'
+      post 'api_searches/recipe' => 'api_searches#show'
       
     end
   end
