@@ -179,21 +179,15 @@
     // MODAL STARTS******
     $scope.modalInfo = function(match) {
       $scope.modalIngredients = match.ingredients;
+      console.log($scope.allOptions);
     };
-
-    $scope.modalFormat = function(item) {
-      if ($scope.ingredients[item]) {
-        if ($scope.ingredients[item].current_user) {
-          return true;
-        };
-      } else if ($scope.groceries[item]) {
-        if ($scope.groceries[item].current_user) {
-          return true;
-        };
-      } else {
-        return false;
-      };
-    };
+    // $scope.modalFormat = function(ingredient) {
+    //   if ($scope.itemMatch(ingredient).current_user)
+    //     return true;
+    //   } else {
+    //     return false;      
+    //   };
+    // };
     // MODAL ENDS******
 
     window.scope = $scope;

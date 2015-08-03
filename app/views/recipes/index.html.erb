@@ -177,10 +177,10 @@
                           </tr>
                           <tr ng-repeat="modalIngredient in modalIngredients track by $index">
                             <td>{{ $index+1 }}</td>
-                            <td>{{ modalIngredient }}</td>
+                            <td ng-class="{success: modalFormat(modalIngredient)}">{{ modalIngredient }}</td>
                             <td>
                             </td>
-                            <td>{{ itemMatch(modalIngredient).description }}</td>
+                            <td ng-class="{success: itemMatch(modalIngredient).current_user}">{{ itemMatch(modalIngredient).description }}</td>
                             <td>
                             </td>
                           </tr>
