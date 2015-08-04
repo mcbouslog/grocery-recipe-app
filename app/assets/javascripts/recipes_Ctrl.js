@@ -172,7 +172,32 @@
 
     // *** INGREDIENT MODAL STARTS ***
     $scope.modalInfo = function(match) {
-      $scope.modalIngredients = match.ingredients;
+      $scope.modalIngredients = [];
+      for (var modalIngs = 0; modalIngs < match.ingredients.length; modalIngs++) {
+        var modalIngredient = {
+          recipeDescription: match.ingredients[modalIngs],
+          shop_list: $scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients).shop_list,
+          current_user: $scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients).current_user     
+        };
+        $scope.modalIngredients.push(modalIngredient);
+      };
+      console.log($scope.modalIngredients);
+    };
+    $scope.saveShopList = function() {
+      console.log($scope.modalIngredients);
+      
+      console.log($scope.groceries);
+      var shopListGroceries = {
+        shop_list_groceries: []
+      };
+      for (var slgroc = 0; slgroc < $scope.groceries.length; slgroc++) {
+        if ($scope.groceries[slgroc].shop_list === true) {
+          shopListGroceries.shop_list_groceries.push($scope.groceries[slgroc].id);
+        };
+      };
+      console.log(shopListGroceries);
+      $http.post('/api/v1/api_groceries/shop_list', shopListGroceries).then(function(response) {
+      });
     };
     // *** INGREDIENT MODAL ENDS ***
 
@@ -181,7 +206,6 @@
       $scope.recipeName = match.recipeName;
       var recipeIdHash = {};
       recipeIdHash.recipeId = match.id;
-      console.log(recipeIdHash);
       $http.post('/api/v1/api_searches/recipe.json',recipeIdHash).then(function(recipeResponse) {
         $scope.recipe = recipeResponse["data"];
         $scope.recipeIngs = $scope.recipe.ingredientLines;

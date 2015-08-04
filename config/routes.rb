@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
       get 'api_groceries' => 'api_groceries#index'
       post 'api_groceries' => 'api_groceries#update'
+      post  'api_groceries/shop_list' => 'api_groceries#shop_list'
       
       get 'api_ingredients' => 'api_ingredients#index'
       post 'api_ingredients' => 'api_ingredients#update'      

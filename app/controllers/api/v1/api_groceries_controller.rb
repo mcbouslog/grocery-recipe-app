@@ -20,4 +20,18 @@ class Api::V1::ApiGroceriesController < ApplicationController
     end
   end
 
+  def shop_list
+    user_grocery_shopitems = GroceryShopList.where(user_id: current_user.id)
+    user_grocery_shopitems.each do |user_grocery_shopitem|
+      user_grocery_shopitem.destroy
+    end
+    user_grocery_shopitems = params[:shop_list_groceries]
+    user_grocery_shopitems.each do |user_grocery_shopitem|
+      GroceryShopList.create(user_id: current_user.id, grocery_id: user_grocery_shopitem)
+    end
+    respond_to do |format|
+      format.all { render :nothing => true, :status => 200 }
+    end
+  end
+
 end
