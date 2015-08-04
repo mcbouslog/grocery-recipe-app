@@ -5,12 +5,8 @@ class Api::V1::ApiIngredientsController < ApplicationController
     @ingredientsAll = Ingredient.all
   end
 
-  def user_ingredients
-    @user_ingredients = current_user.ingredients
-  end
-
-  def grocery_search
-    @grocery_search_ingredients = Ingredient.all
+  def search_all
+    @ingredientsAll = Ingredient.all
   end
 
   def update
@@ -49,9 +45,9 @@ class Api::V1::ApiIngredientsController < ApplicationController
     end
   end
 
-  def recipe_search
-    @recipe_ingredients = current_user.ingredients + current_user.list_ingredients
-    @recipe_ingredients.uniq!
+  def active
+    @active_ingredients = current_user.ingredients + current_user.list_ingredients
+    @active_ingredients.uniq!
   end
 
   def join

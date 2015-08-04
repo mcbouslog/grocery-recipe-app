@@ -43,8 +43,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/recipes">Recipe Search</a></li>
                 <% if user_signed_in? %>
-                <li><a href="/recipes/<%=current_user.id%>">Saved Recipes</a></li>
-                <li><a href="/groceries/<%=current_user.id%>">Shopping List</a></li>
+                <li><a href="/recipes/favorites">Saved Recipes</a></li>
+                <li><a href="/groceries/shop_list">Shopping List</a></li>
                 <% end %>
                 <% if user_signed_in? && current_user.admin %>
                 <li><a href="/grocery_ingredient_joins/edit">Grocery-Ingredient Edit</a></li>

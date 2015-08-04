@@ -1,1 +1,0 @@
-json.array! @user_ingredients, partial: 'ingredient', as: :ingredient

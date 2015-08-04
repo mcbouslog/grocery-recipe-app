@@ -5,7 +5,7 @@
 
     $scope.setup = function() {
       $scope.allOptions = [];
-      $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(ingredientResponse) {
+      $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
         $scope.activeIngredients = ingredientResponse.data;
         for (var i = 0; i < $scope.activeIngredients.length; i++) {
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
