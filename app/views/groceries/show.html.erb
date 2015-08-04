@@ -1,18 +1,222 @@
-<div class="container">
-  <div class="row col-xs-6">
-    <table class="table table-striped">
-      <tr>
-        <th>Grocery Item</th>
-        <th>Category</th>
-        <th>Score Factor</th>
-      </tr>
-        <% @groceries.each do |grocery| %>
-      <tr>
-        <td><%= grocery.description %></td>
-        <td><%= grocery.grocery_category %></td>
-        <td><%= grocery.score_factor %></td>
-      </tr>
-        <% end %>
-    </table>
+<div ng-app="app">
+  <div ng-controller="shopListCtrl" ng-init="setup()">
+        
+        <div class="page-heading-one smart-forms">
+          <h2>Shopping List</h2>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 center">
+              <label class="switch">
+              <span>Show Only To Buy:</span>
+              <input type="checkbox" name="visible" id="visible" ng-model="groceryVisible" ng-value="groceryVisible">
+              <label for="visible" data-on="ON" data-off="OFF"></label>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 center">
+              <button>Move To Buy to On-Hand</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 center">
+              <button>Clear To Buy</button>
+              <button>Undo Clear</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 center">
+              <button>Save</button>
+            </div>
+          </div>
+        </div>
+
+    <div class="container">
+      <div class="smart-forms">
+
+        <div class="main-block">
+          <div class="row">
+
+<!-- *** FIRST COLUMN STARTS *** -->
+            <div class="col-md-4">
+              <h5>Fresh Produce</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'produce'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <h5>Meats, Seafood & Tofu</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <h5>Miscellaneous</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="ingredient in activeIngredients | orderBy:'description' | filter: {shop_list: groceryVisible}">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="ingredient.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ ingredient.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="ingStatus" id="ingredient.description" ng-model="ingredient.current_user" ng-value="ingredient.current_user">
+                        <label for="ingredient.description" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+<!-- *** FIRST COLUMN ENDS *** -->
+
+<!-- *** SECOND COLUMN STARTS *** -->
+            <div class="col-md-4">
+              <h5>Bakery & Dairy</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <h5>Other Fridge & Freezer Items</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'other_frig'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+<!-- *** SECOND COLUMN ENDS *** -->
+
+<!-- *** THIRD COLUMN STARTS *** -->
+            <div class="col-md-4">
+              <h5>Other Pantry Items</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'other_dry'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <h5>Spices & Sauces</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th>To Buy</th>
+                    <th>Item</th>
+                    <th>On-Hand?</th>
+                  </tr>
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'">
+                    <td>
+                      <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
+                    </td>
+                    <td>{{ grocery.description }}</td>
+                    <td>
+                      <label class="switch">
+                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
+                        <span></span>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+<!-- *** THIRD COLUMN ENDS *** -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>

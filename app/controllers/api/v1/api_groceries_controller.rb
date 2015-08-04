@@ -6,6 +6,10 @@ class Api::V1::ApiGroceriesController < ApplicationController
 
   end
 
+  def minimal
+    @groceries = Grocery.all    
+  end
+
   def update
     user_groceries = UserGrocery.where(user_id: current_user.id)
     user_groceries.each do |user_grocery|

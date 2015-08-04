@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       get 'api_groceries' => 'api_groceries#index'
+      get 'api_groceries/minimal' => 'api_groceries#minimal'
       post 'api_groceries' => 'api_groceries#update'
       post 'api_groceries/shop_list' => 'api_groceries#shop_list'
       

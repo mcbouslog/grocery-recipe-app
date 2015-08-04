@@ -4,6 +4,10 @@
 
 <div class="page-heading-one">
   <h2>Cook dinner tonight.</h2>
+  <div class="block-heading-four">
+    <h3>Check-off your <span class="color">groceries</span> on-hand, find what you can cook with <span class="color">ChefHat</span>.</h3>
+    <i class="fa fa-cutlery color br-color"></i>
+  </div>
 <!--   <p class="bg-color">Our Works Here</p> -->
 </div>
 
@@ -13,15 +17,6 @@
 
 <div class="main-block">
   <div class="smart-forms">
-
-  <br />
-
-  <div class="block-heading-four">
-    <h3>Enter <span class="color">&amp;</span> update your groceries on-hand, find what you can cook with <span class="color">ChefHat</span>.</h3>
-    <i class="fa fa-cutlery color br-color"></i>
-  </div>
-
-  <br />
 
   <!-- Parallax block one -->
   <form>
@@ -47,8 +42,7 @@
            <div id="collapseOne-alt2" class="panel-collapse collapse">
             <!-- Panel body -->
             <div class="panel-body section">
-              
-              
+                            
                 <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'produce'">
                   <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
                     <input type="checkbox" ng-model="grocery.current_user">
@@ -57,7 +51,6 @@
                   </label>
                 </div>
               
-
             </div>
            </div>
           </div>
