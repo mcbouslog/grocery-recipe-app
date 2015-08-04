@@ -9,7 +9,9 @@
         $scope.activeIngredients = ingredientResponse.data;
         for (var i = 0; i < $scope.activeIngredients.length; i++) {
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
+          $scope.activeIngredients[i].recipeVisible = false;
           $scope.allOptions.push($scope.activeIngredients[i]);
+        console.log($scope.activeIngredients);
         };
       });
       $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
@@ -109,14 +111,14 @@
         if (matches[att].attributes !== undefined) {
           if (matches[att].attributes.cuisine !== undefined) {
             for (var cuis = 0; cuis < matches[att].attributes.cuisine.length; cuis++) {
-              if ($scope.cuisines.indexOf(matches[att].attributes.cuisine[cuis]) == -1) {
+              if ($scope.cuisines.indexOf(matches[att].attributes.cuisine[cuis],0) == -1) {
                 $scope.cuisines.push(matches[att].attributes.cuisine[cuis]);
               };
             };
           };
           if (matches[att].attributes.course !== undefined) {
             for (var cour = 0; cour < matches[att].attributes.course.length; cour++) {
-              if ($scope.courses.indexOf(matches[att].attributes.course[cour]) == -1) {
+              if ($scope.courses.indexOf(matches[att].attributes.course[cour],0) == -1) {
                 $scope.courses.push(matches[att].attributes.course[cour]);
               };
             };
@@ -172,21 +174,35 @@
 
     // *** INGREDIENT MODAL STARTS ***
     $scope.modalInfo = function(match) {
-      $scope.modalIngredients = [];
+      $scope.modalIngredients = match.ingredients;
       for (var modalIngs = 0; modalIngs < match.ingredients.length; modalIngs++) {
-        var modalIngredient = {
-          recipeDescription: match.ingredients[modalIngs],
-          shop_list: $scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients).shop_list,
-          current_user: $scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients).current_user     
+        if ($scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients) == false) {
+          var modalIngredient = {
+            description: match.ingredients[modalIngs],
+            shop_list: false,
+            current_user: false,
+            ingredients: [match.ingredients[modalIngs]]
+          };
+          $scope.activeIngredients.push(modalIngredient);
         };
-        $scope.modalIngredients.push(modalIngredient);
       };
-      console.log($scope.modalIngredients);
     };
     $scope.saveShopList = function() {
-      console.log($scope.modalIngredients);
-      
-      console.log($scope.groceries);
+      // *** SAVE INGREDIENTS SHOP LISTS ***
+      var shopListIngredients = {
+        shop_list_ingredients: []
+      };
+      for (var sling = 0; sling < $scope.activeIngredients.length; sling++) {
+        if ($scope.activeIngredients[sling].shop_list === true) {
+          shopListIngredients.shop_list_ingredients.push($scope.activeIngredients[sling].description);
+        };
+      };
+      console.log(shopListIngredients);
+      console.log($scope.activeIngredients);
+      // $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
+      // });
+
+      // *** SAVE GROCERIES SHOP LISTS ***
       var shopListGroceries = {
         shop_list_groceries: []
       };
@@ -195,7 +211,6 @@
           shopListGroceries.shop_list_groceries.push($scope.groceries[slgroc].id);
         };
       };
-      console.log(shopListGroceries);
       $http.post('/api/v1/api_groceries/shop_list', shopListGroceries).then(function(response) {
       });
     };

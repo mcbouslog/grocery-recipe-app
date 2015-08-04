@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       post  'api_groceries/shop_list' => 'api_groceries#shop_list'
       
       get 'api_ingredients' => 'api_ingredients#index'
-      post 'api_ingredients' => 'api_ingredients#update'      
+      post 'api_ingredients' => 'api_ingredients#update'
+      post 'api_ingredients/shop_list' => 'api_ingredients#shop_list'      
       get 'api_ingredients/user_ingredients' =>'api_ingredients#user_ingredients'
       get 'api_ingredients/grocery_search' => 'api_ingredients#grocery_search'
       get 'api_ingredients/recipe_search' => 'api_ingredients#recipe_search'
