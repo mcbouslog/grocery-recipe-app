@@ -11,7 +11,6 @@
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
           $scope.activeIngredients[i].recipeVisible = false;
           $scope.allOptions.push($scope.activeIngredients[i]);
-        console.log($scope.activeIngredients);
         };
       });
       $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
@@ -188,7 +187,6 @@
       };
     };
     $scope.saveShopList = function() {
-      // *** SAVE INGREDIENTS SHOP LISTS ***
       var shopListIngredients = {
         shop_list_ingredients: []
       };
@@ -197,12 +195,8 @@
           shopListIngredients.shop_list_ingredients.push($scope.activeIngredients[sling].description);
         };
       };
-      console.log(shopListIngredients);
-      console.log($scope.activeIngredients);
-      // $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
-      // });
-
-      // *** SAVE GROCERIES SHOP LISTS ***
+      $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
+      });
       var shopListGroceries = {
         shop_list_groceries: []
       };

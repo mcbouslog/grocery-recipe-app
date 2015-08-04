@@ -51,6 +51,7 @@ class Api::V1::ApiIngredientsController < ApplicationController
 
   def recipe_search
     @recipe_ingredients = current_user.ingredients + current_user.list_ingredients
+    @recipe_ingredients.uniq!
   end
 
   def join
