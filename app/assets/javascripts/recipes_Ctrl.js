@@ -175,7 +175,7 @@
     $scope.modalInfo = function(match) {
       $scope.modalIngredients = match.ingredients;
       for (var modalIngs = 0; modalIngs < match.ingredients.length; modalIngs++) {
-        if ($scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients) == false) {
+        if ($scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients) === false) {
           var modalIngredient = {
             description: match.ingredients[modalIngs],
             shop_list: false,

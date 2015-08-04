@@ -14,18 +14,17 @@
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 center">
-              <button>Move To Buy to On-Hand</button>
+              <button ng-click="shopToStock()">Move All To Buy to On-Hand</button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 center">
-              <button>Clear To Buy</button>
-              <button>Undo Clear</button>
+              <button ng-click="shopClear()">Clear All To Buy</button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 center">
-              <button>Save</button>
+              <button ng-click="saveList()">Save</button>
             </div>
           </div>
         </div>
@@ -46,16 +45,15 @@
                     <th>Item</th>
                     <th>On-Hand?</th>
                   </tr>
-                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list: groceryVisible}" ng-if="grocery.grocery_category === 'produce'">
+                  <tr ng-repeat="grocery in groceries | orderBy:'description' | filter: {shop_list:groceryVisible}" ng-if="grocery.grocery_category === 'produce'">
                     <td>
                       <label class="option"><input type="checkbox" ng-model="grocery.shop_list"><span class="checkbox"></span></label>
                     </td>
                     <td>{{ grocery.description }}</td>
                     <td>
                       <label class="switch">
-                        <input type="checkbox" name="status" id="grocery.id" ng-model="grocery.current_user" ng-value="grocery.current_user">
-                        <label for="grocery.id" data-on="YES" data-off="NO"></label>
-                        <span></span>
+                        <input type="checkbox" name="status" id="{{ grocery.id }}" ng-model="grocery.current_user" ng-value="grocery.current_user">
+                        <label for="{{ grocery.id }}" data-on="YES" data-off="NO"></label>
                       </label>
                     </td>
                   </tr>
