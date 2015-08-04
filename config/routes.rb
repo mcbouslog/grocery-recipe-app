@@ -5,25 +5,27 @@ Rails.application.routes.draw do
 
   #GROCERIES
   get 'groceries' => 'groceries#index'
-  get 'groceries/:id' => 'groceries#show'
+  get 'groceries/shop_list' => 'groceries#show'
 
 
   #RECIPES
   get 'recipes' => 'recipes#index'
-  get 'recipes/:id' => 'recipes#show'
+  get 'recipes/favorites' => 'recipes#show'
 
   #APIs
   namespace :api do
     namespace :v1 do
 
       get 'api_groceries' => 'api_groceries#index'
+      get 'api_groceries/minimal' => 'api_groceries#minimal'
       post 'api_groceries' => 'api_groceries#update'
+      post 'api_groceries/shop_list' => 'api_groceries#shop_list'
       
       get 'api_ingredients' => 'api_ingredients#index'
-      post 'api_ingredients' => 'api_ingredients#update'      
-      get 'api_ingredients/user_ingredients' =>'api_ingredients#user_ingredients'
-      get 'api_ingredients/grocery_search' => 'api_ingredients#grocery_search'
-      get 'api_ingredients/recipe_search' => 'api_ingredients#recipe_search'
+      post 'api_ingredients' => 'api_ingredients#update'
+      post 'api_ingredients/shop_list' => 'api_ingredients#shop_list'      
+      get 'api_ingredients/search_all' => 'api_ingredients#search_all'
+      get 'api_ingredients/active' => 'api_ingredients#active'
       get 'api_ingredients/join' => 'api_ingredients#join'
       
       post 'api_searches' => 'api_searches#index'

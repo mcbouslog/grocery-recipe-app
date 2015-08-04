@@ -5,10 +5,11 @@
 
     $scope.setup = function() {
       $scope.allOptions = [];
-      $http.get('/api/v1/api_ingredients/recipe_search.json').then(function(ingredientResponse) {
+      $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
         $scope.activeIngredients = ingredientResponse.data;
         for (var i = 0; i < $scope.activeIngredients.length; i++) {
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
+          $scope.activeIngredients[i].recipeVisible = false;
           $scope.allOptions.push($scope.activeIngredients[i]);
         };
       });
@@ -109,14 +110,14 @@
         if (matches[att].attributes !== undefined) {
           if (matches[att].attributes.cuisine !== undefined) {
             for (var cuis = 0; cuis < matches[att].attributes.cuisine.length; cuis++) {
-              if ($scope.cuisines.indexOf(matches[att].attributes.cuisine[cuis]) == -1) {
+              if ($scope.cuisines.indexOf(matches[att].attributes.cuisine[cuis],0) == -1) {
                 $scope.cuisines.push(matches[att].attributes.cuisine[cuis]);
               };
             };
           };
           if (matches[att].attributes.course !== undefined) {
             for (var cour = 0; cour < matches[att].attributes.course.length; cour++) {
-              if ($scope.courses.indexOf(matches[att].attributes.course[cour]) == -1) {
+              if ($scope.courses.indexOf(matches[att].attributes.course[cour],0) == -1) {
                 $scope.courses.push(matches[att].attributes.course[cour]);
               };
             };
@@ -170,21 +171,56 @@
     };
     // *** MATCH ATTRIBUTES END ***
 
-    // *** MODALS STARTS ***
+    // *** INGREDIENT MODAL STARTS ***
     $scope.modalInfo = function(match) {
       $scope.modalIngredients = match.ingredients;
+      for (var modalIngs = 0; modalIngs < match.ingredients.length; modalIngs++) {
+        if ($scope.itemMatch(match.ingredients[modalIngs], $scope.activeIngredients) === false) {
+          var modalIngredient = {
+            description: match.ingredients[modalIngs],
+            shop_list: false,
+            current_user: false,
+            ingredients: [match.ingredients[modalIngs]]
+          };
+          $scope.activeIngredients.push(modalIngredient);
+        };
+      };
     };
+    $scope.saveShopList = function() {
+      var shopListIngredients = {
+        shop_list_ingredients: []
+      };
+      for (var sling = 0; sling < $scope.activeIngredients.length; sling++) {
+        if ($scope.activeIngredients[sling].shop_list === true) {
+          shopListIngredients.shop_list_ingredients.push($scope.activeIngredients[sling].description);
+        };
+      };
+      $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
+      });
+      var shopListGroceries = {
+        shop_list_groceries: []
+      };
+      for (var slgroc = 0; slgroc < $scope.groceries.length; slgroc++) {
+        if ($scope.groceries[slgroc].shop_list === true) {
+          shopListGroceries.shop_list_groceries.push($scope.groceries[slgroc].id);
+        };
+      };
+      $http.post('/api/v1/api_groceries/shop_list', shopListGroceries).then(function(response) {
+      });
+    };
+    // *** INGREDIENT MODAL ENDS ***
+
+    // *** RECIPE MODAL STARTS ***
     $scope.modalRecipe = function(match) {
       $scope.recipeName = match.recipeName;
       var recipeIdHash = {};
       recipeIdHash.recipeId = match.id;
-      console.log(recipeIdHash);
       $http.post('/api/v1/api_searches/recipe.json',recipeIdHash).then(function(recipeResponse) {
         $scope.recipe = recipeResponse["data"];
         $scope.recipeIngs = $scope.recipe.ingredientLines;
       });
     };
-    // *** MODALS ENDS ***
+    // *** RECIPE MODALS ENDS ***
 
     window.scope = $scope;
   

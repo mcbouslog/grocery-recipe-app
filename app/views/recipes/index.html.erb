@@ -4,18 +4,9 @@
 <!-- Page heading one starts -->
 <div class="page-heading-one">
   <h2>Recipe Search</h2>
-  <!--   <p class="bg-color">Our Works Here</p> -->
-</div>
-<!-- Page heading one ends -->
-
-<div class="main-block"><!-- Main content starts -->
-
-<div class="container"><!-- Search Selection starts -->
-  <div class="smart-forms">
-    <h2>Select your main ingredients:</h2>
+  <h4>Select your main ingredients:</h4>
     <br>
     <div class="row">
-      <div class="col-md-5">
       
       <div class="section">
       <label class="field-label">Ingredient #1: <input list="searchOptionsOne" ng-model="searchOptionOne"><button ng-click="searchOptionOne = undefined">Clear</button></label>
@@ -24,10 +15,8 @@
       </datalist>
       </div>
     
-      </div>
     </div>
     <div class="row">
-      <div class="col-md-5">
       
       <div ng-show="searchOptionOne || searchOptionTwo" class="section">
       <label class="field-label"> Ingredient #2: <input list="searchOptionsTwo" ng-model="searchOptionTwo"><button ng-click="searchOptionTwo = undefined">Clear</button></label>
@@ -36,10 +25,8 @@
       </datalist>
       </div>
 
-      </div>
     </div>
     <div class="row">
-      <div class="col-md-5">
       
       <div ng-show="searchOptionTwo || searchOptionThree" class="section">
       <label class="field-label">Ingredient #3: <input list="searchOptionsThree" ng-model="searchOptionThree"><button ng-click="searchOptionThree = undefined">Clear</button></label>
@@ -48,20 +35,28 @@
       </datalist>
       </div>
       
-      </div>
     </div>
     <div class="row">
-      <div class="col-md-5">
       
       <label class="section field-label">Search Term: <input ng-model="searchTerm"><button ng-click="searchTerm = undefined">Clear</button></label>
       
-      </div>
     </div>
     <div class="row">
+
     <br>
     <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
     <br>
+
     </div>
+  <!--   <p class="bg-color">Our Works Here</p> -->
+</div>
+<!-- Page heading one ends -->
+
+<div class="main-block"><!-- Main content starts -->
+
+<div class="container"><!-- Search Selection starts -->
+  <div class="smart-forms">
+    
   </div>
 </div><!-- Search Selection ends -->
 
@@ -200,12 +195,10 @@
                           </tr>
                           <tr ng-repeat="modalIngredient in modalIngredients track by $index">
                             <td>{{ $index+1 }}</td>
-                            <td ng-class="{success: itemMatch(modalIngredient, activeIngredients)}">{{ modalIngredient }}</td>
-                            <td>
-                            </td>
+                            <td ng-class="{success: itemMatch(modalIngredient, activeIngredients).current_user}">{{ modalIngredient }}</td>
+                            <td><input type="checkbox" ng-model="itemMatch(modalIngredient, activeIngredients).shop_list"></td>
                             <td ng-class="{success: itemMatch(modalIngredient, groceries).current_user}">{{ itemMatch(modalIngredient, groceries).description }}</td>
-                            <td>
-                            </td>
+                            <td><input ng-show="itemMatch(modalIngredient, groceries).description" type="checkbox" ng-model="itemMatch(modalIngredient, groceries).shop_list"></td>
                           </tr>
                         </tbody>
                         </table>
@@ -213,7 +206,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button ng-click="saveShopList()" type="button" class="btn btn-default" data-dismiss="modal">Save</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

@@ -4,13 +4,13 @@
   angular.module("app").controller("groceriesCtrl", function($scope, $http) {
 
     $scope.setup = function() {
-      $http.get('/api/v1/api_groceries.json').then(function(response) {
+      $http.get('/api/v1/api_groceries/minimal.json').then(function(response) {
         $scope.groceries = response.data;
       });
-      $http.get('/api/v1/api_ingredients/user_ingredients.json').then(function(response) {
+      $http.get('/api/v1/api_ingredients/active.json').then(function(response) {
         $scope.userIngredients = response.data;
       });      
-      $http.get('/api/v1/api_ingredients/grocery_search.json').then(function(response) {
+      $http.get('/api/v1/api_ingredients/search_all.json').then(function(response) {
         $scope.searchIngredients = response.data;
       });
     };
