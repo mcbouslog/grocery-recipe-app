@@ -245,7 +245,8 @@
       if (match.favoriteStatus === "fa fa-heart-o red") {
         var favoriteIdHash = {
           fav_recipe_id: match.id,
-          fav_action: "create"
+          fav_action: "create",
+          
         };
         $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
           match.favoriteStatus = "fa fa-heart red";

@@ -8,7 +8,7 @@
     <div class="row">
     <h4>Filters</h4>
     <br>
-    <div id="Score" class="col-md-2">
+    <!-- <div id="Score" class="col-md-2">
       <ul class="list-unstyled">ChefHat Score
         <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
         <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
@@ -16,7 +16,7 @@
         <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
         <li><label>50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
       </ul>
-    </div>
+    </div> -->
     <div id="Time" class="col-md-2">
       <ul class="list-unstyled">Time Less Than:
         <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
@@ -26,7 +26,7 @@
         <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
       </ul>
     </div>
-    <div id="Unmatched Ingredients" class="col-md-2">
+    <!-- <div id="Unmatched Ingredients" class="col-md-2">
       <ul class="list-unstyled">Unmatched Ingredients
         <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
         <li><label>0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
@@ -34,20 +34,11 @@
         <li><label>0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
         <li><label>0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
       </ul>
-    </div>
-    <div id="Yummly Rating" class="col-md-2">
-      <ul class="list-unstyled">Yummly Rating
-        <li><label>5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
-        <li><label>4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
-        <li><label>3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
-        <li><label>2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
-        <li><label>1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
-      </ul>
-    </div>
+    </div> -->
     <div id="Course" class="col-md-2">
       <ul class="list-unstyled">Course
         <li>
-          <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
+          <input list="courseList" ng-model="favoriteRecipe.attributes.course"><button ng-click="favoriteRecipe.attributes.course = undefined">Clear</button>
           <datalist id="courseList">
           <option ng-repeat="course in courses">{{ course }}</option>
           </datalist>
@@ -57,7 +48,7 @@
     <div id="Cuisine" class="col-md-2">
       <ul class="list-unstyled">Cuisine
         <li>
-          <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
+          <input list="cuisineList" ng-model="favoriteRecipe.attributes.cuisine"><button ng-click="favoriteRecipe.attributes.cuisine = undefined">Clear</button>
           <datalist id="cuisineList">
           <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
           </datalist>
@@ -78,42 +69,62 @@
     </div>
 
     <div class="row">
-    <div ng-repeat="favoriteRecipe in favoriteRecipes">
+    <div ng-repeat="favoriteRecipe in favoriteRecipes | filter:favoriteRecipe | filter:filterTime">
       <div class="col-md-4 col-sm-4">
         <!-- Real estate property item -->
         <div class="property-item">
           <div class="img-container">
             <!-- Product Image -->
             <img class="img-responsive" ng-src={{favoriteRecipe["images"][0]["imageUrlsBySize"][360]}} alt="" />
-            <span class="hover-top bg-color">Residential</span>
-            <span class="hover-bottom bg-red">Sale</span>
+            <span class="hover-top bg-color">{{favoriteRecipe.totalTime}}</span>
+            <div ng-repeat="course in favoriteRecipe.attributes.courses">
+              <span class="hover-bottom bg-red">{{course}}</span>
+            </div>
+            <div ng-repeat="cuisine in favoriteRecipe.attributes.cuisines">
+              <span class="hover-bottom bg-red">{{cuisine}}</span>
+            </div>
           </div>
           <!-- product title -->
-          <h4><a href="real-estate-property-single.html">White Villa - Ellison Road</a></h4>
+          <h4><a href="real-estate-property-single.html">{{favoriteRecipe.name}}</a></h4>
           <!-- product details -->
           <div class="property-details">
-            <a class="ecom pull-right" href="#">More info</a>
+            <!-- <a class="ecom pull-right" href="#">More info</a> -->
             <!-- price -->
-            <span class="price pull-left">$12999.00</span>
+            <span class="text-center">{{favoriteRecipe.source.sourceDisplayName}}</span>
             <div class="clearfix"></div>
           </div>
           <!-- Info -->
-          <div class="p-info">
+          <!-- <div class="p-info">
             <a href="#">8 Bed</a>
             <a href="#">3 Bath</a>
             <a href="#">970 ft<sup>2</sup></a>
             <div class="clearfix"></div>
+          </div> -->
+          
+          <div class="panel-group" id="accordion-{{favoriteRecipe.id}}">
+           <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
+            <div class="panel panel-white"> 
+            <!-- Panel heading -->
+             <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion-{{favoriteRecipe.id}}" href="#collapseOne-{{favoriteRecipe.id}}">
+                 Ingredient Lines
+                </a>
+              </h4>
+             </div>
+             <div id="collapseOne-{{favoriteRecipe.id}}" class="panel-collapse collapse">
+              <!-- Panel body -->
+              <div class="panel-body">
+                <!-- Property Details List -->
+                <ul ng-repeat="ingredientLine in favoriteRecipe.ingredientLines">
+                  <li>{{ingredientLine}}</li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+             </div>
+            </div>
           </div>
-          <!-- Property Details List -->
-          <ul class="list-3">
-            <li>4 Beds, 1 Bath</li>
-            <li><strong>Area</strong>: 1064ft<sup>2</sup></li>
-            <li><strong>Lawn</strong>: 354ft<sup>2</sup></li>
-            <li><strong>Year</strong>: 2004</li>
-            <li><strong>Parking</strong>: 2</li>
-            <li><strong>Status</strong>: For Rent</li>
-          </ul>
-          <div class="clearfix"></div>
+        
         </div>
       </div>
     </div>
