@@ -43,7 +43,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/recipes">Recipe Search</a></li>
                 <% if user_signed_in? %>
-                <li><a href="/recipes/favorites">Saved Recipes</a></li>
+                <li><a href="/recipes/favorites">Favorite Recipes</a></li>
                 <li><a href="/groceries/shop_list">Shopping List</a></li>
                 <% end %>
                 <% if user_signed_in? && current_user.admin %>

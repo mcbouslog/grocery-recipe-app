@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :ingredient_shop_lists
   has_many :list_ingredients, through: :ingredient_shop_lists, source: :ingredient
+
+  has_many :user_recipes
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
