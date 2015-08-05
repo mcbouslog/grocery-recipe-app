@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       post 'api_searches' => 'api_searches#index'
       post 'api_searches/recipe' => 'api_searches#show'
       get 'api_searches/favorite_recipes' => 'api_searches#favorite_recipes'
+      get 'api_searches/min_fav_recipes' => 'api_searches#min_fav_recipes'
       post 'api_searches/favorite_recipes' => 'api_searches#update_favorites'
       
     end

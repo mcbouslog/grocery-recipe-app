@@ -1,0 +1,1 @@
+json.array! @min_user_recipes.map(&:recipe_id)

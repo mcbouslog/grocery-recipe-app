@@ -154,7 +154,9 @@
                               <img class="img-responsive" ng-src={{recipe["images"][0]["imageUrlsBySize"][360]}} class="img-responsive" alt="Responsive image"/>
                               <!-- Image caption -->
                               <div class="image-caption">
-                                <a href="#" class="b-tooltip" title="Star"><i class="fa fa-star bg-yellow"></i></a>
+                                <div class="icon-box-1-item">
+                                  <div><i ng-click="changeRecipeFavorite(recipe)" ng-class="recipe.favoriteStatus" class="fa-5x"></i></div>
+                                </div>  
                               </div>
                             </div>   
                           </div>
