@@ -43,25 +43,15 @@
     </div>
     <div class="row">
 
-    <br>
+    <br />
     <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
-    <br>
+    <br />
+    <br />
 
     </div>
-  <!--   <p class="bg-color">Our Works Here</p> -->
-</div>
-<!-- Page heading one ends -->
 
-<div class="main-block"><!-- Main content starts -->
-
-<div class="container"><!-- Search Selection starts -->
-  <div class="smart-forms">
-    
-  </div>
-</div><!-- Search Selection ends -->
-
-<div ng-show="showResults" class="container"><!-- Filters starts -->
-  <div class="smart-forms">
+<!-- Filters starts -->
+  <div class="smart-forms well">
     <div class="row">
     <h4>Filters</h4>
     <br>
@@ -122,11 +112,17 @@
       </ul>
     </div>
     </div>
-<br>
+    <br>
   </div>
-</div><!-- Filters ends -->
+</div>
+<!-- Filters ends -->
+<!-- Page heading one ends -->
 
-    <div class="container"><!-- Search Results starts -->         
+<!-- Main content starts -->
+<div class="main-block">
+
+<!-- Search Results starts -->         
+    <div class="container">
 
       <div ng-show="showResults" class="search-results">
       <h4 ng-bind-html="attribution"></h4>
@@ -146,15 +142,60 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                       <h4 class="modal-title" id="recipeModalLabel">{{ recipeName }}</h4>
+                       <h3 class="modal-title" id="recipeModalLabel">{{ match.recipeName }}</h3>
                     </div>
                     <div class="modal-body">
-
-                      <img ng-src={{recipe["images"][0]["imageUrlsBySize"]["360"]}} class="img-responsive" alt="Responsive image">
-                      <ul ng-repeat="recipeIng in recipeIngs">
-                        <li>{{ recipeIng }}</li>
-                      </ul>
-
+<!-- *** RECIPE MODAL CONTENT START *** -->
+                      <div class="container">
+                        <div class="row">
+                          <div class="image-block">
+                            <div class="image-style-eight">
+                              <!-- Image -->
+                              <img class="img-responsive" ng-src={{recipe["images"][0]["imageUrlsBySize"][360]}} class="img-responsive" alt="Responsive image"/>
+                              <!-- Image caption -->
+                              <div class="image-caption">
+                                <a href="#" class="b-tooltip" title="Star"><i class="fa fa-star bg-yellow"></i></a>
+                              </div>
+                            </div>   
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1">
+                          </div>
+                          <div class="col-md-4">
+                            <h4>Source: <a href="{{recipeSourceUrl}}" target="_blank">{{ recipe.source.sourceDisplayName }}</a></h4>
+                          </div>
+                          <div class="col-md-1">
+                          </div>
+                          <div class="col-md-2">
+                          </div>
+                          <div class="col-md-2">
+                            <h6>Servings: {{ recipe.numberOfServings }}</h6>
+                          </div>
+                          <div class="col-md-2">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h6>Total Time: </h6>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Yummly Rating: {{ recipe.rating }}</h6>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <h5>Ingredients:</h5>
+                            <ul ng-repeat="recipeIng in recipeIngs">
+                              <li>{{ recipeIng }}</li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 col-md-offset-0">
+                            <h6 ng-bind-html="recipeAttribution"></h6>
+                          </div>
+                        </div>
+                      </div>
+<!-- *** RECIPE MODAL CONTENT END *** -->
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -221,9 +262,11 @@
         </div>
         <!-- Search result item -->
       </div>
-    </div><!-- Search Results ends -->
+    </div>
+<!-- Search Results ends -->
 
-</div><!-- Main content ends -->
+</div>
+<!-- Main content ends -->
 
   </div>
 </div>

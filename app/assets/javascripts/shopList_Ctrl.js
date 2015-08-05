@@ -18,12 +18,22 @@
           $scope.groceries[i].current_user = true;
         };
       };
+      for (var j = 0; j < $scope.activeIngredients.length; j++) {
+        if ($scope.activeIngredients[j].shop_list) {
+          $scope.activeIngredients[j].current_user = true;
+        };
+      };
     };
 
     $scope.shopClear = function () {
-      for (var i = 0; i < $scope.groceries.length; i++) {
-        if ($scope.groceries[i].shop_list) {
-          $scope.groceries[i].shop_list = false;
+      for (var k = 0; k < $scope.groceries.length; k++) {
+        if ($scope.groceries[k].shop_list) {
+          $scope.groceries[k].shop_list = false;
+        };
+      };
+      for (var l = 0; l < $scope.activeIngredients.length; l++) {
+        if ($scope.activeIngredients[l].shop_list) {
+          $scope.activeIngredients[l].shop_list = false;
         };
       };
     };
@@ -32,9 +42,9 @@
       var userGroceries = {
         user_groceries: []
       };
-      for (var i = 0; i < $scope.groceries.length; i++) {
-        if ($scope.groceries[i].current_user === true) {
-          userGroceries.user_groceries.push($scope.groceries[i].id);
+      for (var m = 0; m < $scope.groceries.length; m++) {
+        if ($scope.groceries[m].current_user === true) {
+          userGroceries.user_groceries.push($scope.groceries[m].id);
         };
       };
       $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
@@ -43,9 +53,9 @@
       var userSaveIngredients = {
         user_ingredients: []
       };
-      for (var j = 0; j < $scope.activeIngredients.length; j++) {
-        if ($scope.activeIngredients[j].current_user === true) {
-          userSaveIngredients.user_ingredients.push($scope.activeIngredients[j].description);
+      for (var n = 0; n < $scope.activeIngredients.length; n++) {
+        if ($scope.activeIngredients[n].current_user === true) {
+          userSaveIngredients.user_ingredients.push($scope.activeIngredients[n].description);
         };
       };
       $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {

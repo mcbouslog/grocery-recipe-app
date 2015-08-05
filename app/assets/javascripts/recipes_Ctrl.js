@@ -217,6 +217,8 @@
       recipeIdHash.recipeId = match.id;
       $http.post('/api/v1/api_searches/recipe.json',recipeIdHash).then(function(recipeResponse) {
         $scope.recipe = recipeResponse["data"];
+        $scope.recipeAttribution = $scope.recipe.attribution.html;
+        $scope.recipeSourceUrl = $scope.recipe.source.sourceRecipeUrl;
         $scope.recipeIngs = $scope.recipe.ingredientLines;
       });
     };
