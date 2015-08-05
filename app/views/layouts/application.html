@@ -23,7 +23,7 @@
   <div class="outer">
     
     <!-- Header two Starts -->
-    <div class="header-2">
+    <div class="header-1">
       
       <!-- Container -->
       <div class="container">
@@ -46,9 +46,7 @@
                 <li><a href="/recipes/favorites">Favorite Recipes</a></li>
                 <li><a href="/groceries/shop_list">Shopping List</a></li>
                 <% end %>
-                <% if user_signed_in? && current_user.admin %>
-                <li><a href="/grocery_ingredient_joins/edit">Grocery-Ingredient Edit</a></li>
-                <% end %>
+                <!-- <li><a href="/grocery_ingredient_joins/edit">Grocery-Ingredient Edit</a></li> -->
                 <li class="pull-right"> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
                 <li class="pull-right"> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
                 <li class="pull-right"> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
