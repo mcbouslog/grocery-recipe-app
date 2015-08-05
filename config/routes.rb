@@ -17,19 +17,21 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       get 'api_groceries' => 'api_groceries#index'
-      get 'api_groceries/minimal' => 'api_groceries#minimal'
       post 'api_groceries' => 'api_groceries#update'
+      get 'api_groceries/minimal' => 'api_groceries#minimal'
       post 'api_groceries/shop_list' => 'api_groceries#shop_list'
       
       get 'api_ingredients' => 'api_ingredients#index'
       post 'api_ingredients' => 'api_ingredients#update'
       post 'api_ingredients/shop_list' => 'api_ingredients#shop_list'      
-      get 'api_ingredients/search_all' => 'api_ingredients#search_all'
       get 'api_ingredients/active' => 'api_ingredients#active'
+      get 'api_ingredients/search_all' => 'api_ingredients#search_all'
       get 'api_ingredients/join' => 'api_ingredients#join'
       
       post 'api_searches' => 'api_searches#index'
       post 'api_searches/recipe' => 'api_searches#show'
+      get 'api_searches/favorite_recipes' => 'api_searches#favorite_recipes'
+      post 'api_searches/favorite_recipes' => 'api_searches#update_favorites'
       
     end
   end

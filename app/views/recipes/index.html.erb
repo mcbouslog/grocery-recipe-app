@@ -56,12 +56,12 @@
     <h4>Filters</h4>
     <br>
     <div id="Score" class="col-md-2">
-      <ul class="list-unstyled">Score
+      <ul class="list-unstyled">ChefHat Score
         <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
         <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+        <li><label>70+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="70"></label></li>
         <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
-        <li><label>40+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="40"></label></li>
-        <li><label>20+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="20"></label></li>
+        <li><label>50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
       </ul>
     </div>
     <div id="Time" class="col-md-2">
@@ -205,11 +205,12 @@
               </div>              
 
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3 text-center">
+              <h4>ChefHat Score: {{ match.matchScore }}</h4>
               <h6>Time: {{ matchTime(match) }} mins</h6>
             </div>
             
-            <div class="col-md-2">
+            <div class="col-md-2 text-center">
               <button class="btn" data-toggle="modal" data-target="#matchModal" ng-click="modalInfo(match)"=>Ingredients</button>
 
               <h6>Total: {{ match.ingredients.length }}</h6>
@@ -255,8 +256,10 @@
             
             </div>
             
-            <div class="col-md-2">
-              <h4>Score: {{ match.matchScore }}</h4>
+            <div class="col-md-1">
+              <h1>
+                <i ng-click="changeFavorite(match)" ng-class="match.favoriteStatus"></i>
+              </h1>
             </div>
           </div>
         </div>

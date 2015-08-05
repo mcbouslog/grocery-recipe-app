@@ -1,0 +1,122 @@
+<div ng-app="app">
+  <div ng-controller="favoriteRecipesCtrl" ng-init="setup()">
+
+<!-- Page heading one starts -->
+<div class="page-heading-one">
+  <h2>Favorite Recipes</h2>
+  <div class="smart-forms well">
+    <div class="row">
+    <h4>Filters</h4>
+    <br>
+    <div id="Score" class="col-md-2">
+      <ul class="list-unstyled">ChefHat Score
+        <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
+        <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+        <li><label>70+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="70"></label></li>
+        <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
+        <li><label>50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
+      </ul>
+    </div>
+    <div id="Time" class="col-md-2">
+      <ul class="list-unstyled">Time Less Than:
+        <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+        <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+        <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+        <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+        <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+      </ul>
+    </div>
+    <div id="Unmatched Ingredients" class="col-md-2">
+      <ul class="list-unstyled">Unmatched Ingredients
+        <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
+        <li><label>0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
+        <li><label>0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
+        <li><label>0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
+        <li><label>0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
+      </ul>
+    </div>
+    <div id="Yummly Rating" class="col-md-2">
+      <ul class="list-unstyled">Yummly Rating
+        <li><label>5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
+        <li><label>4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
+        <li><label>3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
+        <li><label>2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
+        <li><label>1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
+      </ul>
+    </div>
+    <div id="Course" class="col-md-2">
+      <ul class="list-unstyled">Course
+        <li>
+          <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
+          <datalist id="courseList">
+          <option ng-repeat="course in courses">{{ course }}</option>
+          </datalist>
+        </li>
+      </ul>
+    </div>
+    <div id="Cuisine" class="col-md-2">
+      <ul class="list-unstyled">Cuisine
+        <li>
+          <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
+          <datalist id="cuisineList">
+          <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
+          </datalist>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Actual content -->
+  <div class="rs-property">
+    <br />
+    <!-- Block heading two -->
+    <div class="block-heading-two">
+      <h3><span>Attribution</span></h3>
+    </div>
+
+    <div class="row">
+    <div ng-repeat="favoriteRecipe in favoriteRecipes">
+      <div class="col-md-4 col-sm-4">
+        <!-- Real estate property item -->
+        <div class="property-item">
+          <div class="img-container">
+            <!-- Product Image -->
+            <img class="img-responsive" ng-src={{favoriteRecipe["images"][0]["imageUrlsBySize"][360]}} alt="" />
+            <span class="hover-top bg-color">Residential</span>
+            <span class="hover-bottom bg-red">Sale</span>
+          </div>
+          <!-- product title -->
+          <h4><a href="real-estate-property-single.html">White Villa - Ellison Road</a></h4>
+          <!-- product details -->
+          <div class="property-details">
+            <a class="ecom pull-right" href="#">More info</a>
+            <!-- price -->
+            <span class="price pull-left">$12999.00</span>
+            <div class="clearfix"></div>
+          </div>
+          <!-- Info -->
+          <div class="p-info">
+            <a href="#">8 Bed</a>
+            <a href="#">3 Bath</a>
+            <a href="#">970 ft<sup>2</sup></a>
+            <div class="clearfix"></div>
+          </div>
+          <!-- Property Details List -->
+          <ul class="list-3">
+            <li>4 Beds, 1 Bath</li>
+            <li><strong>Area</strong>: 1064ft<sup>2</sup></li>
+            <li><strong>Lawn</strong>: 354ft<sup>2</sup></li>
+            <li><strong>Year</strong>: 2004</li>
+            <li><strong>Parking</strong>: 2</li>
+            <li><strong>Status</strong>: For Rent</li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

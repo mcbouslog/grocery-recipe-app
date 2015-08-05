@@ -19,6 +19,9 @@
           $scope.allOptions.push($scope.groceries[j]);
         };  
       });
+      $http.get('/api/v1/api_searches/favorite_recipes.json').then(function(favResponse) {
+        $scope.favoriteRecipes = favResponse.data;
+      });
     };
 
     $scope.searchStringify = function(optionOne, optionTwo, optionThree, searchTerm) {
@@ -150,15 +153,27 @@
         };
       };          
       $scope.multiply = function(array) {
-        var sum = 1;
+        var sum = 0;
+        var average = 0;
         for (var m = 0; m < array.length; m++) {
-          sum = sum * array[m];
+          sum = sum + array[m];
+          average = sum / array.length;
         }; 
-        return sum;
+        return average;
       };          
       $scope.matchScore = ($scope.multiply($scope.scoreArray) * 100).toFixed(0);
       return $scope.matchScore;
     };
+    
+    $scope.matchFavoriteCheck = function(match) {
+      for (var fav = 0; fav < $scope.favoriteRecipes.length; fav++) {
+        if (match.id === $scope.favoriteRecipes[fav]["id"]) {
+          return "fa fa-heart";
+        };
+      };
+      return "fa fa-heart-o";
+    };
+    
     $scope.matchTime = function(match) {
         $scope.matchMinutes = match.totalTimeInSeconds / 60;
         return $scope.matchMinutes;
@@ -167,6 +182,7 @@
       for (var n = 0; n < matches.length; n++) {
         matches[n].unMatchIngCount = $scope.matchCount(matches[n]);
         matches[n].matchScore = parseInt($scope.matchScoreCalc(matches[n]));
+        matches[n].favoriteStatus = $scope.matchFavoriteCheck(matches[n]);
       };
     };
     // *** MATCH ATTRIBUTES END ***
@@ -223,6 +239,29 @@
       });
     };
     // *** RECIPE MODALS ENDS ***
+
+    $scope.changeFavorite = function(match) {
+      if (match.favoriteStatus === "fa fa-heart-o") {
+        var favoriteIdHash = {
+          fav_recipe_id: match.id,
+          fav_action: "create"
+        };
+        $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
+          match.favoriteStatus = "fa fa-heart";
+          console.log(favoriteIdHash);
+        });
+      };
+      if (match.favoriteStatus === "fa fa-heart") {
+        var favoriteIdHash = {
+          fav_recipe_id: match.id,
+          fav_action: "destroy"
+        };
+        $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
+          match.favoriteStatus = "fa fa-heart-o";
+          console.log(favoriteIdHash);
+        });
+      };
+    };
 
     window.scope = $scope;
   
