@@ -132,7 +132,7 @@
     };
     // *** MATCH ATTRIBUTES END ***
 
-    $scope.changeFavorite = function(recipe) {
+    $scope.changeRecipeFavorite = function(recipe) {
       if (recipe.favoriteStatus === "fa fa-heart-o red") {
         var favoriteIdHash = {
           fav_recipe_id: recipe.id,

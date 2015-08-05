@@ -77,12 +77,13 @@
             <!-- Product Image -->
             <img class="img-responsive" ng-src={{favoriteRecipe["images"][0]["imageUrlsBySize"][360]}} alt="" />
             <span class="hover-top bg-color">{{favoriteRecipe.totalTime}}</span>
-            <div ng-repeat="course in favoriteRecipe.attributes.courses">
-              <span class="hover-bottom bg-red">{{course}}</span>
+            <div ng-repeat="course in favoriteRecipe.attributes.course">
+              <span class="hover-bottom bg-blue">{{course}}</span>
             </div>
-            <div ng-repeat="cuisine in favoriteRecipe.attributes.cuisines">
-              <span class="hover-bottom bg-red">{{cuisine}}</span>
+            <div ng-repeat="cuisine in favoriteRecipe.attributes.cuisine">
+              <span class="hover-bottom bg-green">{{cuisine}}</span>
             </div>
+            <span class="hover center"><i ng-click="changeRecipeFavorite(favoriteRecipe)" ng-class="favoriteRecipe.favoriteStatus" class="fa-4x"></i></span>
           </div>
           <!-- product title -->
           <h4><a href="real-estate-property-single.html">{{favoriteRecipe.name}}</a></h4>
