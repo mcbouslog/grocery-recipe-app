@@ -25,12 +25,12 @@
       </ul>
     </div> -->
     <div id="Time" class="col-md-2 col-md-offset-3">
-      <ul class="list-unstyled">Time Less Than:
-        <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
-        <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
-        <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
-        <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
-        <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+      <ul class="list-unstyled text-center">Time Less Than:
+        <li><label class="white">30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+        <li><label class="white">45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+        <li><label class="white">1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+        <li><label class="white">1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+        <li><label class="white">2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
       </ul>
     </div>
     <!-- <div id="Unmatched Ingredients" class="col-md-2">
@@ -100,8 +100,8 @@
           <div class="property-details text-center">
             <!-- <a class="ecom pull-right" href="#">More info</a> -->
             <!-- price -->
-            <h4>Click Here for Recipe Details:</h4>
-            <button class="btn btn-lg btn-warning"><a href="{{favoriteRecipe.source.sourceRecipeUrl}}" target="_blank">{{ favoriteRecipe.name }}</a></button>
+            <h4>Click for recipe details from:</h4>
+            <button class="btn btn-lg btn-warning"><a href="{{favoriteRecipe.source.sourceRecipeUrl}}" target="_blank">{{ favoriteRecipe.source.sourceDisplayName }}</a></button>
           </div>
           <!-- Info -->
           <!-- <div class="p-info">
