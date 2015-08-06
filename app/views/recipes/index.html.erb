@@ -142,7 +142,7 @@
         <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore | filter:filterUnIng | filter:filterRating" class="s-result-item">
           <div class="row">          
             <div class="col-md-2">
-              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
+              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="No Image Provided">
             </div>
             <div class="col-md-4">
               <h5>{{ match.recipeName }}</h5>
