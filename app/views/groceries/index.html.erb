@@ -4,9 +4,53 @@
 
 <div class="page-heading-one">
   <h2>Cook dinner tonight.</h2>
-  <i class="fa fa-cutlery color br-color"></i>
-  <h3>Save your <span class="orange">groceries</span>, use <span class="color">ChefHat</span> to find the <span class="red">perfect meal</span>.</h3>
+  <!-- <i class="fa fa-cutlery color br-color"></i> -->
+  <h3>Enter your <span class="orange">groceries</span>, use <span class="color">ChefHat</span> to find the <span class="red">perfect meal</span>.</h3>
   <br />
+
+  <div class="icon-box-1 text-center">
+          <!-- Container -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <!-- Icon Box One Item -->
+                <div class="icon-box-1-item">
+                  <!-- Icon Box One Icon -->
+                  <a href="/"><i class="fa fa-cutlery color"></i></a>
+                  <!-- Icon Box One Headeing -->
+                  <h4><a href="/">Groceries</a></h4>
+                  <!-- Icon Box One Paragraph -->
+                  <p>Check what groceries you have below. In the Miscellaneous section search and add more specific or unusual items from over 12,000 ingredients.</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Icon Box One Item -->
+                <div ng-click="save()" class="icon-box-1-item">
+                  <a href="/recipes"><i class="fa fa-search orange"></i></a>
+                  <h4><a href="/recipes">Search</a></h4>
+                  <p>Select groceries to cook, and search from over 1 Million recipes through Yummly. <span class="color">Chef Hat</span> will score, rank and help you filter the results so you can find something to cook now.</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Icon Box One Item -->
+                <div ng-click="save()" class="icon-box-1-item">
+                  <a href="/recipes/favorites"><i class="fa fa-heart red"></i></a>
+                  <h4><a href="/recipes/favorites">Favorite</a></h4>
+                  <p>Save your favorite recipes for easy access. Filter your favorites to quickly find the perfect recipe for the perfect occasion.</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Icon Box One Item -->
+                <div ng-click="save()" class="icon-box-1-item">
+                  <a href="/groceries/shop_list"><i class="fa fa-shopping-cart brown"></i></a>
+                  <h4><a href="/groceries/shop_list">Shop</a></h4>
+                  <p>Add missing ingredients to a shopping listing from the recipe search, then conveniently manage your shopping list for optimal shopping.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 <!--   <p class="bg-color">Our Works Here</p> -->
 </div>
 
@@ -28,11 +72,11 @@
         <!-- Accordion starts -->
         <div class="panel-group" id="accordion-alt2">
          <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
-          <div class="panel panel-green"> 
+          <div class="panel panel-transparent br-green"> 
           <!-- Panel heading -->
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="green">
                Fresh Produce
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -53,10 +97,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-red">
+          <div class="panel panel-transparent br-red">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="red">
                Meats, Seafood & Tofu
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -76,10 +120,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-blue">
+          <div class="panel panel-transparent br-blue">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="blue">
                Bakery & Dairy
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -99,10 +143,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-white">
+          <div class="panel panel-transparent br-white">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="white">
                Other Fridge & Freezer Items
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -122,10 +166,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-lblue">
+          <div class="panel panel-transparent br-rose">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="rose">
                Other Pantry Items
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -145,10 +189,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-orange">
+          <div class="panel panel-transparent br-orange">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="orange">
                Spices & Sauces
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -168,10 +212,10 @@
             </div>
            </div>
           </div>
-          <div class="panel panel-purple">
+          <div class="panel panel-transparent br-grey">
            <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
             <h4 class="panel-title">
-              <a>
+              <a class="grey">
                Miscellaneous
               </a>
               <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
@@ -205,7 +249,7 @@
         <!-- Accordion ends -->
       </div>
     <div class="recipe-search-btn">
-    <a ng-click="save()" class="btn btn-lg btn-white" href="/recipes">Recipe Search</a>
+    <a ng-click="save()" class="btn btn-lg btn-orange" href="/recipes">Recipe Search</a>
     </div>
     </div>
   </form>
