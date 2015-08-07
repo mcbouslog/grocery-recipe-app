@@ -2,12 +2,19 @@
   <div ng-controller="favoriteRecipesCtrl" ng-init="setup()">
 
 <!-- Page heading one starts -->
-<div class="page-heading-one">
+<div class="main-block">  
+  <div class="parallax-seven">
+  <div class="container">
+  <div class="p-element rounded-4">
   <h2>Favorite Recipes</h2>
-  <div class="smart-forms well">
+  </div>
+  <div class="smart-forms">
     <div class="row">
-    <h4>Filters</h4>
-    <br>
+      <br />
+      <hr class="br-white">
+      <div class="white li-text">
+      <h3 class="text-center white">Filters</h3>
+      <br>
     <!-- <div id="Score" class="col-md-2">
       <ul class="list-unstyled">ChefHat Score
         <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
@@ -17,13 +24,13 @@
         <li><label>50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
       </ul>
     </div> -->
-    <div id="Time" class="col-md-2">
-      <ul class="list-unstyled">Time Less Than:
-        <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
-        <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
-        <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
-        <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
-        <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+    <div id="Time" class="col-md-2 col-md-offset-3">
+      <ul class="list-unstyled text-center">Time Less Than:
+        <li><label class="white">30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+        <li><label class="white">45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+        <li><label class="white">1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+        <li><label class="white">1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+        <li><label class="white">2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
       </ul>
     </div>
     <!-- <div id="Unmatched Ingredients" class="col-md-2">
@@ -58,14 +65,16 @@
     </div>
   </div>
 </div>
+</div>
+</div>
 
 <div class="container">
   <!-- Actual content -->
-  <div class="rs-property">
+  <div class="rs-property recipe-background">
     <br />
     <!-- Block heading two -->
     <div class="block-heading-two">
-      <h3><span>Attribution</span></h3>
+      <!-- <h3><span>Attribution</span></h3> -->
     </div>
 
     <div class="row">
@@ -80,19 +89,19 @@
             <div ng-repeat="course in favoriteRecipe.attributes.course">
               <span class="hover-bottom bg-blue">{{course}}</span>
             </div>
-            <div ng-repeat="cuisine in favoriteRecipe.attributes.cuisine">
+            <!-- <div ng-repeat="cuisine in favoriteRecipe.attributes.cuisine">
               <span class="hover-bottom bg-green">{{cuisine}}</span>
-            </div>
+            </div> -->
             <span class="hover center"><i ng-click="changeRecipeFavorite(favoriteRecipe)" ng-class="favoriteRecipe.favoriteStatus" class="fa-4x"></i></span>
           </div>
           <!-- product title -->
-          <h4><a href="real-estate-property-single.html">{{favoriteRecipe.name}}</a></h4>
+          <h4>{{favoriteRecipe.name}}</h4>
           <!-- product details -->
-          <div class="property-details">
+          <div class="property-details text-center">
             <!-- <a class="ecom pull-right" href="#">More info</a> -->
             <!-- price -->
-            <span class="text-center">{{favoriteRecipe.source.sourceDisplayName}}</span>
-            <div class="clearfix"></div>
+            <h4>Click for recipe details from:</h4>
+            <button class="btn btn-lg btn-warning"><a href="{{favoriteRecipe.source.sourceRecipeUrl}}" target="_blank">{{ favoriteRecipe.source.sourceDisplayName }}</a></button>
           </div>
           <!-- Info -->
           <!-- <div class="p-info">
@@ -131,4 +140,7 @@
     </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 </div>

@@ -9,6 +9,7 @@
         $scope.favoriteRecipes = response.data;
         $scope.recipeAttributes($scope.favoriteRecipes);
         $scope.filterCuisineCourse($scope.favoriteRecipes);
+        console.log($scope.favoriteRecipes);
       });
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
         $scope.activeIngredients = ingredientResponse.data;

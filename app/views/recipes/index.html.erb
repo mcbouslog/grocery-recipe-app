@@ -1,127 +1,138 @@
 <div ng-app="app">
   <div ng-controller="recipesCtrl" ng-init="setup()">
 
-<!-- Page heading one starts -->
-<div class="page-heading-one">
-  <h2>Recipe Search</h2>
-  <h4>Select your main ingredients:</h4>
-    <br>
-    <div class="row">
-      
-      <div class="section">
-      <label class="field-label">Ingredient #1: <input list="searchOptionsOne" ng-model="searchOptionOne"><button ng-click="searchOptionOne = undefined">Clear</button></label>
-      <datalist id="searchOptionsOne">
-      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
-      </datalist>
+    <!-- Page heading one starts -->
+    <div class="main-block">  
+      <div class="parallax-seven">
+      <div class="container">
+          <div class="p-element rounded-4">
+            <h2>Recipe Search</h2>
+            <h4>Select your main ingredients:</h4>
+            <br>
+            <div class="smart-forms">
+            <div class="row">
+
+              <div class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #1: </span><input list="searchOptionsOne" ng-model="searchOptionOne"><span class="text-muted"><button ng-click="searchOptionOne = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsOne">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div ng-show="searchOptionOne || searchOptionTwo" class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #2: </span><input list="searchOptionsTwo" ng-model="searchOptionTwo"><span class="text-muted"><button ng-click="searchOptionTwo = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsTwo">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div ng-show="searchOptionTwo || searchOptionThree" class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #3: </span><input list="searchOptionsThree" ng-model="searchOptionThree"><span class="text-muted"><button ng-click="searchOptionThree = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsThree">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <h5><label class="section field-label"><span class="white">Search Term (i.e. grill, paleo, summer): </span><input ng-model="searchTerm"><span class="text-muted"><button ng-click="searchTerm = undefined">Clear</button></span></label></h5>
+
+            </div>
+            <div class="row">
+              <br />
+              <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-transparent">Search for Recipes</a>
+              <br />
+              <br />
+            </div>
+            </div>
+          <br />
+          </div>
+
+        <!-- Filters starts -->
+        <div class="smart-forms">
+          <div class="row">
+            <br />
+            <hr class="br-white">
+            <div class="white">
+            <h3 class="text-center white">Filters</h3>
+            <br>
+            <div id="Score" class="col-md-2">
+              <ul class="list-unstyled text-center">ChefHat Score
+                <li><label class="white">90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
+                <li><label class="white">80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+                <li><label class="white">70+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="70"></label></li>
+                <li><label class="white">60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
+                <li><label class="white">50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
+              </ul>
+            </div>
+            <div id="Time" class="col-md-2">
+              <ul class="list-unstyled text-center">Time Less Than:
+                <li><label class="white">30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+                <li><label class="white">45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+                <li><label class="white">1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+                <li><label class="white">1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+                <li><label class="white">2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+              </ul>
+            </div>
+            <div id="Unmatched Ingredients" class="col-md-2">
+              <ul class="list-unstyled text-center">Unmatched Ingredients
+                <li><label class="white">0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
+                <li><label class="white">0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
+                <li><label class="white">0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
+                <li><label class="white">0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
+                <li><label class="white">0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
+              </ul>
+            </div>
+            <div id="Yummly Rating" class="col-md-2">
+              <ul class="list-unstyled text-center">Yummly Rating
+                <li><label class="white">5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
+                <li><label class="white">4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
+                <li><label class="white">3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
+                <li><label class="white">2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
+                <li><label class="white">1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
+              </ul>
+            </div>
+            <div id="Course" class="col-md-2">
+              <ul class="list-unstyled">Course
+                <li>
+                  <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
+                  <datalist id="courseList">
+                    <option ng-repeat="course in courses">{{ course }}</option>
+                  </datalist>
+                </li>
+              </ul>
+            </div>
+            <div id="Cuisine" class="col-md-2">
+              <ul class="list-unstyled">Cuisine
+                <li>
+                  <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
+                  <datalist id="cuisineList">
+                    <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
+                  </datalist>
+                </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+          <br>
+        </div>
       </div>
-    
-    </div>
-    <div class="row">
-      
-      <div ng-show="searchOptionOne || searchOptionTwo" class="section">
-      <label class="field-label"> Ingredient #2: <input list="searchOptionsTwo" ng-model="searchOptionTwo"><button ng-click="searchOptionTwo = undefined">Clear</button></label>
-      <datalist id="searchOptionsTwo">
-      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
-      </datalist>
-      </div>
-
-    </div>
-    <div class="row">
-      
-      <div ng-show="searchOptionTwo || searchOptionThree" class="section">
-      <label class="field-label">Ingredient #3: <input list="searchOptionsThree" ng-model="searchOptionThree"><button ng-click="searchOptionThree = undefined">Clear</button></label>
-      <datalist id="searchOptionsThree">
-      <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
-      </datalist>
-      </div>
-      
-    </div>
-    <div class="row">
-      
-      <label class="section field-label">Search Term: <input ng-model="searchTerm"><button ng-click="searchTerm = undefined">Clear</button></label>
-      
-    </div>
-    <div class="row">
-
-    <br />
-    <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-grey">Search for Recipes</a>
-    <br />
-    <br />
-
     </div>
 
-<!-- Filters starts -->
-  <div class="smart-forms well">
-    <div class="row">
-    <h4>Filters</h4>
-    <br>
-    <div id="Score" class="col-md-2">
-      <ul class="list-unstyled">ChefHat Score
-        <li><label>90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
-        <li><label>80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
-        <li><label>70+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="70"></label></li>
-        <li><label>60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
-        <li><label>50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
-      </ul>
-    </div>
-    <div id="Time" class="col-md-2">
-      <ul class="list-unstyled">Time Less Than:
-        <li><label>30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
-        <li><label>45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
-        <li><label>1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
-        <li><label>1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
-        <li><label>2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
-      </ul>
-    </div>
-    <div id="Unmatched Ingredients" class="col-md-2">
-      <ul class="list-unstyled">Unmatched Ingredients
-        <li><label>0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
-        <li><label>0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
-        <li><label>0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
-        <li><label>0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
-        <li><label>0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
-      </ul>
-    </div>
-    <div id="Yummly Rating" class="col-md-2">
-      <ul class="list-unstyled">Yummly Rating
-        <li><label>5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
-        <li><label>4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
-        <li><label>3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
-        <li><label>2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
-        <li><label>1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
-      </ul>
-    </div>
-    <div id="Course" class="col-md-2">
-      <ul class="list-unstyled">Course
-        <li>
-          <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
-          <datalist id="courseList">
-          <option ng-repeat="course in courses">{{ course }}</option>
-          </datalist>
-        </li>
-      </ul>
-    </div>
-    <div id="Cuisine" class="col-md-2">
-      <ul class="list-unstyled">Cuisine
-        <li>
-          <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
-          <datalist id="cuisineList">
-          <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
-          </datalist>
-        </li>
-      </ul>
-    </div>
-    </div>
-    <br>
-  </div>
-</div>
 <!-- Filters ends -->
 <!-- Page heading one ends -->
 
 <!-- Main content starts -->
-<div class="main-block">
 
 <!-- Search Results starts -->         
+  <div class="recipe-background">  
     <div class="container">
 
       <div ng-show="showResults" class="search-results">
@@ -131,11 +142,11 @@
         <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore | filter:filterUnIng | filter:filterRating" class="s-result-item">
           <div class="row">          
             <div class="col-md-2">
-              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="Responsive image">
+              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="No Image Provided">
             </div>
             <div class="col-md-4">
-              <h6>{{ match.recipeName }}</h6>
-              <button class="btn" data-toggle="modal" data-target="#recipeModal" ng-click="modalRecipe(match)">Source: {{ match.sourceDisplayName }}</button>
+              <h5>{{ match.recipeName }}</h5>
+              <button class="btn btn-lg btn-orange" data-toggle="modal" data-target="#recipeModal" ng-click="modalRecipe(match)">{{ match.sourceDisplayName }}</button>
 
               <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog" role="document">
@@ -161,41 +172,27 @@
                             </div>   
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-1">
+                        <div class="text-center">
+                          <div>
+                            <h3>Click Here for Recipe Details:</h3>
+                            <button class="btn btn-lg btn-warning"><a href="{{recipeSourceUrl}}" target="_blank">{{ recipe.source.sourceDisplayName }}</a></button>
                           </div>
-                          <div class="col-md-4">
-                            <h4>Source: <a href="{{recipeSourceUrl}}" target="_blank">{{ recipe.source.sourceDisplayName }}</a></h4>
-                          </div>
-                          <div class="col-md-1">
-                          </div>
-                          <div class="col-md-2">
-                          </div>
-                          <div class="col-md-2">
-                            <h6>Servings: {{ recipe.numberOfServings }}</h6>
-                          </div>
-                          <div class="col-md-2">
+                          <div>
+                          <h4>Servings: {{ recipe.numberOfServings }}   -   Total Time: {{ recipe.totalTime }}</h4>
+                          </div>  
+                          <div>
+                            <h4>Yummly Rating: {{ recipe.rating }}</h4>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <h6>Total Time: </h6>
-                          </div>
-                          <div class="col-md-6">
-                            <h6>Yummly Rating: {{ recipe.rating }}</h6>
-                          </div>
-                        </div>
-                        <div class="row">
-                            <h5>Ingredients:</h5>
+                          <div class="well">
+                            <h4>Ingredients:</h4>
                             <ul ng-repeat="recipeIng in recipeIngs">
                               <li>{{ recipeIng }}</li>
                             </ul>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 col-md-offset-0">
+                          </div>
+                          <div class="text-center">
                             <h6 ng-bind-html="recipeAttribution"></h6>
                           </div>
-                        </div>
                       </div>
 <!-- *** RECIPE MODAL CONTENT END *** -->
                     </div>
@@ -207,16 +204,25 @@
               </div>              
 
             </div>
-            <div class="col-md-3 text-center">
-              <h4>ChefHat Score: {{ match.matchScore }}</h4>
-              <h6>Time: {{ matchTime(match) }} mins</h6>
+            
+
+            <div class="col-md-2 text-center">
+              <h2 class="color">{{match.matchScore}}</span></h2>
+              <h4 class="color">ChefHat</h4>
+              <h4>Score</h4>
             </div>
+            <div class="col-md-1 text-center">
+              <h4>Time:</h4>
+              <h4 class="blue">{{ matchTime(match) }}</h4>
+              <h5>Minutes</h5>
+            </div>            
+            
             
             <div class="col-md-2 text-center">
-              <button class="btn" data-toggle="modal" data-target="#matchModal" ng-click="modalInfo(match)"=>Ingredients</button>
+              <button class="btn btn-brown" data-toggle="modal" data-target="#matchModal" ng-click="modalInfo(match)"=>Ingredients</button>
 
-              <h6>Total: {{ match.ingredients.length }}</h6>
-              <h6>Unmatched: {{ match.unMatchIngCount }}</h6>
+              <h5>Total: {{ match.ingredients.length }}</h5>
+              <h5>Unmatched: {{ match.unMatchIngCount }}</h5>
               
               <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog" role="document">
@@ -250,7 +256,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button ng-click="saveShopList()" type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                      <button ng-click="saveShopList()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -269,8 +275,8 @@
       </div>
     </div>
 <!-- Search Results ends -->
-
-</div>
+  </div>
+  </div>
 <!-- Main content ends -->
 
   </div>
