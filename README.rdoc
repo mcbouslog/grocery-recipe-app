@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+grocery-recipe-app - working title: ChefHat
 
-Things you may want to cover:
+ChefHat is a web application built with Ruby on Rails, utilizing JavaScript, AngularJS and SQL.  ChefHat utilizes an internal API, as well as a third-party API (Yummly).
 
-* Ruby version
+ChefHat saves a user's groceries on-hand, searches the Yummly recipe database based on groceries entered, calculates a dynamic score for returned recipes based on the groceries on-hand, allows favoriting of recipes and the creation of a shopping list.
 
-* System dependencies
+ChefHat was created as a capstone project for the AnyoneCanLearnToCode web development bootcamp.
 
-* Configuration
+Refactoring and testing is currently in progress.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Ruby version 2.1.5p273
