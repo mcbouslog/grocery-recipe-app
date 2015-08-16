@@ -1,5 +1,4 @@
 class Api::V1::ApiSearchesController < ApplicationController
-  skip_before_filter :verify_authenticity_token
 
   def index
     @search_string = params[:searchString]
@@ -38,6 +37,7 @@ class Api::V1::ApiSearchesController < ApplicationController
   end
 
   def favorite_recipes
+    # user_id = params[:user_id]
     user_recipes = UserRecipe.where(user_id: current_user.id)
     @fav_recipes = []
     
@@ -64,13 +64,14 @@ class Api::V1::ApiSearchesController < ApplicationController
   end
 
   def update_favorites
+    user_id = params[:user_id]
     recipe_id = params[:fav_recipe_id]
     action = params[:fav_action]
     if action == "create"
-      UserRecipe.create(user_id: current_user.id, recipe_id: recipe_id)
+      UserRecipe.create(user_id: user_id, recipe_id: recipe_id)
     end
     if action == "destroy"
-      destroy_favs = UserRecipe.where("user_id = ? AND recipe_id = ?", current_user.id, recipe_id)
+      destroy_favs = UserRecipe.where("user_id = ? AND recipe_id = ?", user_id, recipe_id)
       unless destroy_favs == nil
         destroy_favs.each do |destroy_fav|
           destroy_fav.destroy

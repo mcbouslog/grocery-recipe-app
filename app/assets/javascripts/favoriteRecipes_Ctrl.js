@@ -9,10 +9,10 @@
         $scope.favoriteRecipes = response.data;
         $scope.recipeAttributes($scope.favoriteRecipes);
         $scope.filterCuisineCourse($scope.favoriteRecipes);
-        console.log($scope.favoriteRecipes);
       });
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
-        $scope.activeIngredients = ingredientResponse.data;
+        $scope.activeIngredients = ingredientResponse.data.active_ingredients;
+        $scope.user = ingredientResponse.data.user;
         for (var i = 0; i < $scope.activeIngredients.length; i++) {
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
           $scope.allOptions.push($scope.activeIngredients[i]);
@@ -138,7 +138,7 @@
         var favoriteIdHash = {
           fav_recipe_id: recipe.id,
           fav_action: "create",
-          
+          user_id: $scope.user.user_id
         };
         $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
           recipe.favoriteStatus = "fa fa-heart red";
@@ -148,7 +148,8 @@
       if (recipe.favoriteStatus === "fa fa-heart red") {
         var favoriteIdHash = {
           fav_recipe_id: recipe.id,
-          fav_action: "destroy"
+          fav_action: "destroy",
+          user_id: $scope.user.user_id
         };
         $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
           recipe.favoriteStatus = "fa fa-heart-o red";

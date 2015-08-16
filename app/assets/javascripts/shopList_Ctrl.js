@@ -8,7 +8,8 @@
         $scope.groceries = response.data;
       });
       $http.get('/api/v1/api_ingredients/active.json').then(function(response) {
-        $scope.activeIngredients = response.data;
+        $scope.activeIngredients = response.data.active_ingredients;
+        $scope.user = response.data.user;
       });
     };
 
@@ -40,7 +41,8 @@
 
     $scope.saveList = function() {
       var userGroceries = {
-        user_groceries: []
+        user_groceries: [],
+        user_id: $scope.user.user_id
       };
       for (var m = 0; m < $scope.groceries.length; m++) {
         if ($scope.groceries[m].current_user === true) {
@@ -51,7 +53,8 @@
       });
 
       var userSaveIngredients = {
-        user_ingredients: []
+        user_ingredients: [],
+        user_id: $scope.user.user_id
       };
       for (var n = 0; n < $scope.activeIngredients.length; n++) {
         if ($scope.activeIngredients[n].current_user === true) {
@@ -61,7 +64,8 @@
       $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {
       });
       var shopListIngredients = {
-        shop_list_ingredients: []
+        shop_list_ingredients: [],
+        user_id: $scope.user.user_id
       };
       for (var sling = 0; sling < $scope.activeIngredients.length; sling++) {
         if ($scope.activeIngredients[sling].shop_list === true) {
@@ -71,7 +75,8 @@
       $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
       });
       var shopListGroceries = {
-        shop_list_groceries: []
+        shop_list_groceries: [],
+        user_id: $scope.user.user_id
       };
       for (var slgroc = 0; slgroc < $scope.groceries.length; slgroc++) {
         if ($scope.groceries[slgroc].shop_list === true) {

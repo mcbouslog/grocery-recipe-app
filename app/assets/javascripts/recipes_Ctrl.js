@@ -6,7 +6,8 @@
     $scope.setup = function() {
       $scope.allOptions = [];
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
-        $scope.activeIngredients = ingredientResponse.data;
+        $scope.activeIngredients = ingredientResponse.data.active_ingredients;
+        $scope.user = ingredientResponse.data.user;
         for (var i = 0; i < $scope.activeIngredients.length; i++) {
           $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
           $scope.activeIngredients[i].recipeVisible = false;
@@ -204,7 +205,8 @@
     };
     $scope.saveShopList = function() {
       var shopListIngredients = {
-        shop_list_ingredients: []
+        shop_list_ingredients: [],
+        user_id: $scope.user.user_id
       };
       for (var sling = 0; sling < $scope.activeIngredients.length; sling++) {
         if ($scope.activeIngredients[sling].shop_list === true) {
@@ -214,7 +216,8 @@
       $http.post('/api/v1/api_ingredients/shop_list', shopListIngredients).then(function(response) {
       });
       var shopListGroceries = {
-        shop_list_groceries: []
+        shop_list_groceries: [],
+        user_id: $scope.user.user_id
       };
       for (var slgroc = 0; slgroc < $scope.groceries.length; slgroc++) {
         if ($scope.groceries[slgroc].shop_list === true) {
@@ -246,7 +249,7 @@
         var favoriteIdHash = {
           fav_recipe_id: match.id,
           fav_action: "create",
-          
+          user_id: $scope.user.user_id
         };
         $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
           match.favoriteStatus = "fa fa-heart red";
@@ -256,7 +259,8 @@
       if (match.favoriteStatus === "fa fa-heart red") {
         var favoriteIdHash = {
           fav_recipe_id: match.id,
-          fav_action: "destroy"
+          fav_action: "destroy",
+          user_id: $scope.user.user_id
         };
         $http.post('/api/v1/api_searches/favorite_recipes.json',favoriteIdHash).then(function(response) {
           match.favoriteStatus = "fa fa-heart-o red";
@@ -280,19 +284,6 @@
         return;
       };
     };
-
-    $(document).ready(function(){
-      // Way Points With Count To()
-      $('.number-count').waypoint(function(down){
-        if(!$(this).hasClass('stop-counter'))
-        {
-          $(this).countTo();
-          $(this).addClass('stop-counter');
-        }
-      }, { 
-        offset: '90%' 
-      });
-    });
 
     window.scope = $scope;
   

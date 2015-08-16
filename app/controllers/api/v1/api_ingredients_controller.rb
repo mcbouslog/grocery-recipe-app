@@ -1,5 +1,4 @@
 class Api::V1::ApiIngredientsController < ApplicationController
-  skip_before_filter :verify_authenticity_token
 
   def index
     @ingredientsAll = Ingredient.all
@@ -10,7 +9,8 @@ class Api::V1::ApiIngredientsController < ApplicationController
   end
 
   def update
-    user_ingredients = UserIngredient.where(user_id: current_user.id)
+    user_id = params[:user_id]
+    user_ingredients = UserIngredient.where(user_id: user_id)
     user_ingredients.each do |user_ingredient|
       user_ingredient.destroy
     end
@@ -20,7 +20,7 @@ class Api::V1::ApiIngredientsController < ApplicationController
         Ingredient.create(description: user_ingredient, searchvalue: user_ingredient)
       end  
       ingredient = Ingredient.find_by(description: user_ingredient)
-      UserIngredient.create(user_id: current_user.id, ingredient_id: ingredient.id)
+      UserIngredient.create(user_id: user_id, ingredient_id: ingredient.id)
     end
     respond_to do |format|
       format.all { render :nothing => true, :status => 200 }
@@ -28,7 +28,8 @@ class Api::V1::ApiIngredientsController < ApplicationController
   end
 
   def shop_list
-    user_ingredient_shopitems = IngredientShopList.where(user_id: current_user.id)
+    user_id = params[:user_id]
+    user_ingredient_shopitems = IngredientShopList.where(user_id: user_id)
     user_ingredient_shopitems.each do |user_ingredient_shopitem|
       user_ingredient_shopitem.destroy
     end
@@ -38,7 +39,7 @@ class Api::V1::ApiIngredientsController < ApplicationController
         Ingredient.create(description: user_ingredient_shopitem, searchvalue: user_ingredient_shopitem)
       end
       ingredient = Ingredient.find_by(description: user_ingredient_shopitem)
-      IngredientShopList.create(user_id: current_user.id, ingredient_id: ingredient.id)
+      IngredientShopList.create(user_id: user_id, ingredient_id: ingredient.id)
     end
     respond_to do |format|
       format.all { render :nothing => true, :status => 200 }

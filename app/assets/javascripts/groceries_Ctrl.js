@@ -8,7 +8,8 @@
         $scope.groceries = response.data;
       });
       $http.get('/api/v1/api_ingredients/active.json').then(function(response) {
-        $scope.userIngredients = response.data;
+        $scope.userIngredients = response.data.active_ingredients;
+        $scope.user = response.data.user;
       });      
       $http.get('/api/v1/api_ingredients/search_all.json').then(function(response) {
         $scope.searchIngredients = response.data;
@@ -17,7 +18,8 @@
 
     $scope.save = function() {
       var userGroceries = {
-        user_groceries: []
+        user_groceries: [],
+        user_id: $scope.user.user_id
       };
       for (var i = 0; i < $scope.groceries.length; i++) {
         if ($scope.groceries[i].current_user === true) {
@@ -28,7 +30,8 @@
       });
 
       var userSaveIngredients = {
-        user_ingredients: []
+        user_ingredients: [],
+        user_id: $scope.user.user_id
       };
       for (var j = 0; j < $scope.userIngredients.length; j++) {
         if ($scope.userIngredients[j].current_user === true) {
