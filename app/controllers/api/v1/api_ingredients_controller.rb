@@ -47,8 +47,10 @@ class Api::V1::ApiIngredientsController < ApplicationController
   end
 
   def active
-    @active_ingredients = current_user.ingredients + current_user.list_ingredients
-    @active_ingredients.uniq!
+    if current_user
+      @active_ingredients = current_user.ingredients + current_user.list_ingredients
+      @active_ingredients.uniq!
+    end
   end
 
   def join

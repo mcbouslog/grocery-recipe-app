@@ -17,29 +17,34 @@
     };
 
     $scope.save = function() {
-      var userGroceries = {
-        user_groceries: [],
-        user_id: $scope.user.user_id
-      };
-      for (var i = 0; i < $scope.groceries.length; i++) {
-        if ($scope.groceries[i].current_user === true) {
-          userGroceries.user_groceries.push($scope.groceries[i].id);
+      if ($scope.user.user_id === 0) {
+        localStorage.setItem('lsGroceries', JSON.stringify($scope.groceries));
+        // localStorage.setItem('lsActiveIngredients', JSON.stringify($scope.userIngredients));
+      } else {
+        var userGroceries = {
+          user_groceries: [],
+          user_id: $scope.user.user_id
         };
-      };
-      $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
-      });
+        for (var i = 0; i < $scope.groceries.length; i++) {
+          if ($scope.groceries[i].current_user === true) {
+            userGroceries.user_groceries.push($scope.groceries[i].id);
+          };
+        };
+        $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
+        });
 
-      var userSaveIngredients = {
-        user_ingredients: [],
-        user_id: $scope.user.user_id
-      };
-      for (var j = 0; j < $scope.userIngredients.length; j++) {
-        if ($scope.userIngredients[j].current_user === true) {
-          userSaveIngredients.user_ingredients.push($scope.userIngredients[j].description);
+        var userSaveIngredients = {
+          user_ingredients: [],
+          user_id: $scope.user.user_id
         };
+        for (var j = 0; j < $scope.userIngredients.length; j++) {
+          if ($scope.userIngredients[j].current_user === true) {
+            userSaveIngredients.user_ingredients.push($scope.userIngredients[j].description);
+          };
+        };
+        $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {
+        });
       };
-      $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {
-      });
     };
 
     $scope.add = function(ingredient) {

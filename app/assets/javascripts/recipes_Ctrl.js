@@ -6,22 +6,26 @@
     $scope.setup = function() {
       $scope.allOptions = [];
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
-        $scope.activeIngredients = ingredientResponse.data.active_ingredients;
         $scope.user = ingredientResponse.data.user;
-        for (var i = 0; i < $scope.activeIngredients.length; i++) {
-          $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
-          $scope.activeIngredients[i].recipeVisible = false;
-          $scope.allOptions.push($scope.activeIngredients[i]);
+        if ($scope.user.user_id === 0) {
+          $scope.groceries = JSON.parse(localStorage.getItem('lsGroceries'));
+        } else {
+          // $scope.activeIngredients = ingredientResponse.data.active_ingredients;
+          $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
+            $scope.groceries = groceryResponse.data;
+          });
+          $http.get('/api/v1/api_searches/min_fav_recipes.json').then(function(favResponse) {
+            $scope.favoriteRecipes = favResponse.data;
+          });
         };
-      });
-      $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
-        $scope.groceries = groceryResponse.data;
+        // for (var i = 0; i < $scope.activeIngredients.length; i++) {
+        //   $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
+        //   $scope.activeIngredients[i].recipeVisible = false;
+        //   $scope.allOptions.push($scope.activeIngredients[i]);
+        // };  
         for (var j = 0; j < $scope.groceries.length; j++) {
           $scope.allOptions.push($scope.groceries[j]);
-        };  
-      });
-      $http.get('/api/v1/api_searches/min_fav_recipes.json').then(function(favResponse) {
-        $scope.favoriteRecipes = favResponse.data;
+        };
       });
     };
 
