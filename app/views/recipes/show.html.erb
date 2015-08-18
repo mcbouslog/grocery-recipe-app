@@ -80,7 +80,7 @@
     <div class="row">
     <div ng-repeat="favoriteRecipe in favoriteRecipes | filter:favoriteRecipe | filter:filterTime">
       <div class="col-md-4 col-sm-4">
-        <!-- Real estate property item -->
+
         <div class="property-item">
           <div class="img-container">
             <!-- Product Image -->
@@ -112,7 +112,7 @@
           </div> -->
           
           <div class="panel-group" id="accordion-{{favoriteRecipe.id}}">
-           <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
+
             <div class="panel panel-white"> 
             <!-- Panel heading -->
              <div class="panel-heading">
@@ -125,7 +125,7 @@
              <div id="collapseOne-{{favoriteRecipe.id}}" class="panel-collapse collapse">
               <!-- Panel body -->
               <div class="panel-body">
-                <!-- Property Details List -->
+                <!-- Details List -->
                 <ul ng-repeat="ingredientLine in favoriteRecipe.ingredientLines">
                   <li>{{ingredientLine}}</li>
                 </ul>
