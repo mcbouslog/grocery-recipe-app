@@ -18,7 +18,7 @@ if current_user
 else
 
   json.user do
-    json.user_id 0
+    json.user_id false
   end
 
 end

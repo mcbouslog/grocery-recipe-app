@@ -9,12 +9,12 @@
       });
       $http.get('/api/v1/api_ingredients/active.json').then(function(activeResponse) {
         $scope.user = activeResponse.data.user;
-        if ($scope.user.user_id === 0 && localStorage.getItem('unregUser')) {
+        if ($scope.user.user_id === false && localStorage.getItem('unregUser')) {
           $scope.groceries = JSON.parse(localStorage.getItem('lsGroceries'));
           $scope.userIngredients = JSON.parse(localStorage.getItem('lsActiveIngredients'));
         } else {
           $scope.userIngredients = activeResponse.data.active_ingredients || [];
-          $http.get('/api/v1/api_groceries/minimal.json').then(function(response) {
+          $http.get('/api/v1/api_groceries.json').then(function(response) {
             $scope.groceries = response.data;
           });
         };
@@ -22,7 +22,7 @@
     };
 
     $scope.save = function() {
-      if ($scope.user.user_id === 0) {
+      if ($scope.user.user_id === false) {
         localStorage.setItem('unregUser', true);
         localStorage.setItem('lsGroceries', JSON.stringify($scope.groceries));
         localStorage.setItem('lsActiveIngredients', JSON.stringify($scope.userIngredients));
@@ -56,7 +56,10 @@
     $scope.add = function(ingredient) {
       $scope.userIngredients.push({
         description: ingredient,
-        current_user: true
+        current_user: true,
+        groceries: [],
+        id: undefined,
+        shop_list: false
       });
       $scope.searchIngredient = null;
     };
