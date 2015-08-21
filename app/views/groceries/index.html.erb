@@ -213,7 +213,7 @@
            </div>
           </div>
           <div class="panel panel-transparent br-grey">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
+           <div ng-click="ingredientSearchAll()" data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
             <h4 class="panel-title">
               <a class="grey">
                Miscellaneous
@@ -225,7 +225,7 @@
             <div class="panel-body">
 
               <div>
-                <label>Ingredient Search:
+                <label>Ingredient Search (please allow 5 seconds for 12,000 ingredients to load):
                   <input list="searchIngredients" ng-model="searchIngredient">
                   <button ng-click="add(searchIngredient)">Add</button>
                   <datalist id="searchIngredients">

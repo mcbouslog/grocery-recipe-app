@@ -4,20 +4,23 @@
   angular.module("app").controller("groceriesCtrl", function($scope, $http) {
 
     $scope.setup = function() {
-      $http.get('/api/v1/api_ingredients/search_all.json').then(function(response) {
-        $scope.searchIngredients = response.data;
-      });
       $http.get('/api/v1/api_ingredients/active.json').then(function(activeResponse) {
         $scope.user = activeResponse.data.user;
-        if ($scope.user.user_id === false && localStorage.getItem('unregUser')) {
+        if (localStorage.getItem('unregUser')) {
           $scope.groceries = JSON.parse(localStorage.getItem('lsGroceries'));
           $scope.userIngredients = JSON.parse(localStorage.getItem('lsActiveIngredients'));
         } else {
-          $scope.userIngredients = activeResponse.data.active_ingredients || [];
           $http.get('/api/v1/api_groceries.json').then(function(response) {
             $scope.groceries = response.data;
           });
+            $scope.userIngredients = activeResponse.data.active_ingredients || [];
         };
+      });
+    };
+
+    $scope.ingredientSearchAll = function() {
+      $http.get('/api/v1/api_ingredients/search_all.json').then(function(response) {
+        $scope.searchIngredients = response.data;
       });
     };
 
@@ -27,6 +30,9 @@
         localStorage.setItem('lsGroceries', JSON.stringify($scope.groceries));
         localStorage.setItem('lsActiveIngredients', JSON.stringify($scope.userIngredients));
       } else {
+        localStorage.removeItem('unregUser');
+        localStorage.removeItem('lsGroceries');
+        localStorage.removeItem('lsActiveIngredients');        
         var userGroceries = {
           user_groceries: [],
           user_id: $scope.user.user_id
