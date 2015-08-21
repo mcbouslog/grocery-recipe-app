@@ -8,10 +8,12 @@
         $scope.user = activeResponse.data.user;
         if (localStorage.getItem('unregUser')) {
           $scope.groceries = JSON.parse(localStorage.getItem('lsGroceries'));
+          console.log($scope.groceries);
           $scope.userIngredients = JSON.parse(localStorage.getItem('lsActiveIngredients'));
         } else {
           $http.get('/api/v1/api_groceries.json').then(function(response) {
             $scope.groceries = response.data;
+            console.log($scope.groceries);
           });
             $scope.userIngredients = activeResponse.data.active_ingredients || [];
         };
