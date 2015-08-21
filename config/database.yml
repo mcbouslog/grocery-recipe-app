@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: grocery-recipe-app_production
-  username: grocery-recipe-app
-  password: <%= ENV['GROCERY-RECIPE-APP_DATABASE_PASSWORD'] %>
+  database: grocery-recipe-app-production
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  # username: grocery-recipe-app
+  # password: <%= ENV['GROCERY-RECIPE-APP_DATABASE_PASSWORD'] %>
