@@ -45,13 +45,18 @@
                 <% if user_signed_in? %>
                 <li><a href="/recipes/favorites">Favorites</a></li>
                 <li><a href="/groceries/shop_list">Shopping List</a></li>
+                <% else %>
+                <li><a href="/users/sign_up">Favorites</a></li>
+                <li><a href="/users/sign_up">Shopping List</a></li>
                 <% end %>
-                <li><a href="/grocery_ingredient_joins/edit">Grocery-Ingredient Edit</a></li>
-                <li class="pull-right"> <%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %> </li>
-                <li class="pull-right"> <%= link_to "Sign-In", "/users/sign_in" unless current_user %> </li>
-                <li class="pull-right"> <%= link_to "Sign-Up", "/users/sign_up" unless current_user %> </li>
+                <% if user_signed_in? && current_user.admin %>
+                <li><a href="/grocery_ingredient_joins/edit">G-I Join</a></li>
+                <% end %>
+                <li class="pull-right"><%= link_to "Sign-Out", "/users/sign_out", method: :delete if current_user %></li>
+                <li class="pull-right"><%= link_to "Sign-In", "/users/sign_in" unless current_user %></li>
+                <li class="pull-right"><%= link_to "Sign-Up", "/users/sign_up" unless current_user %></li>
               </ul>
-            </div>              
+            </div>             
             <!-- Navigation ends -->
           </div>    
         </div>
@@ -73,7 +78,7 @@
         <ul class="list-inline pull-right">
           <!-- List -->
           <li><a href="/">Home</a><li>
-            <li><a href="about-us.html">About</a></li>
+            <!-- <li><a href="about-us.html">About</a></li> -->
             <li><a href="contact-us.html">Contact</a></li>
         </ul>
         <!-- Clearfix -->

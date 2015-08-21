@@ -34,17 +34,27 @@
               <div class="col-md-3 col-sm-6">
                 <!-- Icon Box One Item -->
                 <div ng-click="save()" class="icon-box-1-item">
+                  <% if user_signed_in? %>
                   <a href="/recipes/favorites"><i class="fa fa-heart red"></i></a>
                   <h4><a href="/recipes/favorites">Favorite</a></h4>
+                  <% else %>
+                  <a href="/users/sign_up"><i class="fa fa-heart red"></i></a>
+                  <h4><a href="/users/sign_up">Favorite</a></h4>
+                  <% end %>
                   <p>Save your favorite recipes for easy access. Filter your favorites to quickly find the perfect recipe for the perfect occasion.</p>
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
                 <!-- Icon Box One Item -->
                 <div ng-click="save()" class="icon-box-1-item">
+                  <% if user_signed_in? %>
                   <a href="/groceries/shop_list"><i class="fa fa-shopping-cart brown"></i></a>
                   <h4><a href="/groceries/shop_list">Shop</a></h4>
-                  <p>Add missing ingredients to a shopping listing from the recipe search, then conveniently manage your shopping list for optimal shopping.</p>
+                  <% else %>
+                  <a href="/users/sign_up"><i class="fa fa-shopping-cart brown"></i></a>
+                  <h4><a href="/users/sign_up">Shop</a></h4>
+                  <% end %>
+                  <p>Add missing ingredients to a shopping listing from the recipe search results, then conveniently manage your shopping list for optimal shopping.</p>
                 </div>
               </div>
             </div>
@@ -213,7 +223,7 @@
            </div>
           </div>
           <div class="panel panel-transparent br-grey">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
+           <div ng-click="ingredientSearchAll()" data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
             <h4 class="panel-title">
               <a class="grey">
                Miscellaneous
@@ -225,7 +235,7 @@
             <div class="panel-body">
 
               <div>
-                <label>Ingredient Search:
+                <label>Ingredient Search (please allow 5 seconds for 12,000 ingredients to load):
                   <input list="searchIngredients" ng-model="searchIngredient">
                   <button ng-click="add(searchIngredient)">Add</button>
                   <datalist id="searchIngredients">

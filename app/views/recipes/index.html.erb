@@ -238,17 +238,17 @@
                         <tbody>
                           <tr>
                             <th>No.</th>
-                            <th>Recipe Ingredient</th>
-                            <th>Shop List</th>
-                            <th>Grocery</th>
-                            <th>Shop List</th>                          
+                            <th class="text-center">Recipe Ingredient</th>
+                            <th ng-show="user.user_id">Shop List</th>
+                            <th class="text-center">Grocery</th>
+                            <th ng-show="user.user_id">Shop List</th>                          
                           </tr>
                           <tr ng-repeat="modalIngredient in modalIngredients track by $index">
                             <td>{{ $index+1 }}</td>
                             <td ng-class="{success: itemMatch(modalIngredient, activeIngredients).current_user}">{{ modalIngredient }}</td>
-                            <td><input type="checkbox" ng-model="itemMatch(modalIngredient, activeIngredients).shop_list"></td>
+                            <td ng-show="user.user_id"><input type="checkbox" ng-model="itemMatch(modalIngredient, activeIngredients).shop_list"></td>
                             <td ng-class="{success: itemMatch(modalIngredient, groceries).current_user}">{{ itemMatch(modalIngredient, groceries).description }}</td>
-                            <td><input ng-show="itemMatch(modalIngredient, groceries).description" type="checkbox" ng-model="itemMatch(modalIngredient, groceries).shop_list"></td>
+                            <td ng-show="user.user_id"><input ng-show="itemMatch(modalIngredient, groceries).description" type="checkbox" ng-model="itemMatch(modalIngredient, groceries).shop_list"></td>
                           </tr>
                         </tbody>
                         </table>

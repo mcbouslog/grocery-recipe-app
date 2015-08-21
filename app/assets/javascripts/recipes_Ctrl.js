@@ -4,25 +4,35 @@
   angular.module("app").controller("recipesCtrl", function($scope, $http) {
 
     $scope.setup = function() {
-      $scope.allOptions = [];
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
-        $scope.activeIngredients = ingredientResponse.data.active_ingredients;
         $scope.user = ingredientResponse.data.user;
-        for (var i = 0; i < $scope.activeIngredients.length; i++) {
-          $scope.activeIngredients[i].ingredients = [$scope.activeIngredients[i].description];
-          $scope.activeIngredients[i].recipeVisible = false;
-          $scope.allOptions.push($scope.activeIngredients[i]);
+        if ($scope.user.user_id === false && localStorage.getItem('unregUser')) {
+          $scope.groceries = JSON.parse(localStorage.getItem('lsGroceries'));
+          $scope.activeIngredients = JSON.parse(localStorage.getItem('lsActiveIngredients'));
+          $scope.allOptionBuild($scope.groceries, $scope.activeIngredients);
+        } else {
+          $scope.activeIngredients = ingredientResponse.data.active_ingredients;
+          $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
+            $scope.groceries = groceryResponse.data;
+            $scope.allOptionBuild($scope.groceries, $scope.activeIngredients);
+          });
+          $http.get('/api/v1/api_searches/min_fav_recipes.json').then(function(favResponse) {
+            $scope.favoriteRecipes = favResponse.data;
+          });
         };
       });
-      $http.get('/api/v1/api_groceries.json').then(function(groceryResponse) {
-        $scope.groceries = groceryResponse.data;
-        for (var j = 0; j < $scope.groceries.length; j++) {
-          $scope.allOptions.push($scope.groceries[j]);
-        };  
-      });
-      $http.get('/api/v1/api_searches/min_fav_recipes.json').then(function(favResponse) {
-        $scope.favoriteRecipes = favResponse.data;
-      });
+    };
+
+    $scope.allOptionBuild = function(groceries, activeIngredients) {
+      $scope.allOptions = [];
+      for (var i = 0; i < activeIngredients.length; i++) {
+        activeIngredients[i].ingredients = [activeIngredients[i].description];
+        activeIngredients[i].recipeVisible = false;
+        $scope.allOptions.push(activeIngredients[i]);
+      };  
+      for (var j = 0; j < groceries.length; j++) {
+        $scope.allOptions.push(groceries[j]);
+      };
     };
 
     $scope.searchStringify = function(optionOne, optionTwo, optionThree, searchTerm) {
@@ -167,12 +177,14 @@
     };
     
     $scope.matchFavoriteCheck = function(match) {
-      for (var fav = 0; fav < $scope.favoriteRecipes.length; fav++) {
-        if (match.id === $scope.favoriteRecipes[fav]) {
-          return "fa fa-heart red";
+      if ($scope.user.user_id !== false) {
+        for (var fav = 0; fav < $scope.favoriteRecipes.length; fav++) {
+          if (match.id === $scope.favoriteRecipes[fav]) {
+            return "fa fa-heart red";
+          };
         };
+        return "fa fa-heart-o red";
       };
-      return "fa fa-heart-o red";
     };
     
     $scope.matchTime = function(match) {

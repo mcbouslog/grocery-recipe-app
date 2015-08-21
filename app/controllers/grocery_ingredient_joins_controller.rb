@@ -1,4 +1,5 @@
 class GroceryIngredientJoinsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @groceries = Grocery.all
@@ -40,6 +41,12 @@ class GroceryIngredientJoinsController < ApplicationController
 
     respond_to do |format|
       format.all { render :nothing => true, :status => 200 }
+    end
+  end
+
+  def authenticate_admin!
+    unless user_signed_in? && current_user.admin
+      redirect_to "/"
     end
   end
 

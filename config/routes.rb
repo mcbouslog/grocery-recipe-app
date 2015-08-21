@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   #GROCERIES
   get 'groceries' => 'groceries#index'
   get 'groceries/shop_list' => 'groceries#show'
+  get 'about-us' => 'groceries#about'
+  get 'contact-us' => 'groceries#contact'
 
 
   #RECIPES
@@ -34,8 +36,6 @@ Rails.application.routes.draw do
       get 'api_searches/min_fav_recipes' => 'api_searches#min_fav_recipes'
       post 'api_searches/favorite_recipes' => 'api_searches#update_favorites'
 
-      get 'api_users' => 'api_users#show'
-      
     end
   end
 
