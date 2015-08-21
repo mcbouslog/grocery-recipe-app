@@ -1,8 +1,8 @@
-User.create!([
-  {email: "mark@email.com", encrypted_password: "$2a$10$vtJMXydF4O4bGGPgSbPNhuwqLlKS1tXyyzuTtWnYwXvTtIJKldcme", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 69, current_sign_in_at: "2015-08-21 04:57:29", last_sign_in_at: "2015-08-21 04:39:54", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: true},
-  {email: "user1@email.com", encrypted_password: "$2a$10$Z9EZoYhhnw8/iRvLypook.29Ps7i7tlv28giLf2EYMzR96y2q0OCK", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 5, current_sign_in_at: "2015-08-21 05:08:21", last_sign_in_at: "2015-07-26 02:50:44", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: nil},
-  {email: "unreguser@email.com", encrypted_password: "$2a$10$10Xs9EvGZo0fbHXrdMtmdOiZmeJoyBZ7aJ4Pw3aJqe.mnsLMsJ64i", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-08-21 03:53:32", last_sign_in_at: "2015-08-21 03:53:32", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: nil}
-])
+# User.create!([
+#   {email: "mark@email.com", encrypted_password: "$2a$10$vtJMXydF4O4bGGPgSbPNhuwqLlKS1tXyyzuTtWnYwXvTtIJKldcme", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 69, current_sign_in_at: "2015-08-21 04:57:29", last_sign_in_at: "2015-08-21 04:39:54", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: true},
+#   {email: "user1@email.com", encrypted_password: "$2a$10$Z9EZoYhhnw8/iRvLypook.29Ps7i7tlv28giLf2EYMzR96y2q0OCK", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 5, current_sign_in_at: "2015-08-21 05:08:21", last_sign_in_at: "2015-07-26 02:50:44", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: nil},
+#   {email: "unreguser@email.com", encrypted_password: "$2a$10$10Xs9EvGZo0fbHXrdMtmdOiZmeJoyBZ7aJ4Pw3aJqe.mnsLMsJ64i", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-08-21 03:53:32", last_sign_in_at: "2015-08-21 03:53:32", current_sign_in_ip: "::1", last_sign_in_ip: "::1", first_name: nil, last_name: nil, admin: nil}
+# ])
 Grocery.create!([
   {description: "asparagus", grocery_category: "produce", score_factor: "0.4"},
   {description: "broccoli", grocery_category: "produce", score_factor: "0.4"},
