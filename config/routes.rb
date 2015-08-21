@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   #GROCERIES
   get 'groceries' => 'groceries#index'
   get 'groceries/shop_list' => 'groceries#show'
+  get 'about-us' => 'groceries#about'
+  get 'contact-us' => 'groceries#contact'
 
 
   #RECIPES
