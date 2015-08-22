@@ -1,7 +1,6 @@
 (function() {
   "use strict";
 
-  angular
-    .module("app", ['ngSanitize']);
+  angular.module("app", ['ngSanitize']);
 
 }());

@@ -15,6 +15,7 @@
 //= require angular
 //= require angular-sanitize
 //= require app
+//= require groceries_Ctrl
 //= require theme/bootstrap
 //= require theme/custom
 //= require theme/ecommerce
