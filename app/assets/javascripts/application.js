@@ -16,6 +16,10 @@
 //= require angular-sanitize
 //= require app
 //= require groceries_Ctrl
+//= require recipes_Ctrl
+//= require favoriteRecipes_Ctrl
+//= require shopList_Ctrl
+//= require groceryIngredientJoin_Ctrl
 //= require theme/bootstrap
 //= require theme/custom
 //= require theme/ecommerce
