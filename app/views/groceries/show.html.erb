@@ -11,7 +11,7 @@
                 <div class="col-md-6 col-md-offset-3 center">  
                   <div class="option-group field">
                     <label class="switch">
-                    <input type="checkbox" name="visible" id="visible" ng-model="groceryVisible" ng-value="groceryVisible">
+                    <input type="checkbox" name="visible" id="visible" ng-model="groceryVisible" ng-value="groceryVisible" ng-click="toBuyOnly(groceryVisible)" ng-false-value="undefined">
                     <label for="visible" data-on="ON" data-off="OFF"></label>
                     <span class="label label-lg label-brown">Show Only To Buy</span>
                     </label>

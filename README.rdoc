@@ -11,4 +11,3 @@ ChefHat was created as a capstone project for the AnyoneCanLearnToCode web devel
 Refactoring and testing is currently in progress.
 
 * Ruby version 2.1.5p273
-

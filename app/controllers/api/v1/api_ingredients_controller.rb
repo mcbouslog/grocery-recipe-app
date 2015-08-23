@@ -28,21 +28,23 @@ class Api::V1::ApiIngredientsController < ApplicationController
   end
 
   def shop_list
-    user_id = params[:user_id]
-    user_ingredient_shopitems = IngredientShopList.where(user_id: user_id)
-    user_ingredient_shopitems.each do |user_ingredient_shopitem|
-      user_ingredient_shopitem.destroy
-    end
-    user_ingredient_shopitems = params[:shop_list_ingredients]
-    user_ingredient_shopitems.each do |user_ingredient_shopitem|
-      if Ingredient.find_by(description: user_ingredient_shopitem) == nil
-        Ingredient.create(description: user_ingredient_shopitem, searchvalue: user_ingredient_shopitem)
+    if params[:shop_list_ingredients]
+      user_id = params[:user_id]
+      user_ingredient_shopitems = IngredientShopList.where(user_id: user_id)
+      user_ingredient_shopitems.each do |user_ingredient_shopitem|
+        user_ingredient_shopitem.destroy
       end
-      ingredient = Ingredient.find_by(description: user_ingredient_shopitem)
-      IngredientShopList.create(user_id: user_id, ingredient_id: ingredient.id)
-    end
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      user_ingredient_shopitems = params[:shop_list_ingredients]
+      user_ingredient_shopitems.each do |user_ingredient_shopitem|
+        if Ingredient.find_by(description: user_ingredient_shopitem) == nil
+          Ingredient.create(description: user_ingredient_shopitem, searchvalue: user_ingredient_shopitem)
+        end
+        ingredient = Ingredient.find_by(description: user_ingredient_shopitem)
+        IngredientShopList.create(user_id: user_id, ingredient_id: ingredient.id)
+      end
+      respond_to do |format|
+        format.all { render :nothing => true, :status => 200 }
+      end
     end
   end
 

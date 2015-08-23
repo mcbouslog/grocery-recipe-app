@@ -13,6 +13,10 @@
       });
     };
 
+    $scope.toBuyOnly = function(groceryVisible) {
+      console.log(groceryVisible);
+    };
+
     $scope.shopToStock = function() {
       for (var i = 0; i < $scope.groceries.length; i++) {
         if ($scope.groceries[i].shop_list) {
