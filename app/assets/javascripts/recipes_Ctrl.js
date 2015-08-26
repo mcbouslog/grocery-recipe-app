@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("recipesCtrl", function($scope, $http) {
+  angular.module("app").controller("recipesCtrl", function($scope, $http, $location, $anchorScroll) {
 
     $scope.setup = function() {
       $http.get('/api/v1/api_ingredients/active.json').then(function(ingredientResponse) {
@@ -78,6 +78,15 @@
         };
       };
       return false;
+    };
+
+    $scope.gotoResults = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('results');
+
+      // call $anchorScroll()
+      $anchorScroll();
     };
 
     // *** FILTERS START ***

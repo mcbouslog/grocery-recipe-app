@@ -47,7 +47,7 @@
             </div>
             <div class="row">
               <br />
-              <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm)" class="btn btn-lg btn-transparent">Search for Recipes</a>
+              <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm); gotoResults()" class="btn btn-lg btn-transparent">Search for Recipes</a>
               <br />
               <br />
             </div>
@@ -135,8 +135,9 @@
   <div class="recipe-background">  
     <div class="container">
 
+      <h4 id="results" ng-bind-html="attribution"></h4>
+      <br />
       <div ng-show="showResults" class="search-results">
-      <h4 ng-bind-html="attribution"></h4>
       <br>
         <!-- Search result item -->
         <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore | filter:filterUnIng | filter:filterRating" class="s-result-item">
@@ -273,10 +274,14 @@
         </div>
         <!-- Search result item -->
       </div>
+      <br />
     </div>
+    <br />
 <!-- Search Results ends -->
   </div>
+  <br />
   </div>
+  <br />
 <!-- Main content ends -->
 
   </div>
