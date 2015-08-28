@@ -24,6 +24,14 @@
       });
     };
 
+    $scope.filterCurrentUser = function(item) {
+      return item.current_user;
+    };
+
+    $scope.mapId = function(item) {
+      return item.id;
+    };
+
     $scope.save = function() {
       if ($scope.user.user_id === false) {
         localStorage.setItem('unregUser', true);
@@ -32,15 +40,10 @@
       } else {
         localStorage.removeItem('unregUser');
         localStorage.removeItem('lsGroceries');
-        localStorage.removeItem('lsActiveIngredients');        
+        localStorage.removeItem('lsActiveIngredients');
         var userGroceries = {
-          user_groceries: [],
+          user_groceries: $scope.groceries.filter($scope.filterCurrentUser).map($scope.mapId),
           user_id: $scope.user.user_id
-        };
-        for (var i = 0; i < $scope.groceries.length; i++) {
-          if ($scope.groceries[i].current_user === true) {
-            userGroceries.user_groceries.push($scope.groceries[i].id);
-          };
         };
         $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
         });
