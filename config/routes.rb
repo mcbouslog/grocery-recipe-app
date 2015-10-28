@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 
   #RECIPES
-  get 'recipes' => 'recipes#index'
+  get 'recipes' => 'groceries#index'
   get 'recipes/favorites' => 'recipes#show'
 
   #APIs

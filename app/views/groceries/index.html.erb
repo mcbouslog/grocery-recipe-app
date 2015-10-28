@@ -1,76 +1,72 @@
 <div ng-app="app">
-  <div ng-controller="groceriesCtrl" ng-init="setup()">
-<!-- Page heading one starts -->
+  <div ng-controller="groceriesCtrl">
+    <!-- Page heading one starts -->
+    <div class="page-heading-one">
+      <h2>Cook dinner tonight.</h2>
+      <!-- <i class="fa fa-cutlery color br-color"></i> -->
+      <h3>Enter your <span class="orange">groceries</span>, use <span class="color">ChefHat</span> to find the <span class="red">perfect meal</span>.</h3>
+      <br />
 
-<div class="page-heading-one">
-  <h2>Cook dinner tonight.</h2>
-  <!-- <i class="fa fa-cutlery color br-color"></i> -->
-  <h3>Enter your <span class="orange">groceries</span>, use <span class="color">ChefHat</span> to find the <span class="red">perfect meal</span>.</h3>
-  <br />
-
-  <div class="icon-box-1 text-center">
-          <!-- Container -->
-          <div class="container">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <!-- Icon Box One Item -->
-                <div class="icon-box-1-item">
-                  <!-- Icon Box One Icon -->
-                  <a href="/"><i class="fa fa-cutlery color"></i></a>
-                  <!-- Icon Box One Headeing -->
-                  <h4><a href="/">Groceries</a></h4>
-                  <!-- Icon Box One Paragraph -->
-                  <p>Check what groceries you have below. In the Miscellaneous section search and add more specific or unusual items from over 12,000 ingredients. Registered users' groceries are saved for next time.</p>
-                </div>
+      <div class="icon-box-1 text-center">
+        <!-- Container -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <!-- Icon Box One Item -->
+              <div class="icon-box-1-item">
+                <!-- Icon Box One Icon -->
+                <a href="/"><i class="fa fa-cutlery color"></i></a>
+                <!-- Icon Box One Headeing -->
+                <h4><a href="/">Groceries</a></h4>
+                <!-- Icon Box One Paragraph -->
+                <p>Check what groceries you have below. In the Miscellaneous section search and add more specific or unusual items from over 12,000 ingredients. Registered users' groceries are saved for next time.</p>
               </div>
-              <div class="col-md-3 col-sm-6">
-                <!-- Icon Box One Item -->
-                <div ng-click="save()" class="icon-box-1-item">
-                  <a href="/recipes"><i class="fa fa-search orange"></i></a>
-                  <h4><a href="/recipes">Search</a></h4>
-                  <p>Select groceries to cook, and search from over 1 Million recipes through Yummly. <span class="color">Chef Hat</span> will score, rank and help you filter the results so you can find something to cook now.</p>
-                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <!-- Icon Box One Item -->
+              <div ng-click="save()" class="icon-box-1-item">
+                <a href="/recipes"><i class="fa fa-search orange"></i></a>
+                <h4><a href="/recipes">Search</a></h4>
+                <p>Select groceries to cook, and search from over 1 Million recipes through Yummly. <span class="color">Chef Hat</span> will score, rank and help you filter the results so you can find something to cook now.</p>
               </div>
-              <div class="col-md-3 col-sm-6">
-                <!-- Icon Box One Item -->
-                <div ng-click="save()" class="icon-box-1-item">
-                  <% if user_signed_in? %>
-                  <a href="/recipes/favorites"><i class="fa fa-heart red"></i></a>
-                  <h4><a href="/recipes/favorites">Favorite</a></h4>
-                  <% else %>
-                  <a href="/users/sign_up"><i class="fa fa-heart red"></i></a>
-                  <h4><a href="/users/sign_up">Favorite</a></h4>
-                  <% end %>
-                  <p>Save your favorite recipes for easy access. Filter your favorites to quickly find the perfect recipe for the perfect occasion. Only available for registered users.</p>
-                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <!-- Icon Box One Item -->
+              <div ng-click="save()" class="icon-box-1-item">
+                <% if user_signed_in? %>
+                <a href="/recipes/favorites"><i class="fa fa-heart red"></i></a>
+                <h4><a href="/recipes/favorites">Favorite</a></h4>
+                <% else %>
+                <a href="/users/sign_up"><i class="fa fa-heart red"></i></a>
+                <h4><a href="/users/sign_up">Favorite</a></h4>
+                <% end %>
+                <p>Save your favorite recipes for easy access. Filter your favorites to quickly find the perfect recipe for the perfect occasion. Only available for registered users.</p>
               </div>
-              <div class="col-md-3 col-sm-6">
-                <!-- Icon Box One Item -->
-                <div ng-click="save()" class="icon-box-1-item">
-                  <% if user_signed_in? %>
-                  <a href="/groceries/shop_list"><i class="fa fa-shopping-cart brown"></i></a>
-                  <h4><a href="/groceries/shop_list">Shop</a></h4>
-                  <% else %>
-                  <a href="/users/sign_up"><i class="fa fa-shopping-cart brown"></i></a>
-                  <h4><a href="/users/sign_up">Shop</a></h4>
-                  <% end %>
-                  <p>Add missing ingredients to a shopping listing from the recipe search results, then conveniently manage your shopping list for optimal shopping. Only available for registered users.</p>
-                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <!-- Icon Box One Item -->
+              <div ng-click="save()" class="icon-box-1-item">
+                <% if user_signed_in? %>
+                <a href="/groceries/shop_list"><i class="fa fa-shopping-cart brown"></i></a>
+                <h4><a href="/groceries/shop_list">Shop</a></h4>
+                <% else %>
+                <a href="/users/sign_up"><i class="fa fa-shopping-cart brown"></i></a>
+                <h4><a href="/users/sign_up">Shop</a></h4>
+                <% end %>
+                <p>Add missing ingredients to a shopping listing from the recipe search results, then conveniently manage your shopping list for optimal shopping. Only available for registered users.</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/z_PUwrCvokY" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-</div>
-
-<!-- Page heading one ends -->      
+      <div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/z_PUwrCvokY" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <!-- Page heading one ends -->      
 
 <!-- Main content starts -->
-
 <div class="main-block">
   <div class="smart-forms">
 
@@ -238,7 +234,8 @@
             <div class="panel-body">
 
               <div>
-                <label>Ingredient Search (please allow 5 seconds for 12,000 ingredients to load):
+                <h5 ng-hide="searchIngredients">Please wait momentarily while over 12,000 searchable ingredients load...</h5>
+                <label ng-show="searchIngredients">Ingredient Search:
                   <input list="searchIngredients" ng-model="searchIngredient">
                   <button ng-click="add(searchIngredient)">Add</button>
                   <datalist id="searchIngredients">
@@ -261,9 +258,6 @@
         </div>
         <!-- Accordion ends -->
       </div>
-    <div class="recipe-search-btn">
-    <a ng-click="save()" class="btn btn-lg btn-orange" href="/recipes">Recipe Search</a>
-    </div>
     </div>
   </form>
 
@@ -271,5 +265,291 @@
 </div>
 
 <!-- Main content ends -->
+  </div>
+  <div ng-controller="recipesCtrl" ng-init="setup()">
+
+    <!-- Page heading one starts -->
+    <div class="main-block">  
+      <div class="parallax-seven">
+      <div class="container">
+          <div class="p-element rounded-4">
+            <h2>Recipe Search</h2>
+            <h4>Select your main ingredients:</h4>
+            <br>
+            <div class="smart-forms">
+            <div class="row">
+
+              <div class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #1: </span><input list="searchOptionsOne" ng-model="searchOptionOne"><span class="text-muted"><button ng-click="searchOptionOne = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsOne">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div ng-show="searchOptionOne || searchOptionTwo" class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #2: </span><input list="searchOptionsTwo" ng-model="searchOptionTwo"><span class="text-muted"><button ng-click="searchOptionTwo = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsTwo">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div ng-show="searchOptionTwo || searchOptionThree" class="section">
+                <h5><label class="field-label"><span class="white">Ingredient #3: </span><input list="searchOptionsThree" ng-model="searchOptionThree"><span class="text-muted"><button ng-click="searchOptionThree = undefined">Clear</button></span></label></h5>
+                <datalist id="searchOptionsThree">
+                  <option ng-repeat="option in allOptions | filter: {current_user: true} | orderBy:'description'"> {{ option.description }} </option>
+                </datalist>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <h5><label class="section field-label"><span class="white">Search Term (i.e. grill, paleo, summer): </span><input ng-model="searchTerm"><span class="text-muted"><button ng-click="searchTerm = undefined">Clear</button></span></label></h5>
+
+            </div>
+            <div class="row">
+              <br />
+              <a ng-click="recipeSearch(searchOptionOne, searchOptionTwo, searchOptionThree, searchTerm); gotoResults()" class="btn btn-lg btn-transparent">Search for Recipes</a>
+              <br />
+              <br />
+            </div>
+            </div>
+          <br />
+          </div>
+
+        <!-- Filters starts -->
+        <div class="smart-forms">
+          <div class="row">
+            <br />
+            <hr class="br-white">
+            <div class="white">
+            <h3 class="text-center white">Filters</h3>
+            <br>
+            <div id="Score" class="col-md-2">
+              <ul class="list-unstyled text-center">ChefHat Score
+                <li><label class="white">90+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="90"></label></li>
+                <li><label class="white">80+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="80"></label></li>
+                <li><label class="white">70+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="70"></label></li>
+                <li><label class="white">60+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="60"></label></li>
+                <li><label class="white">50+ <input type="checkbox" ng-model="filterScoreOption.filterScoreValue" ng-true-value="50"></label></li>
+              </ul>
+            </div>
+            <div id="Time" class="col-md-2">
+              <ul class="list-unstyled text-center">Time Less Than:
+                <li><label class="white">30 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="1800"></label></li>
+                <li><label class="white">45 min <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="2700"></label></li>
+                <li><label class="white">1 hour <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="3600"></label></li>
+                <li><label class="white">1.5 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="5400"></label></li>
+                <li><label class="white">2 hours <input type="checkbox" ng-model="filterTimeOption.filterTimeValue" ng-true-value="7200"></label></li>
+              </ul>
+            </div>
+            <div id="Unmatched Ingredients" class="col-md-2">
+              <ul class="list-unstyled text-center">Unmatched Ingredients
+                <li><label class="white">0 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="0.01"></label></li>
+                <li><label class="white">0-1 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="1"></label></li>
+                <li><label class="white">0-2 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="2"></label></li>
+                <li><label class="white">0-3 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="3"></label></li>
+                <li><label class="white">0-4 <input type="checkbox" ng-model="filterUnIngOption.filterUnIngValue" ng-true-value="4"></label></li>
+              </ul>
+            </div>
+            <div id="Yummly Rating" class="col-md-2">
+              <ul class="list-unstyled text-center">Yummly Rating
+                <li><label class="white">5 <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="5"></label></li>
+                <li><label class="white">4+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="4"></label></li>
+                <li><label class="white">3+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="3"></label></li>
+                <li><label class="white">2+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="2"></label></li>
+                <li><label class="white">1+ <input type="checkbox" ng-model="filterRatingOption.filterRatingValue" ng-true-value="1"></label></li>
+              </ul>
+            </div>
+            <div id="Course" class="col-md-2">
+              <ul class="list-unstyled">Course
+                <li>
+                  <input list="courseList" ng-model="match.attributes.course"><button ng-click="match.attributes.course = undefined">Clear</button>
+                  <datalist id="courseList">
+                    <option ng-repeat="course in courses">{{ course }}</option>
+                  </datalist>
+                </li>
+              </ul>
+            </div>
+            <div id="Cuisine" class="col-md-2">
+              <ul class="list-unstyled">Cuisine
+                <li>
+                  <input list="cuisineList" ng-model="match.attributes.cuisine"><button ng-click="match.attributes.cuisine = undefined">Clear</button>
+                  <datalist id="cuisineList">
+                    <option ng-repeat="cuisine in cuisines">{{ cuisine }}</option>
+                  </datalist>
+                </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+
+<!-- Filters ends -->
+<!-- Page heading one ends -->
+
+<!-- Main content starts -->
+
+<!-- Search Results starts -->         
+  <div class="recipe-background">  
+    <div class="container">
+
+      <h4 id="results" ng-bind-html="attribution"></h4>
+      <br />
+      <div ng-show="showResults" class="search-results">
+      <br>
+        <!-- Search result item -->
+        <div ng-repeat="match in matches | orderBy:'-matchScore':descending | filter:match | filter:filterTime | filter:filterScore | filter:filterUnIng | filter:filterRating" class="s-result-item">
+          <div class="row">          
+            <div class="col-md-2">
+              <img ng-src={{match["imageUrlsBySize"]["90"]}} class="img-responsive" alt="No Image Provided">
+            </div>
+            <div class="col-md-4">
+              <h5>{{ match.recipeName }}</h5>
+              <button class="btn btn-lg btn-orange" data-toggle="modal" data-target="#recipeModal" ng-click="modalRecipe(match)">{{ match.sourceDisplayName }}</button>
+
+              <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                       <h3 class="modal-title" id="recipeModalLabel">{{ recipe.name }}</h3>
+                    </div>
+                    <div class="modal-body">
+<!-- *** RECIPE MODAL CONTENT START *** -->
+                      <div class="container">
+                        <div class="row">
+                          <div class="image-block">
+                            <div class="image-style-eight">
+                              <!-- Image -->
+                              <img class="img-responsive" ng-src={{recipe["images"][0]["imageUrlsBySize"][360]}} class="img-responsive" alt="Responsive image"/>
+                              <!-- Image caption -->
+                              <div class="image-caption">
+                                <div class="icon-box-1-item">
+                                  <div><i ng-click="changeRecipeFavorite(recipe)" ng-class="recipe.favoriteStatus" class="fa-5x"></i></div>
+                                </div>  
+                              </div>
+                            </div>   
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <div>
+                            <h3>Click Here for Recipe Details:</h3>
+                            <button class="btn btn-lg btn-warning"><a href="{{recipeSourceUrl}}" target="_blank">{{ recipe.source.sourceDisplayName }}</a></button>
+                          </div>
+                          <div>
+                          <h4>Servings: {{ recipe.numberOfServings }}   -   Total Time: {{ recipe.totalTime }}</h4>
+                          </div>  
+                          <div>
+                            <h4>Yummly Rating: {{ recipe.rating }}</h4>
+                          </div>
+                        </div>
+                          <div class="well">
+                            <h4>Ingredients:</h4>
+                            <ul ng-repeat="recipeIng in recipeIngs">
+                              <li>{{ recipeIng }}</li>
+                            </ul>
+                          </div>
+                          <div class="text-center">
+                            <h6 ng-bind-html="recipeAttribution"></h6>
+                          </div>
+                      </div>
+<!-- *** RECIPE MODAL CONTENT END *** -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div>              
+
+            </div>
+            
+
+            <div class="col-md-2 text-center">
+              <h2 class="color">{{match.matchScore}}</span></h2>
+              <h4 class="color">ChefHat</h4>
+              <h4>Score</h4>
+            </div>
+            <div class="col-md-1 text-center">
+              <h4>Time:</h4>
+              <h4 class="blue">{{ matchTime(match) }}</h4>
+              <h5>Minutes</h5>
+            </div>            
+            
+            
+            <div class="col-md-2 text-center">
+              <button class="btn btn-brown" data-toggle="modal" data-target="#matchModal" ng-click="modalInfo(match)"=>Ingredients</button>
+
+              <h5>Total: {{ match.ingredients.length }}</h5>
+              <h5>Unmatched: {{ match.unMatchIngCount }}</h5>
+              
+              <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                       <h4 class="modal-title" id="matchModalLabel">Ingredients</h4>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="table-responsive">
+                        <table class="table">
+                        <tbody>
+                          <tr>
+                            <th>No.</th>
+                            <th class="text-center">Recipe Ingredient</th>
+                            <th ng-show="user.user_id">Shop List</th>
+                            <th class="text-center">Grocery</th>
+                            <th ng-show="user.user_id">Shop List</th>                          
+                          </tr>
+                          <tr ng-repeat="modalIngredient in modalIngredients track by $index">
+                            <td>{{ $index+1 }}</td>
+                            <td ng-class="{success: itemMatch(modalIngredient, activeIngredients).current_user}">{{ modalIngredient }}</td>
+                            <td ng-show="user.user_id"><input type="checkbox" ng-model="itemMatch(modalIngredient, activeIngredients).shop_list"></td>
+                            <td ng-class="{success: itemMatch(modalIngredient, groceries).current_user}">{{ itemMatch(modalIngredient, groceries).description }}</td>
+                            <td ng-show="user.user_id"><input ng-show="itemMatch(modalIngredient, groceries).description" type="checkbox" ng-model="itemMatch(modalIngredient, groceries).shop_list"></td>
+                          </tr>
+                        </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button ng-click="saveShopList()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div>
+            
+            </div>
+            
+            <div class="col-md-1">
+              <h1>
+                <i ng-click="changeFavorite(match)" ng-class="match.favoriteStatus"></i>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <!-- Search result item -->
+      </div>
+      <br />
+    </div>
+    <br />
+<!-- Search Results ends -->
+  </div>
+  <br />
+  </div>
+  <br />
+<!-- Main content ends -->
+
   </div>
 </div>
