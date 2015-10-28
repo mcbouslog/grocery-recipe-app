@@ -16,12 +16,15 @@
 //= require angular-sanitize
 //= require app
 //= require controllers/groceries_Ctrl
+//= require controllers/search_Ctrl
 //= require controllers/recipes_Ctrl
 //= require controllers/favoriteRecipes_Ctrl
 //= require controllers/shopList_Ctrl
 //= require controllers/groceryIngredientJoin_Ctrl
 //= require services/groceries
 //= require services/ingredients
+//= require services/recipeSearches
+//= require services/favorites
 //= require theme/bootstrap
 //= require theme/custom
 //= require theme/ecommerce
