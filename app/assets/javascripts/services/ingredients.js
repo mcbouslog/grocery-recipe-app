@@ -10,6 +10,9 @@
 			},
 			find: function() {
 				return $http({method: 'GET', url: '/api/v1/api_ingredients/active.json'});
+			},
+			create: function(userSaveIngredients) {
+				return $http({method: 'POST', url: '/api/v1/api_ingredients', data: userSaveIngredients});
 			}
 		};
 	}]);

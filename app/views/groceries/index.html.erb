@@ -66,206 +66,205 @@
     </div>
     <!-- Page heading one ends -->      
 
-<!-- Main content starts -->
-<div class="main-block">
-  <div class="smart-forms">
+  <!-- Main content starts -->
+  <div class="main-block">
+    <div class="smart-forms">
 
-  <!-- Parallax block one -->
-  <form>
-  <div class="parallax-one">
-    <div class="container">
-      <!-- Parallax element block -->
-      <div class="p-element">
-<!--    <h2>Groceries!</h2> -->
-
-        <!-- Accordion starts -->
-        <div class="panel-group" id="accordion-alt2">
-         <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
-          <div class="panel panel-transparent br-green"> 
-          <!-- Panel heading -->
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="green">
-               Fresh Produce
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseOne-alt2" class="panel-collapse collapse">
-            <!-- Panel body -->
-            <div class="panel-body section">
-                            
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'produce'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-              
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-red">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="red">
-               Meats, Seafood & Tofu
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseTwo-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-              
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-blue">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="blue">
-               Bakery & Dairy
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseThree-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-              
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-            
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-white">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="white">
-               Other Fridge & Freezer Items
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseFour-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-              
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_frig'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-            
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-rose">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="rose">
-               Other Pantry Items
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseFive-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-              
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_dry'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-            
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-orange">
-           <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="orange">
-               Spices & Sauces
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseSix-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-              
-                <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'">
-                  <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
-                    <input type="checkbox" ng-model="grocery.current_user">
-                    <span class="checkbox"></span>
-                    {{ grocery.description }}
-                  </label>
-                </div>
-            
-            </div>
-           </div>
-          </div>
-          <div class="panel panel-transparent br-grey">
-           <div ng-click="ingredientSearchAll()" data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
-            <h4 class="panel-title">
-              <a class="grey">
-               Miscellaneous
-              </a>
-              <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
-            </h4>
-           </div>
-           <div id="collapseSeven-alt2" class="panel-collapse collapse">
-            <div class="panel-body">
-
-              <div>
-                <h5 ng-hide="searchIngredients">Please wait momentarily while over 12,000 searchable ingredients load...</h5>
-                <label ng-show="searchIngredients">Ingredient Search:
-                  <input list="searchIngredients" ng-model="searchIngredient">
-                  <button ng-click="add(searchIngredient)">Add</button>
-                  <datalist id="searchIngredients">
-                  <option ng-repeat="ingredient in searchIngredients | orderBy: ingredient">{{ ingredient }}</option>
-                  </datalist>
-                </label>
-                <div ng-repeat="ingredient in userIngredients | orderBy:'description'">
-                  <label ng-class="{blue: ingredient.current_user}" ng-show="ingredient.current_user" class="option col-xs-2">
-                    <input type="checkbox" ng-model="ingredient.current_user">
-                    <span class="checkbox"></span>
-                    {{ ingredient.description }}
-                  </label>
-                </div>
+    <!-- Parallax block one -->
+    <form>
+    <div class="parallax-one">
+      <div class="container">
+        <!-- Parallax element block -->
+        <div class="p-element">
+          <!-- Accordion starts -->
+          <div class="panel-group" id="accordion-alt2">
+           <!-- Panel. Use "panel-XXX" class for different colors. Replace "XXX" with color. -->
+            <div class="panel panel-transparent br-green"> 
+            <!-- Panel heading -->
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseOne-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="green">
+                 Fresh Produce
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseOne-alt2" class="panel-collapse collapse">
+              <!-- Panel body -->
+              <div class="panel-body section">
+                              
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'produce'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+                
               </div>
-
+             </div>
             </div>
-           </div>
+            <div class="panel panel-transparent br-red">
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseTwo-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="red">
+                 Meats, Seafood & Tofu
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseTwo-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'meat' || grocery.grocery_category === 'seafood'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+
+              </div>
+             </div>
+            </div>
+            <div class="panel panel-transparent br-blue">
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseThree-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="blue">
+                 Bakery & Dairy
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseThree-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'bakery' || grocery.grocery_category === 'dairy'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+              
+              </div>
+             </div>
+            </div>
+            <div class="panel panel-transparent br-white">
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFour-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="white">
+                 Other Fridge & Freezer Items
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseFour-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_frig'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+              
+              </div>
+             </div>
+            </div>
+            <div class="panel panel-transparent br-rose">
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseFive-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="rose">
+                 Other Pantry Items
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseFive-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'other_dry'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+              
+              </div>
+             </div>
+            </div>
+            <div class="panel panel-transparent br-orange">
+             <div data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSix-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="orange">
+                 Spices & Sauces
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseSix-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                  <div ng-repeat="grocery in groceries | orderBy:'description'" ng-if="grocery.grocery_category === 'spices' || grocery.grocery_category === 'sauces'">
+                    <label ng-class="{blue: grocery.current_user}" class="option col-xs-2">
+                      <input type="checkbox" ng-model="grocery.current_user">
+                      <span class="checkbox"></span>
+                      {{ grocery.description }}
+                    </label>
+                  </div>
+              
+              </div>
+             </div>
+            </div>
+            <div class="panel panel-transparent br-grey">
+             <div ng-click="ingredientSearchAll()" data-toggle="collapse" data-parent="#accordion-alt2" href="#collapseSeven-alt2" class="panel-heading">
+              <h4 class="panel-title">
+                <a class="grey">
+                 Miscellaneous
+                </a>
+                <button ng-click="save()" class="pull-right btn btn-grey btn-no-border">Save</button>
+              </h4>
+             </div>
+             <div id="collapseSeven-alt2" class="panel-collapse collapse">
+              <div class="panel-body">
+
+                <div>
+                  <h5 ng-hide="searchIngredients">Please wait momentarily while over 12,000 searchable ingredients load...</h5>
+                  <label ng-show="searchIngredients">Ingredient Search:
+                    <input list="searchIngredients" ng-model="searchIngredient">
+                    <button ng-click="addIngredient(searchIngredient)">Add</button>
+                    <datalist id="searchIngredients">
+                    <option ng-repeat="ingredient in searchIngredients | orderBy: ingredient">{{ ingredient }}</option>
+                    </datalist>
+                  </label>
+                  <div ng-repeat="ingredient in userIngredients | orderBy:'description'">
+                    <label ng-class="{blue: ingredient.current_user}" ng-show="ingredient.current_user" class="option col-xs-2">
+                      <input type="checkbox" ng-model="ingredient.current_user">
+                      <span class="checkbox"></span>
+                      {{ ingredient.description }}
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+             </div>
+            </div>
           </div>
+          </div>
+          <!-- Accordion ends -->
         </div>
-        </div>
-        <!-- Accordion ends -->
       </div>
+    </form>
+
     </div>
-  </form>
-
   </div>
-</div>
 
-<!-- Main content ends -->
+  <!-- Main content ends -->
   </div>
+  
   <div ng-controller="recipesCtrl" ng-init="setup()">
 
     <!-- Page heading one starts -->

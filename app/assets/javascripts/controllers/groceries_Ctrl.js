@@ -18,36 +18,20 @@
       });
     };
 
-    $scope.filterCurrentUser = function(item) {
-      return item.current_user;
-    };
-
-    $scope.mapId = function(item) {
-      return item.id;
-    };
-
     $scope.save = function() {
       var userGroceries = {
-        user_groceries: $scope.groceries.filter($scope.filterCurrentUser).map($scope.mapId),
+        user_groceries: $scope.groceries.filter(function(g) {return g.current_user;}).map(function(g) {return g.id}),
         user_id: $scope.user.user_id
       };
-      $http.post('/api/v1/api_groceries', userGroceries).then(function(response) {
-      });
-
+      Groceries.create(userGroceries);
       var userSaveIngredients = {
-        user_ingredients: [],
+        user_ingredients: $scope.userIngredients.filter(function(i) {return i.current_user}).map(function(i) {return i.description}),
         user_id: $scope.user.user_id
       };
-      for (var j = 0; j < $scope.userIngredients.length; j++) {
-        if ($scope.userIngredients[j].current_user === true) {
-          userSaveIngredients.user_ingredients.push($scope.userIngredients[j].description);
-        };
-      };
-      $http.post('/api/v1/api_ingredients', userSaveIngredients).then(function(response) {
-      });
+      Ingredients.create(userSaveIngredients);
     };
 
-    $scope.add = function(ingredient) {
+    $scope.addIngredient = function(ingredient) {
       $scope.userIngredients.push({
         description: ingredient,
         current_user: true,
